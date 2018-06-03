@@ -9,9 +9,14 @@
 #define Vector2_hpp
 
 #include <stdio.h>
-
+#include <iostream>
+#include <math.h>
 class Vector2{
 public:
+    
+    Vector2(void){
+        ToZero();
+    }
     
     Vector2(const float x, const float y) {
         this->x = x;
@@ -37,8 +42,8 @@ public:
     inline Vector2  operator-(const Vector2  &a) const{
         return Vector2(x - a.x,y - a.y);
     }
-    inline Vector3  operator-() const{
-        return Vector3(-x,-y);
+    inline Vector2  operator-() const{
+        return Vector2(-x,-y);
     }
     inline Vector2  operator+(const Vector2  &a) const{
         return Vector2(x + a.x,y + a.y);
@@ -76,6 +81,6 @@ public:
     }
     
     
-}
+};
 
 #endif /* Vector2_hpp */

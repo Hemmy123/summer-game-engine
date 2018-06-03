@@ -121,8 +121,8 @@ Matrix4 Matrix4::Rotation(float degrees, const Vector3 &inaxis)     {
     
     axis.Normalise();
     
-    float c = cos((float)Utils::DegToRad(degrees));
-    float s = sin((float)Utils::DegToRad(degrees));
+    float c = cos((float)MathUtils::DegToRad(degrees));
+    float s = sin((float)MathUtils::DegToRad(degrees));
     
     m.values[0]  = (axis.x * axis.x) * (1.0f - c) + c;
     m.values[1]  = (axis.y * axis.x) * (1.0f - c) + (axis.z * s);

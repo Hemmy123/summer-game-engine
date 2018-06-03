@@ -19,7 +19,7 @@
 #include <vector>
 #include <algorithm>
 /**
- Some of the IO code taken from:
+IO code taken from:
 https://badvertex.com/2012/11/20/how-to-load-a-glsl-shader-in-opengl-using-c.html
 */
 using std::string;

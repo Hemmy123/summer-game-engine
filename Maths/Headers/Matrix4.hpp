@@ -9,7 +9,7 @@
 #define Matrix4_hpp
 #include "Vector3.hpp"
 #include "Vector4.hpp"
-#include "Utils.hpp"
+#include "MathUtils.hpp"
 #include <stdio.h>
 
 class Matrix4    {

@@ -17,8 +17,8 @@
 		3051908420C30186001167E8 /* Matrix4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051908220C30186001167E8 /* Matrix4.hpp */; };
 		3051908B20C3026B001167E8 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
 		3051908F20C3032C001167E8 /* Vector4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051908D20C3032C001167E8 /* Vector4.hpp */; };
-		3051909220C3038F001167E8 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051909020C3038F001167E8 /* Utils.cpp */; };
-		3051909320C3038F001167E8 /* Utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051909120C3038F001167E8 /* Utils.hpp */; };
+		3051909220C3038F001167E8 /* MathUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051909020C3038F001167E8 /* MathUtils.cpp */; };
+		3051909320C3038F001167E8 /* MathUtils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051909120C3038F001167E8 /* MathUtils.hpp */; };
 		3089E70C20BF043D00C46E54 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3089E70B20BF043D00C46E54 /* main.cpp */; };
 		3089E71420BF047900C46E54 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71320BF047900C46E54 /* OpenGL.framework */; };
 		3089E71620BF049C00C46E54 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71520BF049C00C46E54 /* libGLEW.2.1.0.dylib */; };
@@ -75,9 +75,10 @@
 		3051908120C30186001167E8 /* Matrix4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4.cpp; sourceTree = "<group>"; };
 		3051908220C30186001167E8 /* Matrix4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix4.hpp; sourceTree = "<group>"; };
 		3051908D20C3032C001167E8 /* Vector4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector4.hpp; sourceTree = "<group>"; };
-		3051909020C3038F001167E8 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
-		3051909120C3038F001167E8 /* Utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
+		3051909020C3038F001167E8 /* MathUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtils.cpp; sourceTree = "<group>"; };
+		3051909120C3038F001167E8 /* MathUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MathUtils.hpp; sourceTree = "<group>"; };
 		3051909A20C42EBA001167E8 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		3051909E20C43714001167E8 /* IDETemplateMacros.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IDETemplateMacros.plist; sourceTree = "<group>"; };
 		3089E70820BF043D00C46E54 /* Initialization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Initialization; sourceTree = BUILT_PRODUCTS_DIR; };
 		3089E70B20BF043D00C46E54 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3089E71320BF047900C46E54 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -132,6 +133,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		304F93DC20C445290017F7E3 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3051909120C3038F001167E8 /* MathUtils.hpp */,
+				3051907620C2FE18001167E8 /* Vector2.hpp */,
+				3051907A20C3009D001167E8 /* Vector3.hpp */,
+				3051908D20C3032C001167E8 /* Vector4.hpp */,
+				3051907E20C30173001167E8 /* Matrix3.hpp */,
+				3051908220C30186001167E8 /* Matrix4.hpp */,
+			);
+			path = Headers;
+			sourceTree = "<group>";
+		};
+		304F93DD20C445350017F7E3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3051907D20C30173001167E8 /* Matrix3.cpp */,
+				3051908120C30186001167E8 /* Matrix4.cpp */,
+				3051909020C3038F001167E8 /* MathUtils.cpp */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		3051905C20C2FDDD001167E8 /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,22 +166,38 @@
 		3051906B20C2FE0B001167E8 /* Maths */ = {
 			isa = PBXGroup;
 			children = (
-				3051907620C2FE18001167E8 /* Vector2.hpp */,
-				3051907A20C3009D001167E8 /* Vector3.hpp */,
-				3051908D20C3032C001167E8 /* Vector4.hpp */,
-				3051907D20C30173001167E8 /* Matrix3.cpp */,
-				3051907E20C30173001167E8 /* Matrix3.hpp */,
-				3051908120C30186001167E8 /* Matrix4.cpp */,
-				3051908220C30186001167E8 /* Matrix4.hpp */,
-				3051909020C3038F001167E8 /* Utils.cpp */,
-				3051909120C3038F001167E8 /* Utils.hpp */,
+				304F93DD20C445350017F7E3 /* Source */,
+				304F93DC20C445290017F7E3 /* Headers */,
 			);
 			path = Maths;
+			sourceTree = "<group>";
+		};
+		3051909B20C435A4001167E8 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				3089E75320BF0F1D00C46E54 /* Renderer.hpp */,
+				30EB224D20BF60CA002D1B3E /* GraphicsNode.hpp */,
+				30EB225120BF6AC3002D1B3E /* Shader.hpp */,
+				3051905420C2FC4D001167E8 /* Mesh.hpp */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		305190A020C43810001167E8 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				3089E75220BF0F1D00C46E54 /* Renderer.cpp */,
+				30EB224C20BF60CA002D1B3E /* GraphicsNode.cpp */,
+				30EB225020BF6AC3002D1B3E /* Shader.cpp */,
+				3051905320C2FC4D001167E8 /* Mesh.cpp */,
+			);
+			name = Source;
 			sourceTree = "<group>";
 		};
 		3089E6FF20BF043D00C46E54 = {
 			isa = PBXGroup;
 			children = (
+				3051909E20C43714001167E8 /* IDETemplateMacros.plist */,
 				3051909A20C42EBA001167E8 /* Assets */,
 				3089E70A20BF043D00C46E54 /* Initialization */,
 				3089E76B20BF2A8A00C46E54 /* Graphics */,
@@ -200,14 +240,8 @@
 		3089E76B20BF2A8A00C46E54 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				3089E75220BF0F1D00C46E54 /* Renderer.cpp */,
-				3089E75320BF0F1D00C46E54 /* Renderer.hpp */,
-				30EB224C20BF60CA002D1B3E /* GraphicsNode.cpp */,
-				30EB224D20BF60CA002D1B3E /* GraphicsNode.hpp */,
-				30EB225020BF6AC3002D1B3E /* Shader.cpp */,
-				30EB225120BF6AC3002D1B3E /* Shader.hpp */,
-				3051905320C2FC4D001167E8 /* Mesh.cpp */,
-				3051905420C2FC4D001167E8 /* Mesh.hpp */,
+				305190A020C43810001167E8 /* Source */,
+				3051909B20C435A4001167E8 /* Headers */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -230,7 +264,7 @@
 				3051908020C30173001167E8 /* Matrix3.hpp in Headers */,
 				3051907820C2FE18001167E8 /* Vector2.hpp in Headers */,
 				3051908420C30186001167E8 /* Matrix4.hpp in Headers */,
-				3051909320C3038F001167E8 /* Utils.hpp in Headers */,
+				3051909320C3038F001167E8 /* MathUtils.hpp in Headers */,
 				3051907C20C3009D001167E8 /* Vector3.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +375,7 @@
 					};
 					3089E76920BF2A8900C46E54 = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -376,7 +411,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3051909220C3038F001167E8 /* Utils.cpp in Sources */,
+				3051909220C3038F001167E8 /* MathUtils.cpp in Sources */,
 				3051907F20C30173001167E8 /* Matrix3.cpp in Sources */,
 				3051908320C30186001167E8 /* Matrix4.cpp in Sources */,
 			);
@@ -613,12 +648,18 @@
 		3089E77320BF2A8A00C46E54 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
@@ -626,18 +667,26 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		3089E77420BF2A8A00C46E54 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/glfw/3.2.1/lib,
@@ -645,6 +694,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

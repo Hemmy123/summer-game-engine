@@ -17,7 +17,7 @@
 static const float  PI = 3.14159265358979323846f;
 
 
-class Utils {
+class MathUtils {
     
 public:
     //Degrees to radians

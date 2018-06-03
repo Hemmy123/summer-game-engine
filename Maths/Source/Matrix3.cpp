@@ -6,7 +6,7 @@
 //  Adapted from NCLGL
 
 #include "Matrix3.hpp"
-#include "Utils.hpp"
+#include "MathUtils.hpp"
 
 Matrix3::Matrix3(void)    {
     ToIdentity();
@@ -52,8 +52,8 @@ Matrix3 Matrix3::Rotation(float degrees, const Vector3 &inaxis)     {
     
     axis.Normalise();
     
-    float c = cos((float)Utils::DegToRad(degrees));
-    float s = sin((float)Utils::DegToRad(degrees));
+    float c = cos((float)MathUtils::DegToRad(degrees));
+    float s = sin((float)MathUtils::DegToRad(degrees));
     
     m.values[0]  = (axis.x * axis.x) * (1.0f - c) + c;
     m.values[1]  = (axis.y * axis.x) * (1.0f - c) + (axis.z * s);
