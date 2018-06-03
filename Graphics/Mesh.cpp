@@ -39,6 +39,8 @@ Mesh::~Mesh(){
     
 }
 
+
+
 Mesh* Mesh::generateTriangle(){
     Mesh* m = new Mesh();
 	m->m_numVertices = 3;

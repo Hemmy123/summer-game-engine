@@ -17,6 +17,12 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
+#include "RenderObject.hpp"
+
+#include <vector>
+
+using std::vector;
+
 class Renderer{
 public:
     Renderer();
@@ -33,9 +39,17 @@ public:
     
     bool checkWindow() {return glfwWindowShouldClose(m_window);}
 
+	void setOpaqueObjects(vector<RenderObject*> renderObjects);
+	void setTransparentObjects(vector<RenderObject*> renderObjects);
+	
+	void addRenderObject(RenderObject* renderObject);
+
+	
 private:
     
-    
+	vector<RenderObject*> m_opaqueObjects;
+	vector<RenderObject*> m_transparentObjects;
+	
     GLFWwindow *m_window;
     
     const GLint WIDTH;

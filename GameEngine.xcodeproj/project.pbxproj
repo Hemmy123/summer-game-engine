@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93E420C458880017F7E3 /* RenderObject.cpp */; };
+		304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 304F93E520C458880017F7E3 /* RenderObject.hpp */; };
 		3051905520C2FC4D001167E8 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051905320C2FC4D001167E8 /* Mesh.cpp */; };
 		3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051905420C2FC4D001167E8 /* Mesh.hpp */; };
 		3051907820C2FE18001167E8 /* Vector2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051907620C2FE18001167E8 /* Vector2.hpp */; };
@@ -64,6 +66,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		304F93E420C458880017F7E3 /* RenderObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject.cpp; sourceTree = "<group>"; usesTabs = 1; };
+		304F93E520C458880017F7E3 /* RenderObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderObject.hpp; sourceTree = "<group>"; };
 		3051905320C2FC4D001167E8 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		3051905420C2FC4D001167E8 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		3051905B20C2FDDD001167E8 /* libGame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGame.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,7 +82,6 @@
 		3051909020C3038F001167E8 /* MathUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtils.cpp; sourceTree = "<group>"; };
 		3051909120C3038F001167E8 /* MathUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MathUtils.hpp; sourceTree = "<group>"; };
 		3051909A20C42EBA001167E8 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
-		3051909E20C43714001167E8 /* IDETemplateMacros.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = IDETemplateMacros.plist; sourceTree = "<group>"; };
 		3089E70820BF043D00C46E54 /* Initialization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Initialization; sourceTree = BUILT_PRODUCTS_DIR; };
 		3089E70B20BF043D00C46E54 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3089E71320BF047900C46E54 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -175,6 +178,7 @@
 		3051909B20C435A4001167E8 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				304F93E520C458880017F7E3 /* RenderObject.hpp */,
 				3089E75320BF0F1D00C46E54 /* Renderer.hpp */,
 				30EB224D20BF60CA002D1B3E /* GraphicsNode.hpp */,
 				30EB225120BF6AC3002D1B3E /* Shader.hpp */,
@@ -190,6 +194,7 @@
 				30EB224C20BF60CA002D1B3E /* GraphicsNode.cpp */,
 				30EB225020BF6AC3002D1B3E /* Shader.cpp */,
 				3051905320C2FC4D001167E8 /* Mesh.cpp */,
+				304F93E420C458880017F7E3 /* RenderObject.cpp */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -197,7 +202,6 @@
 		3089E6FF20BF043D00C46E54 = {
 			isa = PBXGroup;
 			children = (
-				3051909E20C43714001167E8 /* IDETemplateMacros.plist */,
 				3051909A20C42EBA001167E8 /* Assets */,
 				3089E70A20BF043D00C46E54 /* Initialization */,
 				3089E76B20BF2A8A00C46E54 /* Graphics */,
@@ -274,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30EB224F20BF60CA002D1B3E /* GraphicsNode.hpp in Headers */,
+				304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */,
 				3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */,
 				30EB225320BF6AC3002D1B3E /* Shader.hpp in Headers */,
 			);
@@ -430,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3089E77720BF2B2400C46E54 /* Renderer.cpp in Sources */,
+				304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */,
 				30EB224E20BF60CA002D1B3E /* GraphicsNode.cpp in Sources */,
 				30EB225220BF6AC3002D1B3E /* Shader.cpp in Sources */,
 				3051905520C2FC4D001167E8 /* Mesh.cpp in Sources */,

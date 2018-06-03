@@ -72,13 +72,33 @@ void Renderer::clearBuffers(){
 }
 
 void Renderer::renderScene(){
-    // Render triangles n' shit here
+	for(auto iter: m_opaqueObjects){
+		iter->draw();
+		if(iter->getShader() && iter->getMesh() ){
+			GLuint program = iter->getShader()->getProgram();
+			//TODO: Update matricies here
+			glUseProgram(program);
+			iter->draw();
+		}
+	}
+	
+	for(auto iter: m_transparentObjects){
+		iter->draw();
+	}
+	
 }
 
 void Renderer::swapBuffers(){
     glfwSwapBuffers(m_window);
 }
 
+void Renderer::addRenderObject(RenderObject *renderObject){
+	if(renderObject->getTransparent()){
+		m_transparentObjects.push_back(renderObject);
+	} else{
+		m_opaqueObjects.push_back(renderObject);
+	}
+}
 
 
 

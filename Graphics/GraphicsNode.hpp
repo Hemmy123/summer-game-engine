@@ -13,6 +13,7 @@
 #include "Renderer.hpp"
 #include "Shader.hpp"
 #include "Mesh.hpp"
+#include "RenderObject.hpp"
 
 class GraphicsNode {
 public:
@@ -21,9 +22,7 @@ public:
     
     void update();
     
-    
-    void generateTriangleTest();
-    void renderTriangle();
+	void renderTriangle();
     
 private:
     Renderer *m_renderer;
@@ -32,6 +31,8 @@ private:
     GLuint m_VBO;
     Shader* m_testShader;
     Mesh* m_testTriangle;
+	
+	RenderObject* m_testRenderObject;
     
 };
 
