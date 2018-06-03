@@ -30,7 +30,7 @@ enum MeshBuffer {
 
 /*
 Stores mesh data and has to be manually buffered into OGL
-with the bufferData method. 
+with the bufferData method.
  
 */
 class Mesh {
@@ -41,9 +41,11 @@ public:
 	static Mesh* generateTriangle();
 
     void bufferData();
-
+    void draw();
+    
     GLuint m_type;
 
+    
 
 private:
     GLuint m_VAO;

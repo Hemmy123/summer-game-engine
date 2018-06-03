@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "Renderer.hpp"
 #include "Shader.hpp"
+#include "Mesh.hpp"
 
 class GraphicsNode {
 public:
@@ -30,6 +31,7 @@ private:
     GLuint m_VAO;
     GLuint m_VBO;
     Shader* m_testShader;
+    Mesh* m_testTriangle;
     
 };
 
