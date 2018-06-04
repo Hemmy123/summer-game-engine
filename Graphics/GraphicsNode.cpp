@@ -12,8 +12,8 @@ GraphicsNode::GraphicsNode(){
     m_renderer = new Renderer();
 	
 	// Create test Mesh
-    m_testTriangle = Mesh::generateTriangle();
-	m_testTriangle->bufferData();
+    m_testTriangleMesh = Mesh::generateTriangle();
+	m_testTriangleMesh->bufferData();
 
 	// Create test Shaders
 	string vertexPath ="Assets/Shaders/Vertex/basicVert.glsl";
@@ -22,18 +22,19 @@ GraphicsNode::GraphicsNode(){
 
 	
 	// Create RenderObject
-	m_testRenderObject = new RenderObject(m_testTriangle, m_testShader);
+	m_testRenderObject = new RenderObject(m_testTriangleMesh, m_testShader);
+	RenderObject* obj2  = new RenderObject(m_testTriangleMesh, m_testShader);
+
 	m_renderer->addRenderObject(m_testRenderObject);
-	
+	m_renderer->addRenderObject(obj2);
+
 }
 
 GraphicsNode::~GraphicsNode(){
     delete m_testShader;
+	delete m_testTriangleMesh;
     delete m_renderer;
-    
-    glDeleteVertexArrays(1, &m_VAO);
-    glDeleteBuffers(1, &m_VBO);
-
+	
 }
 
 void GraphicsNode::update(){

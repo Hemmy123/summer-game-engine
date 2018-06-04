@@ -14,7 +14,7 @@
 #include "Mesh.hpp"
 #include "Shader.hpp"
 #include "Matrix4.hpp"
-
+#include "common.hpp"
 #include <vector>
 
 using std::vector;
@@ -57,7 +57,7 @@ public:
 	
 	
 private:
-	char* m_ID;
+	const char* m_ID;
 	
 	bool 	m_transparent;
 	Shader* m_shader;

@@ -7,8 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300D1FF120C4967200CF5155 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FF020C4967100CF5155 /* CoreFoundation.framework */; };
+		300D1FF220C4967F00CF5155 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FF020C4967100CF5155 /* CoreFoundation.framework */; };
+		300D1FF320C496D400CF5155 /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
+		300D1FF620C496F800CF5155 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FF020C4967100CF5155 /* CoreFoundation.framework */; };
+		300D1FF720C4972B00CF5155 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FED20C4961300CF5155 /* IOKit.framework */; };
+		300D1FFA20C4973F00CF5155 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FED20C4961300CF5155 /* IOKit.framework */; };
+		3042EA4020C5988200FBFE09 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3042EA3E20C5988200FBFE09 /* common.hpp */; };
 		304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93E420C458880017F7E3 /* RenderObject.cpp */; };
 		304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 304F93E520C458880017F7E3 /* RenderObject.hpp */; };
+		304F93F920C4936F0017F7E3 /* IDGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93F720C4936F0017F7E3 /* IDGenerator.cpp */; };
+		304F93FA20C4936F0017F7E3 /* IDGenerator.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 304F93F820C4936F0017F7E3 /* IDGenerator.hpp */; };
+		304F93FD20C493B90017F7E3 /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
 		3051905520C2FC4D001167E8 /* Mesh.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051905320C2FC4D001167E8 /* Mesh.cpp */; };
 		3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051905420C2FC4D001167E8 /* Mesh.hpp */; };
 		3051907820C2FE18001167E8 /* Vector2.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051907620C2FE18001167E8 /* Vector2.hpp */; };
@@ -37,6 +47,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		300D1FF420C496DB00CF5155 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 304F93EB20C493500017F7E3;
+			remoteInfo = Utilities;
+		};
+		304F93FB20C493AF0017F7E3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 304F93EB20C493500017F7E3;
+			remoteInfo = Utilities;
+		};
 		3051908920C3025E001167E8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
@@ -66,8 +90,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		300D1FED20C4961300CF5155 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
+		300D1FF020C4967100CF5155 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		300D1FF820C4973800CF5155 /* libswiftIOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftIOKit.tbd; path = System/Library/PrivateFrameworks/Swift/libswiftIOKit.tbd; sourceTree = SDKROOT; };
+		3042EA3E20C5988200FBFE09 /* common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
 		304F93E420C458880017F7E3 /* RenderObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		304F93E520C458880017F7E3 /* RenderObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderObject.hpp; sourceTree = "<group>"; };
+		304F93EC20C493500017F7E3 /* libUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtilities.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		304F93F720C4936F0017F7E3 /* IDGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IDGenerator.cpp; sourceTree = "<group>"; };
+		304F93F820C4936F0017F7E3 /* IDGenerator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = IDGenerator.hpp; sourceTree = "<group>"; };
 		3051905320C2FC4D001167E8 /* Mesh.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Mesh.cpp; sourceTree = "<group>"; };
 		3051905420C2FC4D001167E8 /* Mesh.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Mesh.hpp; sourceTree = "<group>"; };
 		3051905B20C2FDDD001167E8 /* libGame.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGame.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,6 +128,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		304F93E920C493500017F7E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				300D1FF720C4972B00CF5155 /* IOKit.framework in Frameworks */,
+				300D1FF120C4967200CF5155 /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3051905820C2FDDD001167E8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +155,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300D1FFA20C4973F00CF5155 /* IOKit.framework in Frameworks */,
+				300D1FF620C496F800CF5155 /* CoreFoundation.framework in Frameworks */,
+				300D1FF320C496D400CF5155 /* libUtilities.a in Frameworks */,
 				3089E78120BF2D0400C46E54 /* libGraphics.a in Frameworks */,
 				3089E71820BF04BB00C46E54 /* libglfw.3.2.dylib in Frameworks */,
 				3089E71620BF049C00C46E54 /* libGLEW.2.1.0.dylib in Frameworks */,
@@ -126,6 +169,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300D1FF220C4967F00CF5155 /* CoreFoundation.framework in Frameworks */,
+				304F93FD20C493B90017F7E3 /* libUtilities.a in Frameworks */,
 				3051908B20C3026B001167E8 /* libMaths.a in Frameworks */,
 				3089E77B20BF2B5600C46E54 /* libGLEW.2.1.0.dylib in Frameworks */,
 				3089E77A20BF2B4100C46E54 /* libglfw.3.2.dylib in Frameworks */,
@@ -157,6 +202,16 @@
 				3051909020C3038F001167E8 /* MathUtils.cpp */,
 			);
 			path = Source;
+			sourceTree = "<group>";
+		};
+		304F93ED20C493500017F7E3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				304F93F720C4936F0017F7E3 /* IDGenerator.cpp */,
+				304F93F820C4936F0017F7E3 /* IDGenerator.hpp */,
+				3042EA3E20C5988200FBFE09 /* common.hpp */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		3051905C20C2FDDD001167E8 /* Game */ = {
@@ -207,6 +262,7 @@
 				3089E76B20BF2A8A00C46E54 /* Graphics */,
 				3051905C20C2FDDD001167E8 /* Game */,
 				3051906B20C2FE0B001167E8 /* Maths */,
+				304F93ED20C493500017F7E3 /* Utilities */,
 				3089E70920BF043D00C46E54 /* Products */,
 				3089E71220BF047800C46E54 /* Frameworks */,
 			);
@@ -219,6 +275,7 @@
 				3089E76A20BF2A8900C46E54 /* libGraphics.a */,
 				3051905B20C2FDDD001167E8 /* libGame.a */,
 				3051906A20C2FE0B001167E8 /* libMaths.a */,
+				304F93EC20C493500017F7E3 /* libUtilities.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,6 +291,9 @@
 		3089E71220BF047800C46E54 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300D1FF820C4973800CF5155 /* libswiftIOKit.tbd */,
+				300D1FF020C4967100CF5155 /* CoreFoundation.framework */,
+				300D1FED20C4961300CF5155 /* IOKit.framework */,
 				3089E71720BF04BB00C46E54 /* libglfw.3.2.dylib */,
 				3089E71520BF049C00C46E54 /* libGLEW.2.1.0.dylib */,
 				3089E71320BF047900C46E54 /* OpenGL.framework */,
@@ -253,6 +313,15 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		304F93EA20C493500017F7E3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				304F93FA20C4936F0017F7E3 /* IDGenerator.hpp in Headers */,
+				3042EA4020C5988200FBFE09 /* common.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3051905920C2FDDD001167E8 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +356,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		304F93EB20C493500017F7E3 /* Utilities */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 304F93F420C493500017F7E3 /* Build configuration list for PBXNativeTarget "Utilities" */;
+			buildPhases = (
+				304F93E820C493500017F7E3 /* Sources */,
+				304F93E920C493500017F7E3 /* Frameworks */,
+				304F93EA20C493500017F7E3 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Utilities;
+			productName = Utilities;
+			productReference = 304F93EC20C493500017F7E3 /* libUtilities.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		3051905A20C2FDDD001167E8 /* Game */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3051906320C2FDDD001167E8 /* Build configuration list for PBXNativeTarget "Game" */;
@@ -333,6 +419,7 @@
 			);
 			dependencies = (
 				3089E77620BF2AE300C46E54 /* PBXTargetDependency */,
+				300D1FF520C496DB00CF5155 /* PBXTargetDependency */,
 			);
 			name = Initialization;
 			productName = GraphicsTest2;
@@ -350,6 +437,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				304F93FC20C493AF0017F7E3 /* PBXTargetDependency */,
 				3051908A20C3025E001167E8 /* PBXTargetDependency */,
 			);
 			name = Graphics;
@@ -369,6 +457,9 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Hemmy;
 				TargetAttributes = {
+					304F93EB20C493500017F7E3 = {
+						CreatedOnToolsVersion = 9.4;
+					};
 					3051905A20C2FDDD001167E8 = {
 						CreatedOnToolsVersion = 9.4;
 					};
@@ -400,11 +491,20 @@
 				3089E76920BF2A8900C46E54 /* Graphics */,
 				3051905A20C2FDDD001167E8 /* Game */,
 				3051906920C2FE0B001167E8 /* Maths */,
+				304F93EB20C493500017F7E3 /* Utilities */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		304F93E820C493500017F7E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				304F93F920C4936F0017F7E3 /* IDGenerator.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3051905720C2FDDD001167E8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -445,6 +545,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		300D1FF520C496DB00CF5155 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 304F93EB20C493500017F7E3 /* Utilities */;
+			targetProxy = 300D1FF420C496DB00CF5155 /* PBXContainerItemProxy */;
+		};
+		304F93FC20C493AF0017F7E3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 304F93EB20C493500017F7E3 /* Utilities */;
+			targetProxy = 304F93FB20C493AF0017F7E3 /* PBXContainerItemProxy */;
+		};
 		3051908A20C3025E001167E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3051906920C2FE0B001167E8 /* Maths */;
@@ -458,6 +568,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		304F93F520C493500017F7E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		304F93F620C493500017F7E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		3051906420C2FDDD001167E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -631,6 +767,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0/lib,
 					/usr/local/Cellar/glfw/3.2.1/lib,
+					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/Swift",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -646,6 +783,7 @@
 					"$(inherited)",
 					/usr/local/Cellar/glew/2.1.0/lib,
 					/usr/local/Cellar/glfw/3.2.1/lib,
+					"$(SDKROOT)$(SYSTEM_LIBRARY_DIR)/PrivateFrameworks/Swift",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -707,6 +845,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		304F93F420C493500017F7E3 /* Build configuration list for PBXNativeTarget "Utilities" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				304F93F520C493500017F7E3 /* Debug */,
+				304F93F620C493500017F7E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3051906320C2FDDD001167E8 /* Build configuration list for PBXNativeTarget "Game" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

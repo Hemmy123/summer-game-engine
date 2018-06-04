@@ -1,5 +1,12 @@
 #version 330 core
-out vec4 color;
+
+in Vertex	{
+	vec2 texCoord;
+	vec4 colour;
+} IN;
+
+out vec4 colour;
+
 void main(){
-	color = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+	colour = IN.colour;
 }

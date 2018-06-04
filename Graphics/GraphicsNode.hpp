@@ -26,11 +26,9 @@ public:
     
 private:
     Renderer *m_renderer;
-    
-    GLuint m_VAO;
-    GLuint m_VBO;
+	
     Shader* m_testShader;
-    Mesh* m_testTriangle;
+    Mesh* m_testTriangleMesh;
 	
 	RenderObject* m_testRenderObject;
     

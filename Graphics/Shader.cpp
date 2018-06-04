@@ -11,7 +11,7 @@
 
 Shader::Shader(const char *vertex_path, const char *fragment_path){
     m_program = loadVertexAndFrag(vertex_path, fragment_path); // Load shaders
-
+	
 }
 
 

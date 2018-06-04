@@ -9,12 +9,17 @@
 // ========================================
 
 #include "RenderObject.hpp"
+#include "IDGenerator.hpp"
 
 RenderObject::RenderObject():m_transparent(false){
 	m_mesh		= nullptr;
 	m_shader	= nullptr;
 	m_texture 	= NULL;
 	m_parent  	= nullptr;
+	
+	// TODO: Replace new with resource manager call
+	m_ID 		= IDGenerator::generateID();
+
 }
 
 RenderObject::RenderObject(Mesh*m, Shader*s, GLuint t):m_transparent(false){
@@ -24,6 +29,8 @@ RenderObject::RenderObject(Mesh*m, Shader*s, GLuint t):m_transparent(false){
 	m_texture 	= t;
 	m_parent  	= nullptr;
 	
+	// TODO: Replace new with resource manager call
+	m_ID 		= IDGenerator::generateID();
 }
 
 RenderObject::~RenderObject(){
@@ -34,8 +41,28 @@ RenderObject::~RenderObject(){
 	//TODO: if children delete all children.
 }
 
+
+
 void RenderObject::draw()const {
 	if(m_mesh) {
 		m_mesh->draw();
 	}
 }
+
+void RenderObject::update(float msec){
+	// If parent, apply parent model matrix
+	if(m_parent) {
+		m_worldTransform = m_parent->m_modelMatrix * m_modelMatrix;
+		//worldTransform = modelMatrix * parent->modelMatrix;
+	}
+	else {
+		m_worldTransform = m_modelMatrix;
+	}
+	
+	// Update children.
+	for(vector<RenderObject*>::const_iterator i = m_children.begin(); i != m_children.end(); ++i ) {
+		(*i)->update(msec);
+	}
+	
+}
+
