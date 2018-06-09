@@ -17,8 +17,11 @@ int main(){
     GraphicsNode* graphics = new GraphicsNode;
 	
 	printGLFWVersion();
+	
+	float fakeDT = 0.5;
+	
     while(true){
-        graphics->update();
+        graphics->update(fakeDT);
 
     }
 	

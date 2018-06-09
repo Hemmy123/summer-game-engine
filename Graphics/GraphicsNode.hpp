@@ -20,7 +20,7 @@ public:
     GraphicsNode();
     ~GraphicsNode();
     
-    void update();
+    void update(float msec);
     
 	void renderTriangle();
     

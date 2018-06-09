@@ -60,9 +60,10 @@ void RenderObject::update(float msec){
 	}
 	
 	// Update children.
-	for(vector<RenderObject*>::const_iterator i = m_children.begin(); i != m_children.end(); ++i ) {
-		(*i)->update(msec);
+	for(auto iter: m_children){
+		iter->update(msec);
 	}
+	
 	
 }
 

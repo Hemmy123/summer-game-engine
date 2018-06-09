@@ -23,10 +23,13 @@ GraphicsNode::GraphicsNode(){
 	
 	// Create RenderObject
 	m_testRenderObject = new RenderObject(m_testTriangleMesh, m_testShader);
-	RenderObject* obj2  = new RenderObject(m_testTriangleMesh, m_testShader);
-
+	
+	Matrix4 const currentPos = m_testRenderObject->getWorldTransform();
+	
+	Matrix4 const trans =  Matrix4::Translation(Vector3(1,0,0));
+	m_testRenderObject->setModelMatrix(trans);
+	
 	m_renderer->addRenderObject(m_testRenderObject);
-	m_renderer->addRenderObject(obj2);
 
 }
 
@@ -37,11 +40,14 @@ GraphicsNode::~GraphicsNode(){
 	
 }
 
-void GraphicsNode::update(){
+void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
         m_renderer->clearBuffers();
         m_renderer->pollEvents();
-        m_renderer->renderScene();
+		
+		m_renderer->updateScene(msec);
+		m_renderer->renderScene();
+		
        // renderTriangle();
         
         

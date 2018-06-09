@@ -18,6 +18,7 @@
 #include <stdio.h>
 
 #include "RenderObject.hpp"
+#include "Camera.hpp"
 
 #include <vector>
 
@@ -33,10 +34,19 @@ public:
     
     void pollEvents();
     void clearBuffers();
-    void renderScene();
     void swapBuffers();
-    
-    
+	
+	void renderScene();
+	void renderRenderObject(const RenderObject &o);
+
+	void updateScene(float msec);
+	
+	void updateRenderObjects(float msec);
+
+	void updateShaderMatrices(GLuint program);
+	
+	
+	
     bool checkWindow() {return glfwWindowShouldClose(m_window);}
 
 	void setOpaqueObjects(vector<RenderObject*> renderObjects);
@@ -61,8 +71,13 @@ private:
     float m_g = 0.5;
     float m_b = 0.4;
     float m_a = 1;
+	
+	Matrix4 m_projMatrix;
+	Matrix4 m_modelMatrix;
+	Matrix4 m_viewMatrix;
+	Matrix4 m_textureMatrix;
 
-    
+	Camera* m_camera;
 };
 
 

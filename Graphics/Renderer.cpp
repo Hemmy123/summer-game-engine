@@ -14,12 +14,13 @@ Renderer::Renderer(): WIDTH(800),HEIGHT(600)
     if ( init() != 0){
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
     };
-    
+	m_camera = new Camera();
     
 }
 
 Renderer::~Renderer(){
     glfwTerminate();
+	delete m_camera;
     
 }
 
@@ -72,18 +73,14 @@ void Renderer::clearBuffers(){
 }
 
 void Renderer::renderScene(){
+	
+	
 	for(auto iter: m_opaqueObjects){
-		iter->draw();
-		if(iter->getShader() && iter->getMesh() ){
-			GLuint program = iter->getShader()->getProgram();
-			//TODO: Update matricies here
-			glUseProgram(program);
-			iter->draw();
-		}
+		renderRenderObject(*iter);
 	}
 	
 	for(auto iter: m_transparentObjects){
-		iter->draw();
+		renderRenderObject(*iter);
 	}
 	
 }
@@ -98,6 +95,60 @@ void Renderer::addRenderObject(RenderObject *renderObject){
 	} else{
 		m_opaqueObjects.push_back(renderObject);
 	}
+}
+
+void Renderer::renderRenderObject(const RenderObject &o){
+	m_modelMatrix = o.getModelMatrix();
+	if (o.getShader() && o.getMesh()) {
+		GLuint program = o.getShader()->getProgram();
+		glUseProgram(program);
+		updateShaderMatrices(program);
+		o.draw();
+	}
+	
+	for(auto iter:o.getChildren() ){
+		renderRenderObject(*iter);
+
+	}
+
+}
+
+
+void Renderer::updateScene(float msec){
+	m_camera->UpdateCamera(msec);
+	m_viewMatrix = m_camera->BuildViewMatrix();
+	updateRenderObjects(msec);
+}
+
+void Renderer::updateRenderObjects(float msec){
+
+	for(auto iter:m_opaqueObjects ){
+		iter->update(msec);
+	}
+	
+	for(auto iter:m_transparentObjects){
+		iter->update(msec);
+	}
+	
+	
+}
+
+void Renderer::updateShaderMatrices(GLuint program){
+	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix")  , 1, false, (float*)&m_modelMatrix);
+	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix")   , 1, false, (float*)&m_viewMatrix);
+	glUniformMatrix4fv(glGetUniformLocation(program, "projMatrix")   , 1, false, (float*)&m_projMatrix);
+	glUniformMatrix4fv(glGetUniformLocation(program, "textureMatrix"), 1, false, (float*)&m_textureMatrix);
+	
+	Matrix4 mvp = m_projMatrix * m_viewMatrix * m_modelMatrix;
+	
+	glUniformMatrix4fv(glGetUniformLocation(program, "mvp"), 1, false, (float*)&mvp);
+	
+	std::cout<< "MVP: " <<mvp << std::endl;
+	std::cout<< "M: " <<m_modelMatrix << std::endl;
+	std::cout<< "V: " <<m_viewMatrix << std::endl;
+	std::cout<< "P: " <<m_projMatrix << std::endl;
+
+
 }
 
 
