@@ -10,6 +10,13 @@
 
 GraphicsNode::GraphicsNode(){
     m_renderer = new Renderer();
+	// Set Perspective/Ortha Matrix
+	float viewDistance = 1000;
+	float aspectRatio = (float)m_renderer->getWidth() / (float)m_renderer->getHeight();
+	Matrix4 perspective = Matrix4::Perspective(1, viewDistance, aspectRatio, 45.0f);
+	
+	m_renderer->setProjectionMatrix(perspective);
+
 	
 	// Create test Mesh
     m_testTriangleMesh = Mesh::generateTriangle();
@@ -26,7 +33,8 @@ GraphicsNode::GraphicsNode(){
 	
 	Matrix4 const currentPos = m_testRenderObject->getWorldTransform();
 	
-	Matrix4 const trans =  Matrix4::Translation(Vector3(1,0,0));
+	Matrix4 const trans =  Matrix4::Translation(Vector3(0,0.5,-5));
+	
 	m_testRenderObject->setModelMatrix(trans);
 	
 	m_renderer->addRenderObject(m_testRenderObject);

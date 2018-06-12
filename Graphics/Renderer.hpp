@@ -55,6 +55,12 @@ public:
 	void addRenderObject(RenderObject* renderObject);
 
 	
+	void setProjectionMatrix(Matrix4 proj) {m_projMatrix = proj;}
+	
+	
+	GLint getWidth()const 	{return WIDTH;}
+	GLint getHeight()const 	{return HEIGHT;}
+	
 private:
     
 	vector<RenderObject*> m_opaqueObjects;

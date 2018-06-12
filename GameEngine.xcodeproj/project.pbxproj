@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300727A020CFE3C700A33AD7 /* EventBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3007279E20CFE3C700A33AD7 /* EventBus.cpp */; };
+		300727A120CFE3C700A33AD7 /* EventBus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3007279F20CFE3C700A33AD7 /* EventBus.hpp */; };
+		300727A420CFE3EF00A33AD7 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300727A220CFE3EF00A33AD7 /* Event.cpp */; };
+		300727A520CFE3EF00A33AD7 /* Event.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 300727A320CFE3EF00A33AD7 /* Event.hpp */; };
+		300727AA20CFE80900A33AD7 /* EventNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300727A820CFE80900A33AD7 /* EventNode.cpp */; };
+		300727AB20CFE80900A33AD7 /* EventNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 300727A920CFE80900A33AD7 /* EventNode.hpp */; };
 		300D1FF120C4967200CF5155 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FF020C4967100CF5155 /* CoreFoundation.framework */; };
 		300D1FF220C4967F00CF5155 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FF020C4967100CF5155 /* CoreFoundation.framework */; };
 		300D1FF320C496D400CF5155 /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
@@ -49,6 +55,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		300727A620CFE45F00A33AD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3007279220CFE3AA00A33AD7;
+			remoteInfo = EventSystem;
+		};
 		300D1FF420C496DB00CF5155 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
@@ -92,6 +105,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3007279320CFE3AA00A33AD7 /* libEventSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEventSystem.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3007279E20CFE3C700A33AD7 /* EventBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventBus.cpp; sourceTree = "<group>"; };
+		3007279F20CFE3C700A33AD7 /* EventBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventBus.hpp; sourceTree = "<group>"; };
+		300727A220CFE3EF00A33AD7 /* Event.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Event.cpp; sourceTree = "<group>"; };
+		300727A320CFE3EF00A33AD7 /* Event.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Event.hpp; sourceTree = "<group>"; };
+		300727A820CFE80900A33AD7 /* EventNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventNode.cpp; sourceTree = "<group>"; };
+		300727A920CFE80900A33AD7 /* EventNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventNode.hpp; sourceTree = "<group>"; };
 		300D1FED20C4961300CF5155 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		300D1FF020C4967100CF5155 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		300D1FF820C4973800CF5155 /* libswiftIOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftIOKit.tbd; path = System/Library/PrivateFrameworks/Swift/libswiftIOKit.tbd; sourceTree = SDKROOT; };
@@ -132,6 +152,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3007279020CFE3AA00A33AD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		304F93E920C493500017F7E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -185,6 +212,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3007279420CFE3AA00A33AD7 /* EventSystem */ = {
+			isa = PBXGroup;
+			children = (
+				3007279E20CFE3C700A33AD7 /* EventBus.cpp */,
+				3007279F20CFE3C700A33AD7 /* EventBus.hpp */,
+				300727A220CFE3EF00A33AD7 /* Event.cpp */,
+				300727A320CFE3EF00A33AD7 /* Event.hpp */,
+				300727A820CFE80900A33AD7 /* EventNode.cpp */,
+				300727A920CFE80900A33AD7 /* EventNode.hpp */,
+			);
+			path = EventSystem;
+			sourceTree = "<group>";
+		};
 		304F93DC20C445290017F7E3 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +309,7 @@
 				3051905C20C2FDDD001167E8 /* Game */,
 				3051906B20C2FE0B001167E8 /* Maths */,
 				304F93ED20C493500017F7E3 /* Utilities */,
+				3007279420CFE3AA00A33AD7 /* EventSystem */,
 				3089E70920BF043D00C46E54 /* Products */,
 				3089E71220BF047800C46E54 /* Frameworks */,
 			);
@@ -282,6 +323,7 @@
 				3051905B20C2FDDD001167E8 /* libGame.a */,
 				3051906A20C2FE0B001167E8 /* libMaths.a */,
 				304F93EC20C493500017F7E3 /* libUtilities.a */,
+				3007279320CFE3AA00A33AD7 /* libEventSystem.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +361,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3007279120CFE3AA00A33AD7 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				300727A120CFE3C700A33AD7 /* EventBus.hpp in Headers */,
+				300727AB20CFE80900A33AD7 /* EventNode.hpp in Headers */,
+				300727A520CFE3EF00A33AD7 /* Event.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		304F93EA20C493500017F7E3 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,6 +415,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3007279220CFE3AA00A33AD7 /* EventSystem */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3007279D20CFE3AA00A33AD7 /* Build configuration list for PBXNativeTarget "EventSystem" */;
+			buildPhases = (
+				3007278F20CFE3AA00A33AD7 /* Sources */,
+				3007279020CFE3AA00A33AD7 /* Frameworks */,
+				3007279120CFE3AA00A33AD7 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EventSystem;
+			productName = EventSystem;
+			productReference = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		304F93EB20C493500017F7E3 /* Utilities */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 304F93F420C493500017F7E3 /* Build configuration list for PBXNativeTarget "Utilities" */;
@@ -425,6 +494,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				300727A720CFE45F00A33AD7 /* PBXTargetDependency */,
 				3089E77620BF2AE300C46E54 /* PBXTargetDependency */,
 				300D1FF520C496DB00CF5155 /* PBXTargetDependency */,
 			);
@@ -464,6 +534,9 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Hemmy;
 				TargetAttributes = {
+					3007279220CFE3AA00A33AD7 = {
+						CreatedOnToolsVersion = 9.4;
+					};
 					304F93EB20C493500017F7E3 = {
 						CreatedOnToolsVersion = 9.4;
 					};
@@ -499,11 +572,22 @@
 				3051905A20C2FDDD001167E8 /* Game */,
 				3051906920C2FE0B001167E8 /* Maths */,
 				304F93EB20C493500017F7E3 /* Utilities */,
+				3007279220CFE3AA00A33AD7 /* EventSystem */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3007278F20CFE3AA00A33AD7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				300727A420CFE3EF00A33AD7 /* Event.cpp in Sources */,
+				300727AA20CFE80900A33AD7 /* EventNode.cpp in Sources */,
+				300727A020CFE3C700A33AD7 /* EventBus.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		304F93E820C493500017F7E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,6 +637,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		300727A720CFE45F00A33AD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3007279220CFE3AA00A33AD7 /* EventSystem */;
+			targetProxy = 300727A620CFE45F00A33AD7 /* PBXContainerItemProxy */;
+		};
 		300D1FF520C496DB00CF5155 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 304F93EB20C493500017F7E3 /* Utilities */;
@@ -576,6 +665,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3007279B20CFE3AA00A33AD7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3007279C20CFE3AA00A33AD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		304F93F520C493500017F7E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -857,6 +972,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3007279D20CFE3AA00A33AD7 /* Build configuration list for PBXNativeTarget "EventSystem" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3007279B20CFE3AA00A33AD7 /* Debug */,
+				3007279C20CFE3AA00A33AD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		304F93F420C493500017F7E3 /* Build configuration list for PBXNativeTarget "Utilities" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
