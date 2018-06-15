@@ -142,13 +142,6 @@ void Renderer::updateShaderMatrices(GLuint program){
 	Matrix4 mvp = m_projMatrix * m_viewMatrix * m_modelMatrix;
 	
 	glUniformMatrix4fv(glGetUniformLocation(program, "mvp"), 1, false, (float*)&mvp);
-	
-	std::cout<< "MVP: " <<mvp << std::endl;
-	std::cout<< "M: " <<m_modelMatrix << std::endl;
-	std::cout<< "V: " <<m_viewMatrix << std::endl;
-	std::cout<< "P: " <<m_projMatrix << std::endl;
-
-
 }
 
 

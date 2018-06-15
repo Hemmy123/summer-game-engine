@@ -8,7 +8,7 @@
 
 #include "GraphicsNode.hpp"
 
-GraphicsNode::GraphicsNode(){
+GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer();
 	// Set Perspective/Ortha Matrix
 	float viewDistance = 1000;
@@ -69,6 +69,18 @@ void GraphicsNode::renderTriangle(){
     glUseProgram(program);
     m_testRenderObject->draw();
   
+}
+
+void GraphicsNode::handleEvent(Event event){
+	SubSystem sender = event.getSender();
+	SubSystem receiver = event.getReceiver();
+	std::string type = event.getType();
+	
+	if(sender ==  Sys_Game && receiver == Sys_Graphics && type == "Test Message!"){
+		std::cout<< "Message receieved!"<< std::endl;
+		
+	}
+	
 }
 
 

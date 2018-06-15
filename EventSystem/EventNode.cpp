@@ -9,4 +9,7 @@
 #include "EventNode.hpp"
 
 
-EventNode::EventNode(SubSystem system):m_system(system) {}
+EventNode::EventNode(EventBus* bus, SubSystem system):m_bus(bus),m_system(system) {
+	bus->addSubsystem(system, this);
+	
+}

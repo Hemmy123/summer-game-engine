@@ -5,6 +5,10 @@
 
 #include <GLFW/glfw3.h>
 #include "GraphicsNode.hpp"
+#include "GameNode.hpp"
+#include "EventBus.hpp"
+
+
 
 void printGLFWVersion(){
 	const char *version =  glfwGetVersionString();
@@ -14,7 +18,9 @@ void printGLFWVersion(){
 
 
 int main(){
-    GraphicsNode* graphics = new GraphicsNode;
+	EventBus* bus = new EventBus();
+	GameNode* 		game 		= new GameNode(bus,Sys_Game);
+    GraphicsNode* 	graphics 	= new GraphicsNode(bus,Sys_Graphics);
 	
 	printGLFWVersion();
 	
@@ -22,12 +28,16 @@ int main(){
 	
     while(true){
         graphics->update(fakeDT);
-
+		game->update(fakeDT);
+		
+		
+		bus->update();
     }
 	
     
 
-    
+	delete bus;
+	delete graphics;
     
     return 0;
 }

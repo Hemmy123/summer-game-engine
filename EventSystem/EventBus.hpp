@@ -20,8 +20,12 @@
 // like the in old system! (So subsystems do not contain a reference
 // the main event bus. The main event bus however contains a reference
 // to all of the other sub systems.
+class EventNode;
+
 class EventBus{
 public:
+	EventBus();
+	~EventBus();
 	
 	// Adds a subsystem to the map of nodes the EventBus can send
 	// messages to.
@@ -32,7 +36,6 @@ public:
 protected:
 	
 	void dispatchEvents();
-	EventNode* node;
 	
 	std::queue<Event> m_eventQueue;
 	std::map<SubSystem, EventNode*> m_subsystems;

@@ -15,11 +15,15 @@
 #include "Mesh.hpp"
 #include "RenderObject.hpp"
 
-class GraphicsNode {
+#include "EventNode.hpp"
+
+class GraphicsNode:public EventNode {
 public:
-    GraphicsNode();
+    GraphicsNode(EventBus* eventBus, SubSystem subSystem);
     ~GraphicsNode();
-    
+	
+	void handleEvent(Event event);
+	
     void update(float msec);
     
 	void renderTriangle();
