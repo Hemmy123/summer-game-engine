@@ -540,9 +540,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306CD69C20D58F8E00394FCF /* KeyboardInterface.hpp in Headers */,
 				306CD68A20D574F200394FCF /* InterfaceNode.hpp in Headers */,
 				300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */,
-				306CD69C20D58F8E00394FCF /* KeyboardInterface.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,8 +796,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */,
 				306CD69B20D58F8E00394FCF /* KeyboardInterface.cpp in Sources */,
+				300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */,
 				306CD68920D574F200394FCF /* InterfaceNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

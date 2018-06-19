@@ -9,8 +9,9 @@
 #include "KeyboardInterface.hpp"
 #include <iostream>
 
-KeyboardInterface::KeyboardInterface(GLFWwindow *windowListener,EventBus* bus, SubSystem subSystem):
-m_windowListener(windowListener),InterfaceNode(windowListener,bus, subSystem){
+KeyboardInterface::KeyboardInterface(GLFWwindow *windowListener):m_windowListener(windowListener){
+	
+	
 	glfwSetKeyCallback(m_windowListener, keycallback);
 	glfwSetInputMode(m_windowListener, GLFW_STICKY_KEYS, 1);
 }
@@ -20,7 +21,6 @@ KeyboardInterface::~KeyboardInterface(){
 }
 
 void KeyboardInterface::update(){
-	glfwGetCursorPos(m_windowListener,&m_x, &m_y);
 	
 }
 

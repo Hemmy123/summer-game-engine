@@ -8,7 +8,7 @@
 #include "GameNode.hpp"
 #include "EventBus.hpp"
 #include "Timer.hpp"
-#include "KeyboardInterface.hpp"
+#include "InterfaceNode.hpp"
 
 void printGLFWVersion(){
 	const char *version =  glfwGetVersionString();
@@ -21,7 +21,7 @@ int main(){
 	EventBus* bus = new EventBus();
 	GameNode* 		game 		= new GameNode(bus,Sys_Game);
     GraphicsNode* 	graphics 	= new GraphicsNode(bus,Sys_Graphics);
-	KeyboardInterface* keyboard  = new KeyboardInterface(graphics->getWindow(), bus, Sys_Interface);
+	InterfaceNode* 	inputHandler = new InterfaceNode(graphics->getWindow(), bus, Sys_Interface);
 	
 	Timer* 			timer 		= new Timer();
 	printGLFWVersion();
@@ -32,7 +32,7 @@ int main(){
 		
         graphics->update(dt);
 		game->update(dt);
-		
+		inputHandler->update();
 		bus->update();
 		
 		dt = timer->getDelta();
@@ -40,9 +40,12 @@ int main(){
 	
     
 
-	delete bus;
-	delete graphics;
-    
+//	delete bus;
+//	delete game;
+//	delete graphics;
+//	delete inputHandler;
+//	delete timer;
+
     return 0;
 }
 
