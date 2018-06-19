@@ -17,7 +17,8 @@ enum SubSystem{
 	Sys_Game,
 	Sys_Physics,
 	Sys_Sounds,
-	Sys_IO
+	Sys_IO,
+	Sys_Interface
 };
 
 

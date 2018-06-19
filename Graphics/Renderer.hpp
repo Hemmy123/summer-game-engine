@@ -61,6 +61,9 @@ public:
 	GLint getWidth()const 	{return WIDTH;}
 	GLint getHeight()const 	{return HEIGHT;}
 	
+	GLFWwindow* getWindow() const {return m_window;}
+	
+	
 private:
     
 	vector<RenderObject*> m_opaqueObjects;

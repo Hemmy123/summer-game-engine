@@ -27,7 +27,10 @@ public:
     void update(float msec);
     
 	void renderTriangle();
-    
+	
+	GLFWwindow* getWindow() const {return m_renderer->getWindow();}
+	
+	
 private:
     Renderer *m_renderer;
 	

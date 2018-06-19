@@ -19,6 +19,8 @@
 		300D1FF620C496F800CF5155 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FF020C4967100CF5155 /* CoreFoundation.framework */; };
 		300D1FF720C4972B00CF5155 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FED20C4961300CF5155 /* IOKit.framework */; };
 		300D1FFA20C4973F00CF5155 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FED20C4961300CF5155 /* IOKit.framework */; };
+		300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300DF96F20D93D420018BBA5 /* MouseInterface.cpp */; };
+		300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 300DF97020D93D420018BBA5 /* MouseInterface.hpp */; };
 		3042EA4020C5988200FBFE09 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3042EA3E20C5988200FBFE09 /* common.hpp */; };
 		304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93E420C458880017F7E3 /* RenderObject.cpp */; };
 		304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 304F93E520C458880017F7E3 /* RenderObject.hpp */; };
@@ -37,6 +39,18 @@
 		3051908F20C3032C001167E8 /* Vector4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051908D20C3032C001167E8 /* Vector4.hpp */; };
 		3051909220C3038F001167E8 /* MathUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051909020C3038F001167E8 /* MathUtils.cpp */; };
 		3051909320C3038F001167E8 /* MathUtils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051909120C3038F001167E8 /* MathUtils.hpp */; };
+		306CD67620D45BE300394FCF /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306CD67420D45BE300394FCF /* Timer.cpp */; };
+		306CD67720D45BE300394FCF /* Timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 306CD67520D45BE300394FCF /* Timer.hpp */; };
+		306CD68920D574F200394FCF /* InterfaceNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306CD68720D574F200394FCF /* InterfaceNode.cpp */; };
+		306CD68A20D574F200394FCF /* InterfaceNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 306CD68820D574F200394FCF /* InterfaceNode.hpp */; };
+		306CD69120D5751000394FCF /* libEventSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */; };
+		306CD69220D5751000394FCF /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
+		306CD69320D5751000394FCF /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
+		306CD69420D5758A00394FCF /* libInterface.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 306CD67C20D574C500394FCF /* libInterface.a */; };
+		306CD69B20D58F8E00394FCF /* KeyboardInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306CD69920D58F8E00394FCF /* KeyboardInterface.cpp */; };
+		306CD69C20D58F8E00394FCF /* KeyboardInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 306CD69A20D58F8E00394FCF /* KeyboardInterface.hpp */; };
+		306CD69F20D5A19900394FCF /* HeightMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306CD69D20D5A19900394FCF /* HeightMap.cpp */; };
+		306CD6A020D5A19900394FCF /* HeightMap.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 306CD69E20D5A19900394FCF /* HeightMap.hpp */; };
 		3089E70C20BF043D00C46E54 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3089E70B20BF043D00C46E54 /* main.cpp */; };
 		3089E71420BF047900C46E54 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71320BF047900C46E54 /* OpenGL.framework */; };
 		3089E71620BF049C00C46E54 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71520BF049C00C46E54 /* libGLEW.2.1.0.dylib */; };
@@ -92,6 +106,41 @@
 			remoteGlobalIDString = 3051906920C2FE0B001167E8;
 			remoteInfo = Maths;
 		};
+		306CD68B20D5750500394FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3051906920C2FE0B001167E8;
+			remoteInfo = Maths;
+		};
+		306CD68D20D5750500394FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 304F93EB20C493500017F7E3;
+			remoteInfo = Utilities;
+		};
+		306CD68F20D5750500394FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3007279220CFE3AA00A33AD7;
+			remoteInfo = EventSystem;
+		};
+		306CD69520D5759200394FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3051906920C2FE0B001167E8;
+			remoteInfo = Maths;
+		};
+		306CD69720D5759200394FCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 306CD67B20D574C500394FCF;
+			remoteInfo = Interface;
+		};
 		3089E77520BF2AE300C46E54 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
@@ -145,6 +194,8 @@
 		300D1FED20C4961300CF5155 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		300D1FF020C4967100CF5155 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		300D1FF820C4973800CF5155 /* libswiftIOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftIOKit.tbd; path = System/Library/PrivateFrameworks/Swift/libswiftIOKit.tbd; sourceTree = SDKROOT; };
+		300DF96F20D93D420018BBA5 /* MouseInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MouseInterface.cpp; sourceTree = "<group>"; };
+		300DF97020D93D420018BBA5 /* MouseInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseInterface.hpp; sourceTree = "<group>"; };
 		3042EA3E20C5988200FBFE09 /* common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
 		304F93E420C458880017F7E3 /* RenderObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		304F93E520C458880017F7E3 /* RenderObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderObject.hpp; sourceTree = "<group>"; };
@@ -165,6 +216,15 @@
 		3051909020C3038F001167E8 /* MathUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtils.cpp; sourceTree = "<group>"; };
 		3051909120C3038F001167E8 /* MathUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MathUtils.hpp; sourceTree = "<group>"; };
 		3051909A20C42EBA001167E8 /* Assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Assets; sourceTree = "<group>"; };
+		306CD67420D45BE300394FCF /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
+		306CD67520D45BE300394FCF /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
+		306CD67C20D574C500394FCF /* libInterface.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInterface.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		306CD68720D574F200394FCF /* InterfaceNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InterfaceNode.cpp; sourceTree = "<group>"; };
+		306CD68820D574F200394FCF /* InterfaceNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InterfaceNode.hpp; sourceTree = "<group>"; };
+		306CD69920D58F8E00394FCF /* KeyboardInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardInterface.cpp; sourceTree = "<group>"; };
+		306CD69A20D58F8E00394FCF /* KeyboardInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardInterface.hpp; sourceTree = "<group>"; };
+		306CD69D20D5A19900394FCF /* HeightMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HeightMap.cpp; sourceTree = "<group>"; };
+		306CD69E20D5A19900394FCF /* HeightMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HeightMap.hpp; sourceTree = "<group>"; };
 		3089E70820BF043D00C46E54 /* Initialization */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Initialization; sourceTree = BUILT_PRODUCTS_DIR; };
 		3089E70B20BF043D00C46E54 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		3089E71320BF047900C46E54 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
@@ -219,10 +279,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		306CD67920D574C500394FCF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306CD69120D5751000394FCF /* libEventSystem.a in Frameworks */,
+				306CD69220D5751000394FCF /* libMaths.a in Frameworks */,
+				306CD69320D5751000394FCF /* libUtilities.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3089E70520BF043D00C46E54 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306CD69420D5758A00394FCF /* libInterface.a in Frameworks */,
 				30F1CFCF20D2DA6000664907 /* libGame.a in Frameworks */,
 				300D1FF320C496D400CF5155 /* libUtilities.a in Frameworks */,
 				3089E78120BF2D0400C46E54 /* libGraphics.a in Frameworks */,
@@ -295,6 +366,8 @@
 				3042EA3E20C5988200FBFE09 /* common.hpp */,
 				30F1CFBD20D2D2A100664907 /* Logger.cpp */,
 				30F1CFBE20D2D2A100664907 /* Logger.hpp */,
+				306CD67420D45BE300394FCF /* Timer.cpp */,
+				306CD67520D45BE300394FCF /* Timer.hpp */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -326,6 +399,8 @@
 				30EB224D20BF60CA002D1B3E /* GraphicsNode.hpp */,
 				30EB225120BF6AC3002D1B3E /* Shader.hpp */,
 				3051905420C2FC4D001167E8 /* Mesh.hpp */,
+				306CD69D20D5A19900394FCF /* HeightMap.cpp */,
+				306CD69E20D5A19900394FCF /* HeightMap.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -343,6 +418,19 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		306CD67D20D574C500394FCF /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				306CD68720D574F200394FCF /* InterfaceNode.cpp */,
+				306CD68820D574F200394FCF /* InterfaceNode.hpp */,
+				306CD69920D58F8E00394FCF /* KeyboardInterface.cpp */,
+				306CD69A20D58F8E00394FCF /* KeyboardInterface.hpp */,
+				300DF96F20D93D420018BBA5 /* MouseInterface.cpp */,
+				300DF97020D93D420018BBA5 /* MouseInterface.hpp */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 		3089E6FF20BF043D00C46E54 = {
 			isa = PBXGroup;
 			children = (
@@ -353,6 +441,7 @@
 				3051906B20C2FE0B001167E8 /* Maths */,
 				304F93ED20C493500017F7E3 /* Utilities */,
 				3007279420CFE3AA00A33AD7 /* EventSystem */,
+				306CD67D20D574C500394FCF /* Interface */,
 				3089E70920BF043D00C46E54 /* Products */,
 				3089E71220BF047800C46E54 /* Frameworks */,
 			);
@@ -367,6 +456,7 @@
 				3051906A20C2FE0B001167E8 /* libMaths.a */,
 				304F93EC20C493500017F7E3 /* libUtilities.a */,
 				3007279320CFE3AA00A33AD7 /* libEventSystem.a */,
+				306CD67C20D574C500394FCF /* libInterface.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -418,6 +508,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306CD67720D45BE300394FCF /* Timer.hpp in Headers */,
 				304F93FA20C4936F0017F7E3 /* IDGenerator.hpp in Headers */,
 				3042EA4020C5988200FBFE09 /* common.hpp in Headers */,
 				30F1CFC020D2D2A100664907 /* Logger.hpp in Headers */,
@@ -445,12 +536,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		306CD67A20D574C500394FCF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				306CD68A20D574F200394FCF /* InterfaceNode.hpp in Headers */,
+				300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */,
+				306CD69C20D58F8E00394FCF /* KeyboardInterface.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3089E76820BF2A8900C46E54 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				30EB224F20BF60CA002D1B3E /* GraphicsNode.hpp in Headers */,
 				304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */,
+				306CD6A020D5A19900394FCF /* HeightMap.hpp in Headers */,
 				30E7640D20CC437000934522 /* Camera.hpp in Headers */,
 				3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */,
 				30EB225320BF6AC3002D1B3E /* Shader.hpp in Headers */,
@@ -529,6 +631,26 @@
 			productReference = 3051906A20C2FE0B001167E8 /* libMaths.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		306CD67B20D574C500394FCF /* Interface */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 306CD68420D574C500394FCF /* Build configuration list for PBXNativeTarget "Interface" */;
+			buildPhases = (
+				306CD67820D574C500394FCF /* Sources */,
+				306CD67920D574C500394FCF /* Frameworks */,
+				306CD67A20D574C500394FCF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				306CD68C20D5750500394FCF /* PBXTargetDependency */,
+				306CD68E20D5750500394FCF /* PBXTargetDependency */,
+				306CD69020D5750500394FCF /* PBXTargetDependency */,
+			);
+			name = Interface;
+			productName = Interface;
+			productReference = 306CD67C20D574C500394FCF /* libInterface.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		3089E70720BF043D00C46E54 /* Initialization */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3089E70F20BF043D00C46E54 /* Build configuration list for PBXNativeTarget "Initialization" */;
@@ -540,6 +662,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				306CD69620D5759200394FCF /* PBXTargetDependency */,
+				306CD69820D5759200394FCF /* PBXTargetDependency */,
 				30F1CFCE20D2DA5A00664907 /* PBXTargetDependency */,
 				300727A720CFE45F00A33AD7 /* PBXTargetDependency */,
 				3089E77620BF2AE300C46E54 /* PBXTargetDependency */,
@@ -594,6 +718,9 @@
 					3051906920C2FE0B001167E8 = {
 						CreatedOnToolsVersion = 9.4;
 					};
+					306CD67B20D574C500394FCF = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 					3089E70720BF043D00C46E54 = {
 						CreatedOnToolsVersion = 9.4;
 					};
@@ -621,6 +748,7 @@
 				3051906920C2FE0B001167E8 /* Maths */,
 				304F93EB20C493500017F7E3 /* Utilities */,
 				3007279220CFE3AA00A33AD7 /* EventSystem */,
+				306CD67B20D574C500394FCF /* Interface */,
 			);
 		};
 /* End PBXProject section */
@@ -640,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				306CD67620D45BE300394FCF /* Timer.cpp in Sources */,
 				304F93F920C4936F0017F7E3 /* IDGenerator.cpp in Sources */,
 				30F1CFBF20D2D2A100664907 /* Logger.cpp in Sources */,
 			);
@@ -663,6 +792,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		306CD67820D574C500394FCF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */,
+				306CD69B20D58F8E00394FCF /* KeyboardInterface.cpp in Sources */,
+				306CD68920D574F200394FCF /* InterfaceNode.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3089E70420BF043D00C46E54 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -676,6 +815,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3089E77720BF2B2400C46E54 /* Renderer.cpp in Sources */,
+				306CD69F20D5A19900394FCF /* HeightMap.cpp in Sources */,
 				304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */,
 				30EB224E20BF60CA002D1B3E /* GraphicsNode.cpp in Sources */,
 				30EB225220BF6AC3002D1B3E /* Shader.cpp in Sources */,
@@ -706,6 +846,31 @@
 			isa = PBXTargetDependency;
 			target = 3051906920C2FE0B001167E8 /* Maths */;
 			targetProxy = 3051908920C3025E001167E8 /* PBXContainerItemProxy */;
+		};
+		306CD68C20D5750500394FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3051906920C2FE0B001167E8 /* Maths */;
+			targetProxy = 306CD68B20D5750500394FCF /* PBXContainerItemProxy */;
+		};
+		306CD68E20D5750500394FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 304F93EB20C493500017F7E3 /* Utilities */;
+			targetProxy = 306CD68D20D5750500394FCF /* PBXContainerItemProxy */;
+		};
+		306CD69020D5750500394FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3007279220CFE3AA00A33AD7 /* EventSystem */;
+			targetProxy = 306CD68F20D5750500394FCF /* PBXContainerItemProxy */;
+		};
+		306CD69620D5759200394FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3051906920C2FE0B001167E8 /* Maths */;
+			targetProxy = 306CD69520D5759200394FCF /* PBXContainerItemProxy */;
+		};
+		306CD69820D5759200394FCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 306CD67B20D574C500394FCF /* Interface */;
+			targetProxy = 306CD69720D5759200394FCF /* PBXContainerItemProxy */;
 		};
 		3089E77620BF2AE300C46E54 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -825,6 +990,34 @@
 			name = Debug;
 		};
 		3051907420C2FE0B001167E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		306CD68520D574C500394FCF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		306CD68620D574C500394FCF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -1069,6 +1262,15 @@
 			buildConfigurations = (
 				3051907320C2FE0B001167E8 /* Debug */,
 				3051907420C2FE0B001167E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		306CD68420D574C500394FCF /* Build configuration list for PBXNativeTarget "Interface" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				306CD68520D574C500394FCF /* Debug */,
+				306CD68620D574C500394FCF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
