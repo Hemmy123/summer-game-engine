@@ -75,6 +75,8 @@
 		30F1CFCB20D2DA0100664907 /* libEventSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */; };
 		30F1CFCC20D2DA0100664907 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
 		30F1CFCF20D2DA6000664907 /* libGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051905B20C2FDDD001167E8 /* libGame.a */; };
+		30FC5C5C20DAB16000C1FE58 /* InterfaceHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30FC5C5A20DAB16000C1FE58 /* InterfaceHandler.cpp */; };
+		30FC5C5D20DAB16000C1FE58 /* InterfaceHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30FC5C5B20DAB16000C1FE58 /* InterfaceHandler.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +245,8 @@
 		30F1CFBE20D2D2A100664907 /* Logger.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Logger.hpp; sourceTree = "<group>"; };
 		30F1CFC620D2D9CD00664907 /* GameNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameNode.cpp; sourceTree = "<group>"; };
 		30F1CFC720D2D9CD00664907 /* GameNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameNode.hpp; sourceTree = "<group>"; };
+		30FC5C5A20DAB16000C1FE58 /* InterfaceHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InterfaceHandler.cpp; sourceTree = "<group>"; };
+		30FC5C5B20DAB16000C1FE58 /* InterfaceHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InterfaceHandler.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,6 +431,8 @@
 				306CD69A20D58F8E00394FCF /* KeyboardInterface.hpp */,
 				300DF96F20D93D420018BBA5 /* MouseInterface.cpp */,
 				300DF97020D93D420018BBA5 /* MouseInterface.hpp */,
+				30FC5C5A20DAB16000C1FE58 /* InterfaceHandler.cpp */,
+				30FC5C5B20DAB16000C1FE58 /* InterfaceHandler.hpp */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				306CD69C20D58F8E00394FCF /* KeyboardInterface.hpp in Headers */,
+				30FC5C5D20DAB16000C1FE58 /* InterfaceHandler.hpp in Headers */,
 				306CD68A20D574F200394FCF /* InterfaceNode.hpp in Headers */,
 				300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */,
 			);
@@ -796,6 +803,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FC5C5C20DAB16000C1FE58 /* InterfaceHandler.cpp in Sources */,
 				306CD69B20D58F8E00394FCF /* KeyboardInterface.cpp in Sources */,
 				300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */,
 				306CD68920D574F200394FCF /* InterfaceNode.cpp in Sources */,

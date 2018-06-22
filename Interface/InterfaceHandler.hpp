@@ -1,0 +1,42 @@
+////========================================
+// Class: InterfaceHandler
+// Author: Hemmy
+// Date: 20/06/2018
+// Description:
+// Pretty much the same as an interface node
+// but is not attached to the event system
+// This is so individual subsystems can have
+// access to the mouse and keyboard without
+// going through the event system.
+// ========================================
+
+#ifndef InterfaceHandler_hpp
+#define InterfaceHandler_hpp
+
+#include <stdio.h>
+
+#include "KeyboardInterface.hpp"
+#include "MouseInterface.hpp"
+
+class InterfaceHandler{
+public:
+	InterfaceHandler(GLFWwindow* window);
+	~InterfaceHandler();
+	
+	void update();
+	
+	
+	
+	Vector2 getMouseRelativePos() const { return m_mouseInterface->getRelativePosition();}
+	Vector2 getMouseAbsolutePos() const { return m_mouseInterface->getAbsolutePosition();}
+
+	
+private:
+	
+	GLFWwindow* 		m_windowListner;
+	MouseInterface* 	m_mouseInterface;
+	KeyboardInterface*	m_keyboardInterface;
+};
+
+
+#endif /* InterfaceHandler_hpp */

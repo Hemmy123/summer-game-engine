@@ -32,8 +32,9 @@ public:
 	void handleEvent(Event event);
 	void update();
 private:
+	
+	GLFWwindow* 		m_windowListener;
 	KeyboardInterface* 	m_keyboardInterface;
 	MouseInterface*		m_mouseInterface;
-	GLFWwindow* 		m_windowListener;
 };
 #endif /* InterfaceNode_hpp */

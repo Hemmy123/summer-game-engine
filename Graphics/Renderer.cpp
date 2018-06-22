@@ -14,8 +14,7 @@ Renderer::Renderer(): WIDTH(800),HEIGHT(600)
     if ( init() != 0){
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
     };
-	m_camera = new Camera();
-    
+	
 }
 
 Renderer::~Renderer(){
@@ -55,7 +54,10 @@ int Renderer::init(){
     }
     
     glViewport(0, 0, screenWidth, screenHeight);
-   
+	
+	m_camera = new Camera(m_window);
+
+	
     return 0;
     
     

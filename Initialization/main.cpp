@@ -29,10 +29,9 @@ int main(){
 	
 	float dt = timer->getDelta();
     while(true){
-		
+		inputHandler->update();
         graphics->update(dt);
 		game->update(dt);
-		inputHandler->update();
 		bus->update();
 		
 		dt = timer->getDelta();

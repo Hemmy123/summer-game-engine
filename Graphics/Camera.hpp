@@ -14,16 +14,30 @@
 #include "Vector3.hpp"
 #include "Matrix4.hpp"
 
+#include "InterfaceHandler.hpp"
+
 class Camera {
 	
 public:
-	Camera(void): m_yaw(0), m_pitch(0){};
+	Camera(GLFWwindow* window);
 	
-	Camera(float p, float y, Vector3 pos):m_pitch(p), m_yaw(y),m_position(pos) {}
+	Camera(GLFWwindow* window,float p, float y, Vector3 pos);
 	
 	~Camera(void) {};
 	
 	void	UpdateCamera(float msec);
+	
+	
+	
+	// Updates rotation and position from user input.
+	// Theses methods tend to be used for debugging as
+	// the player wil probably not control the camera
+	// directly like this. 
+	void 	updateRotationFromMouse();
+	void 	updatePositionFromKeyBoard();
+	
+	
+	
 	Matrix4 BuildViewMatrix();
 	
 	Vector3 GetPosition() const { return m_position; }
@@ -39,6 +53,9 @@ public:
 	void	setSpeed(float s) { m_speed = s; }
 private:
 	
+	
+	InterfaceHandler* m_interfaceHandler;
+	GLFWwindow* m_windowListener;
 	float m_yaw;			// Y (Left right)
 	float m_pitch;			// X (Up Down)
 	Vector3 m_position;

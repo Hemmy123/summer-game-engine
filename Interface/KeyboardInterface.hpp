@@ -23,7 +23,7 @@ public:
 	
 	
 private:
-	
+	int m_pressedKey;
 	GLFWwindow *m_windowListener;
 };
 

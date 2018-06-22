@@ -50,15 +50,13 @@ GraphicsNode::~GraphicsNode(){
 
 void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
-        m_renderer->clearBuffers();
-        m_renderer->pollEvents();
 		
+		m_renderer->pollEvents();
 		m_renderer->updateScene(msec);
-		m_renderer->renderScene();
+
 		
-       // renderTriangle();
-        
-        
+        m_renderer->clearBuffers();
+		m_renderer->renderScene();
         m_renderer->swapBuffers();
     }
 }
