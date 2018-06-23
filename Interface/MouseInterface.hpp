@@ -15,22 +15,31 @@
 
 #include "Vector2.hpp"
 
+struct MouseButtonState{
+	MouseButtonState(int button, int action, int mods):
+	m_button(button),
+	m_action(action),
+	m_mods(mods) {};
+	
+	MouseButtonState(void):
+	m_button(GLFW_KEY_UNKNOWN),
+	m_action(GLFW_KEY_UNKNOWN),
+	m_mods(GLFW_KEY_UNKNOWN) {};
+	
+	int m_button;
+	int m_action;
+	int m_mods;
+	
+};
+
+
 class MouseInterface {
 public:
 	MouseInterface(GLFWwindow* window);
 	~MouseInterface();
 
 	void update();
-	
-	void setCallbacks();
-	
-	// Called when position is updated;
-	static void cursorPositionCallback(GLFWwindow *window, double x, double y);
-	// Called when mouse enters/leaves window
-	static void cursorEnterCallBack(GLFWwindow *window, int entered);
-	
-	static void mouseButtonCallBack(GLFWwindow *window, int button, int action, int mods);
-	
+	void getPressedKey();
 	
 	void calculateRelativePosition();
 	void calculateAbsolutePosition();
@@ -40,6 +49,10 @@ public:
 	
 	
 private:
+	
+	MouseButtonState m_keyState;
+	int m_pressedKey;
+	
 	GLFWwindow* m_windowListener;
 	
 	// Curser positions
