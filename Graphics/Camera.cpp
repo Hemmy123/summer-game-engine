@@ -13,7 +13,6 @@ m_interfaceHandler(ih),
 m_yaw(0),
 m_pitch(0){
 	m_windowListener = m_interfaceHandler->getWindowListener();
-
 }
 
 Camera::Camera(InterfaceHandler* ih,float p, float y, Vector3 pos):
@@ -21,13 +20,14 @@ m_interfaceHandler(ih),
 m_pitch(p),
 m_yaw(y),
 m_position(pos){
+
 	m_windowListener = m_interfaceHandler->getWindowListener();
 }
 
 
 void Camera::UpdateCamera(float msec)
 {
-	
+	m_dt = msec;
 	updateRotationFromMouse();
 	updatePositionFromKeyBoard();
 	
@@ -62,7 +62,36 @@ void Camera::updateRotationFromMouse(){
 void Camera::updatePositionFromKeyBoard(){
 	// Updates Position based on keyboard input.
 	
+	KeyState s = m_interfaceHandler->getKeyState();
 	
+	switch(s.m_key){
+		case(GLFW_KEY_W): {
+			m_position.z -= m_dt * m_speed;
+			break;
+		case(GLFW_KEY_A):{
+			m_position.x -= m_dt * m_speed;
+			break;
+		}
+		case(GLFW_KEY_S):{
+			m_position.z += m_dt * m_speed;
+			break;
+		}
+		case(GLFW_KEY_D):{
+			m_position.x += m_dt * m_speed;
+			break;
+		}
+		case(GLFW_KEY_SPACE):{
+			m_position.y += m_dt * m_speed;
+			break;
+		}
+		case(GLFW_KEY_C):{
+			m_position.y -= m_dt * m_speed;
+			break;
+		}
+			
+			
+		}
+	}
 	
 	
 }

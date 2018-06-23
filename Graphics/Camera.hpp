@@ -52,14 +52,14 @@ public:
 	float	getSpeed() const { return m_speed; }
 	void	setSpeed(float s) { m_speed = s; }
 private:
-	
+	float m_dt;
 	
 	InterfaceHandler* m_interfaceHandler;
 	GLFWwindow* m_windowListener;
 	float m_yaw;			// Y (Left right)
 	float m_pitch;			// X (Up Down)
 	Vector3 m_position;
-	float m_speed = 50;
+	float m_speed = 0.5;
 };
 
 #endif /* Camera_hpp */

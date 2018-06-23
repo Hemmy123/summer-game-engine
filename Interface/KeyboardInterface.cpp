@@ -17,9 +17,32 @@ KeyboardInterface::~KeyboardInterface(){
 }
 
 void KeyboardInterface::update(){
-	if (glfwGetKey( m_windowListener, GLFW_KEY_DOWN ) == GLFW_PRESS){
-		m_keystate = KeyState(GLFW_KEY_LAST, GLFW_PRESS, GLFW_KEY_UNKNOWN);
+	if (glfwGetKey( m_windowListener, GLFW_KEY_W ) == GLFW_PRESS){
+		m_keystate = KeyState(GLFW_KEY_W, GLFW_PRESS, GLFW_KEY_UNKNOWN);
 	}
+	
+	else if (glfwGetKey( m_windowListener, GLFW_KEY_A ) == GLFW_PRESS){
+		m_keystate = KeyState(GLFW_KEY_A, GLFW_PRESS, GLFW_KEY_UNKNOWN);
+	}
+	
+	else if (glfwGetKey( m_windowListener, GLFW_KEY_S ) == GLFW_PRESS){
+		m_keystate = KeyState(GLFW_KEY_S, GLFW_PRESS, GLFW_KEY_UNKNOWN);
+	}
+	
+	else if (glfwGetKey( m_windowListener, GLFW_KEY_D ) == GLFW_PRESS){
+		m_keystate = KeyState(GLFW_KEY_D, GLFW_PRESS, GLFW_KEY_UNKNOWN);
+	}
+	
+	else if (glfwGetKey( m_windowListener, GLFW_KEY_SPACE ) == GLFW_PRESS){
+		m_keystate = KeyState(GLFW_KEY_SPACE, GLFW_PRESS, GLFW_KEY_UNKNOWN);
+	}
+	else if (glfwGetKey( m_windowListener, GLFW_KEY_C ) == GLFW_PRESS){
+		m_keystate = KeyState(GLFW_KEY_C, GLFW_PRESS, GLFW_KEY_UNKNOWN);
+	}
+	else{
+		m_keystate = KeyState();
+	}
+
 	
 }
 
