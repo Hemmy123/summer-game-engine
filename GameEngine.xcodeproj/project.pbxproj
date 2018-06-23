@@ -41,8 +41,6 @@
 		3051909320C3038F001167E8 /* MathUtils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051909120C3038F001167E8 /* MathUtils.hpp */; };
 		306CD67620D45BE300394FCF /* Timer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306CD67420D45BE300394FCF /* Timer.cpp */; };
 		306CD67720D45BE300394FCF /* Timer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 306CD67520D45BE300394FCF /* Timer.hpp */; };
-		306CD68920D574F200394FCF /* InterfaceNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 306CD68720D574F200394FCF /* InterfaceNode.cpp */; };
-		306CD68A20D574F200394FCF /* InterfaceNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 306CD68820D574F200394FCF /* InterfaceNode.hpp */; };
 		306CD69120D5751000394FCF /* libEventSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */; };
 		306CD69220D5751000394FCF /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
 		306CD69320D5751000394FCF /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
@@ -221,8 +219,6 @@
 		306CD67420D45BE300394FCF /* Timer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Timer.cpp; sourceTree = "<group>"; };
 		306CD67520D45BE300394FCF /* Timer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Timer.hpp; sourceTree = "<group>"; };
 		306CD67C20D574C500394FCF /* libInterface.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libInterface.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		306CD68720D574F200394FCF /* InterfaceNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InterfaceNode.cpp; sourceTree = "<group>"; };
-		306CD68820D574F200394FCF /* InterfaceNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InterfaceNode.hpp; sourceTree = "<group>"; };
 		306CD69920D58F8E00394FCF /* KeyboardInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardInterface.cpp; sourceTree = "<group>"; };
 		306CD69A20D58F8E00394FCF /* KeyboardInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = KeyboardInterface.hpp; sourceTree = "<group>"; };
 		306CD69D20D5A19900394FCF /* HeightMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HeightMap.cpp; sourceTree = "<group>"; };
@@ -425,8 +421,6 @@
 		306CD67D20D574C500394FCF /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				306CD68720D574F200394FCF /* InterfaceNode.cpp */,
-				306CD68820D574F200394FCF /* InterfaceNode.hpp */,
 				306CD69920D58F8E00394FCF /* KeyboardInterface.cpp */,
 				306CD69A20D58F8E00394FCF /* KeyboardInterface.hpp */,
 				300DF96F20D93D420018BBA5 /* MouseInterface.cpp */,
@@ -548,7 +542,6 @@
 			files = (
 				306CD69C20D58F8E00394FCF /* KeyboardInterface.hpp in Headers */,
 				30FC5C5D20DAB16000C1FE58 /* InterfaceHandler.hpp in Headers */,
-				306CD68A20D574F200394FCF /* InterfaceNode.hpp in Headers */,
 				300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -806,7 +799,6 @@
 				30FC5C5C20DAB16000C1FE58 /* InterfaceHandler.cpp in Sources */,
 				306CD69B20D58F8E00394FCF /* KeyboardInterface.cpp in Sources */,
 				300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */,
-				306CD68920D574F200394FCF /* InterfaceNode.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
