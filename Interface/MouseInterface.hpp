@@ -47,6 +47,8 @@ public:
 	Vector2 getAbsolutePosition() const { return m_absPosition;}
 	Vector2 getRelativePosition() const { return m_relativePosition;}
 	
+	void setSensitivity(float s) { m_sensitivity = s; }
+	
 	
 private:
 	
@@ -60,8 +62,7 @@ private:
 	Vector2 m_relativePosition;	// relative position this frame
 	Vector2 m_lastAbsolute;		// The absoluate position of the mouse last frame
 	
-	//float m_moveSpeed = 3.0f;
-	//loat m_mouseSpeed = 0.005f;
+	float m_sensitivity = 0.1f;
 };
 
 #endif /* MouseInterface_hpp */

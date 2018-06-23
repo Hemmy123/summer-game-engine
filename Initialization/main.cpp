@@ -28,6 +28,8 @@ int main(){
 	Timer* 			timer 		= new Timer();
 	printGLFWVersion();
 	
+	inputHandler->update();
+	
 	
 	float dt = timer->getDelta();
     while(true){

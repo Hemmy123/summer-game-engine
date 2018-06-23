@@ -49,7 +49,7 @@ void Camera::updateRotationFromMouse(){
 	{
 		m_yaw += 360.0f;
 	}
-	
+
 	if (m_yaw > 360.0f)
 	{
 		m_yaw -= 360.0f;
@@ -70,6 +70,8 @@ void Camera::updatePositionFromKeyBoard(){
 
 Matrix4 Camera::BuildViewMatrix()
 {
+	std::cout<< "Pitch: "<< m_pitch << "Raw: " << m_yaw << "Position: "<<m_position<< std::endl;
+	
 	Matrix4 pit = Matrix4::Rotation(-m_pitch, Vector3(1, 0, 0));
 	Matrix4 yaw = Matrix4::Rotation(-m_yaw, Vector3(0, 1, 0));
 	Matrix4 pos = Matrix4::Translation(-m_position);

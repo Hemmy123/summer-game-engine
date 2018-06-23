@@ -28,7 +28,11 @@ MouseInterface::~MouseInterface(){
 void MouseInterface::update(){
 	calculateAbsolutePosition();
 	calculateRelativePosition();
+	
+	m_relativePosition  = m_relativePosition * m_sensitivity;
+	
 	getPressedKey();
+	
 	
 }
 
