@@ -31,7 +31,9 @@ public:
     
     //void update();
     int init();
-    
+	
+	void createCamera(InterfaceHandler* ih);
+	
     void pollEvents();
     void clearBuffers();
     void swapBuffers();

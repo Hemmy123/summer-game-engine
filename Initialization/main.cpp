@@ -21,7 +21,9 @@ int main(){
 	EventBus* bus = new EventBus();
 	GameNode* 		game 		= new GameNode(bus,Sys_Game);
     GraphicsNode* 	graphics 	= new GraphicsNode(bus,Sys_Graphics);
-	InterfaceNode* 	inputHandler = new InterfaceNode(graphics->getWindow(), bus, Sys_Interface);
+	//InterfaceNode* 	inputHandler = new InterfaceNode(graphics->getWindow(), bus, Sys_Interface);
+	InterfaceHandler* inputHandler = new InterfaceHandler(graphics->getWindow());
+	graphics->createCamera(inputHandler);
 	
 	Timer* 			timer 		= new Timer();
 	printGLFWVersion();
@@ -29,8 +31,10 @@ int main(){
 	
 	float dt = timer->getDelta();
     while(true){
+		//inputHandler->update();
+		
 		inputHandler->update();
-        graphics->update(dt);
+		graphics->update(dt);
 		game->update(dt);
 		bus->update();
 		

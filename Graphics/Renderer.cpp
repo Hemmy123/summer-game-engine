@@ -55,7 +55,6 @@ int Renderer::init(){
     
     glViewport(0, 0, screenWidth, screenHeight);
 	
-	m_camera = new Camera(m_window);
 
 	
     return 0;
@@ -63,6 +62,11 @@ int Renderer::init(){
     
 }
 
+
+void Renderer::createCamera(InterfaceHandler *ih){
+	m_camera = new Camera(ih);
+	
+}
 
 void Renderer::pollEvents(){
     glfwPollEvents();
@@ -117,9 +121,15 @@ void Renderer::renderRenderObject(const RenderObject &o){
 
 
 void Renderer::updateScene(float msec){
-	m_camera->UpdateCamera(msec);
-	m_viewMatrix = m_camera->BuildViewMatrix();
-	updateRenderObjects(msec);
+	if(m_camera == nullptr){
+		std::cout<<"No camera has been created/set" <<std::endl;
+	} else{
+		m_camera->UpdateCamera(msec);
+		m_viewMatrix = m_camera->BuildViewMatrix();
+		updateRenderObjects(msec);
+	}
+	
+
 }
 
 void Renderer::updateRenderObjects(float msec){

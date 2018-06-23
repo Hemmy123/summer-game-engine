@@ -31,6 +31,7 @@ public:
 	
 	void handleEvent(Event event);
 	void update();
+	
 private:
 	
 	GLFWwindow* 		m_windowListener;

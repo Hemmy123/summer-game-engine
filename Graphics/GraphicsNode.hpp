@@ -28,6 +28,8 @@ public:
     
 	void renderTriangle();
 	
+	void createCamera(InterfaceHandler* ih) { m_renderer->createCamera(ih);}
+	
 	GLFWwindow* getWindow() const {return m_renderer->getWindow();}
 	
 	

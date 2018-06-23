@@ -8,22 +8,20 @@
 
 #include "Camera.hpp"
 
-Camera::Camera(GLFWwindow* window):
-m_windowListener(window),
+Camera::Camera(InterfaceHandler* ih):
+m_interfaceHandler(ih),
 m_yaw(0),
 m_pitch(0){
-	m_interfaceHandler = new InterfaceHandler(window);
+	m_windowListener = m_interfaceHandler->getWindowListener();
 
 }
 
-Camera::Camera(GLFWwindow* window,float p, float y, Vector3 pos):
+Camera::Camera(InterfaceHandler* ih,float p, float y, Vector3 pos):
+m_interfaceHandler(ih),
 m_pitch(p),
 m_yaw(y),
 m_position(pos){
-	
-	m_interfaceHandler = new InterfaceHandler(window);
-
-	
+	m_windowListener = m_interfaceHandler->getWindowListener();
 }
 
 

@@ -30,10 +30,11 @@ public:
 	Vector2 getMouseRelativePos() const { return m_mouseInterface->getRelativePosition();}
 	Vector2 getMouseAbsolutePos() const { return m_mouseInterface->getAbsolutePosition();}
 
-	
+	GLFWwindow* getWindowListener() const {return m_windowListener;}
+
 private:
 	
-	GLFWwindow* 		m_windowListner;
+	GLFWwindow* 		m_windowListener;
 	MouseInterface* 	m_mouseInterface;
 	KeyboardInterface*	m_keyboardInterface;
 };

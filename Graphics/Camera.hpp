@@ -19,9 +19,9 @@
 class Camera {
 	
 public:
-	Camera(GLFWwindow* window);
+	Camera(InterfaceHandler* ih);
 	
-	Camera(GLFWwindow* window,float p, float y, Vector3 pos);
+	Camera(InterfaceHandler* ih,float p, float y, Vector3 pos);
 	
 	~Camera(void) {};
 	
