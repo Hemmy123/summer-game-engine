@@ -58,6 +58,14 @@
 		3089E77A20BF2B4100C46E54 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71720BF04BB00C46E54 /* libglfw.3.2.dylib */; };
 		3089E77B20BF2B5600C46E54 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71520BF049C00C46E54 /* libGLEW.2.1.0.dylib */; };
 		3089E78120BF2D0400C46E54 /* libGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E76A20BF2A8900C46E54 /* libGraphics.a */; };
+		30E514D620DEFB83004C2314 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
+		30E514D720DEFB83004C2314 /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
+		30E514DB20DEFBAA004C2314 /* Common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30E514D920DEFBAA004C2314 /* Common.hpp */; };
+		30E514DE20DEFBCB004C2314 /* libEventSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */; };
+		30E514DF20DEFBCB004C2314 /* libFileIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E514C720DEFB5F004C2314 /* libFileIO.a */; };
+		30E514E020DEFBCB004C2314 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
+		30E514E320DEFBF5004C2314 /* OBJReader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30E514E120DEFBF5004C2314 /* OBJReader.cpp */; };
+		30E514E420DEFBF5004C2314 /* OBJReader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30E514E220DEFBF5004C2314 /* OBJReader.hpp */; };
 		30E7640C20CC437000934522 /* Camera.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30E7640A20CC437000934522 /* Camera.cpp */; };
 		30E7640D20CC437000934522 /* Camera.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30E7640B20CC437000934522 /* Camera.hpp */; };
 		30EB224E20BF60CA002D1B3E /* GraphicsNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30EB224C20BF60CA002D1B3E /* GraphicsNode.cpp */; };
@@ -75,6 +83,7 @@
 		30F1CFCF20D2DA6000664907 /* libGame.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051905B20C2FDDD001167E8 /* libGame.a */; };
 		30FC5C5C20DAB16000C1FE58 /* InterfaceHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30FC5C5A20DAB16000C1FE58 /* InterfaceHandler.cpp */; };
 		30FC5C5D20DAB16000C1FE58 /* InterfaceHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30FC5C5B20DAB16000C1FE58 /* InterfaceHandler.hpp */; };
+		30FEBD1020DFE7C7008F3879 /* libFileIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E514C720DEFB5F004C2314 /* libFileIO.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +157,27 @@
 			remoteGlobalIDString = 3089E76920BF2A8900C46E54;
 			remoteInfo = GraphicsLib;
 		};
+		30E514D220DEFB7A004C2314 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3051906920C2FE0B001167E8;
+			remoteInfo = Maths;
+		};
+		30E514D420DEFB7A004C2314 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 304F93EB20C493500017F7E3;
+			remoteInfo = Utilities;
+		};
+		30E514DC20DEFBC3004C2314 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30E514C620DEFB5F004C2314;
+			remoteInfo = FileIO;
+		};
 		30F1CFC120D2D5E100664907 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
@@ -168,6 +198,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3051905A20C2FDDD001167E8;
 			remoteInfo = Game;
+		};
+		30FEBD0E20DFE7BE008F3879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30E514C620DEFB5F004C2314;
+			remoteInfo = FileIO;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -231,6 +268,10 @@
 		3089E75220BF0F1D00C46E54 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		3089E75320BF0F1D00C46E54 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
 		3089E76A20BF2A8900C46E54 /* libGraphics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGraphics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E514C720DEFB5F004C2314 /* libFileIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30E514D920DEFBAA004C2314 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
+		30E514E120DEFBF5004C2314 /* OBJReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OBJReader.cpp; sourceTree = "<group>"; };
+		30E514E220DEFBF5004C2314 /* OBJReader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = OBJReader.hpp; sourceTree = "<group>"; };
 		30E7640A20CC437000934522 /* Camera.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Camera.cpp; sourceTree = "<group>"; };
 		30E7640B20CC437000934522 /* Camera.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Camera.hpp; sourceTree = "<group>"; };
 		30EB224C20BF60CA002D1B3E /* GraphicsNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GraphicsNode.cpp; sourceTree = "<group>"; };
@@ -293,6 +334,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30E514DE20DEFBCB004C2314 /* libEventSystem.a in Frameworks */,
+				30E514DF20DEFBCB004C2314 /* libFileIO.a in Frameworks */,
+				30E514E020DEFBCB004C2314 /* libMaths.a in Frameworks */,
 				306CD69420D5758A00394FCF /* libInterface.a in Frameworks */,
 				30F1CFCF20D2DA6000664907 /* libGame.a in Frameworks */,
 				300D1FF320C496D400CF5155 /* libUtilities.a in Frameworks */,
@@ -309,6 +353,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FEBD1020DFE7C7008F3879 /* libFileIO.a in Frameworks */,
 				30F1CFC520D2D91C00664907 /* libEventSystem.a in Frameworks */,
 				300D1FF220C4967F00CF5155 /* CoreFoundation.framework in Frameworks */,
 				304F93FD20C493B90017F7E3 /* libUtilities.a in Frameworks */,
@@ -316,6 +361,15 @@
 				3089E77B20BF2B5600C46E54 /* libGLEW.2.1.0.dylib in Frameworks */,
 				3089E77A20BF2B4100C46E54 /* libglfw.3.2.dylib in Frameworks */,
 				3089E77920BF2B3300C46E54 /* OpenGL.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E514C420DEFB5F004C2314 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E514D620DEFB83004C2314 /* libMaths.a in Frameworks */,
+				30E514D720DEFB83004C2314 /* libUtilities.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +496,7 @@
 				304F93ED20C493500017F7E3 /* Utilities */,
 				3007279420CFE3AA00A33AD7 /* EventSystem */,
 				306CD67D20D574C500394FCF /* Interface */,
+				30E514C820DEFB5F004C2314 /* FileIO */,
 				3089E70920BF043D00C46E54 /* Products */,
 				3089E71220BF047800C46E54 /* Frameworks */,
 			);
@@ -457,6 +512,7 @@
 				304F93EC20C493500017F7E3 /* libUtilities.a */,
 				3007279320CFE3AA00A33AD7 /* libEventSystem.a */,
 				306CD67C20D574C500394FCF /* libInterface.a */,
+				30E514C720DEFB5F004C2314 /* libFileIO.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -489,6 +545,16 @@
 				3051909B20C435A4001167E8 /* Headers */,
 			);
 			path = Graphics;
+			sourceTree = "<group>";
+		};
+		30E514C820DEFB5F004C2314 /* FileIO */ = {
+			isa = PBXGroup;
+			children = (
+				30E514D920DEFBAA004C2314 /* Common.hpp */,
+				30E514E120DEFBF5004C2314 /* OBJReader.cpp */,
+				30E514E220DEFBF5004C2314 /* OBJReader.hpp */,
+			);
+			path = FileIO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,6 +622,15 @@
 				30E7640D20CC437000934522 /* Camera.hpp in Headers */,
 				3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */,
 				30EB225320BF6AC3002D1B3E /* Shader.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30E514C520DEFB5F004C2314 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E514DB20DEFBAA004C2314 /* Common.hpp in Headers */,
+				30E514E420DEFBF5004C2314 /* OBJReader.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +737,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				30E514DD20DEFBC3004C2314 /* PBXTargetDependency */,
 				306CD69620D5759200394FCF /* PBXTargetDependency */,
 				306CD69820D5759200394FCF /* PBXTargetDependency */,
 				30F1CFCE20D2DA5A00664907 /* PBXTargetDependency */,
@@ -685,6 +761,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				30FEBD0F20DFE7BE008F3879 /* PBXTargetDependency */,
 				30F1CFC220D2D5E100664907 /* PBXTargetDependency */,
 				304F93FC20C493AF0017F7E3 /* PBXTargetDependency */,
 				3051908A20C3025E001167E8 /* PBXTargetDependency */,
@@ -692,6 +769,25 @@
 			name = Graphics;
 			productName = GraphicsLib;
 			productReference = 3089E76A20BF2A8900C46E54 /* libGraphics.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		30E514C620DEFB5F004C2314 /* FileIO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30E514CF20DEFB5F004C2314 /* Build configuration list for PBXNativeTarget "FileIO" */;
+			buildPhases = (
+				30E514C320DEFB5F004C2314 /* Sources */,
+				30E514C420DEFB5F004C2314 /* Frameworks */,
+				30E514C520DEFB5F004C2314 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30E514D320DEFB7A004C2314 /* PBXTargetDependency */,
+				30E514D520DEFB7A004C2314 /* PBXTargetDependency */,
+			);
+			name = FileIO;
+			productName = FileIO;
+			productReference = 30E514C720DEFB5F004C2314 /* libFileIO.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -728,6 +824,9 @@
 						CreatedOnToolsVersion = 9.4;
 						LastSwiftMigration = 0940;
 					};
+					30E514C620DEFB5F004C2314 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 				};
 			};
 			buildConfigurationList = 3089E70320BF043D00C46E54 /* Build configuration list for PBXProject "GameEngine" */;
@@ -749,6 +848,7 @@
 				304F93EB20C493500017F7E3 /* Utilities */,
 				3007279220CFE3AA00A33AD7 /* EventSystem */,
 				306CD67B20D574C500394FCF /* Interface */,
+				30E514C620DEFB5F004C2314 /* FileIO */,
 			);
 		};
 /* End PBXProject section */
@@ -824,6 +924,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		30E514C320DEFB5F004C2314 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30E514E320DEFBF5004C2314 /* OBJReader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -877,6 +985,21 @@
 			target = 3089E76920BF2A8900C46E54 /* Graphics */;
 			targetProxy = 3089E77520BF2AE300C46E54 /* PBXContainerItemProxy */;
 		};
+		30E514D320DEFB7A004C2314 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3051906920C2FE0B001167E8 /* Maths */;
+			targetProxy = 30E514D220DEFB7A004C2314 /* PBXContainerItemProxy */;
+		};
+		30E514D520DEFB7A004C2314 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 304F93EB20C493500017F7E3 /* Utilities */;
+			targetProxy = 30E514D420DEFB7A004C2314 /* PBXContainerItemProxy */;
+		};
+		30E514DD20DEFBC3004C2314 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30E514C620DEFB5F004C2314 /* FileIO */;
+			targetProxy = 30E514DC20DEFBC3004C2314 /* PBXContainerItemProxy */;
+		};
 		30F1CFC220D2D5E100664907 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3007279220CFE3AA00A33AD7 /* EventSystem */;
@@ -891,6 +1014,11 @@
 			isa = PBXTargetDependency;
 			target = 3051905A20C2FDDD001167E8 /* Game */;
 			targetProxy = 30F1CFCD20D2DA5A00664907 /* PBXContainerItemProxy */;
+		};
+		30FEBD0F20DFE7BE008F3879 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30E514C620DEFB5F004C2314 /* FileIO */;
+			targetProxy = 30FEBD0E20DFE7BE008F3879 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1227,6 +1355,32 @@
 			};
 			name = Release;
 		};
+		30E514D020DEFB5F004C2314 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		30E514D120DEFB5F004C2314 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1298,6 +1452,15 @@
 			buildConfigurations = (
 				3089E77320BF2A8A00C46E54 /* Debug */,
 				3089E77420BF2A8A00C46E54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30E514CF20DEFB5F004C2314 /* Build configuration list for PBXNativeTarget "FileIO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30E514D020DEFB5F004C2314 /* Debug */,
+				30E514D120DEFB5F004C2314 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

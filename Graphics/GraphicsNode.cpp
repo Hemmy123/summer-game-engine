@@ -19,7 +19,10 @@ GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,sub
 
 	
 	// Create test Mesh
-    m_testTriangleMesh = Mesh::generateTriangle();
+//    m_testTriangleMesh = Mesh::generateTriangle();
+	m_testTriangleMesh = Mesh::readObjFile("Assets/Models/cola.OBJ");
+	
+	
 	m_testTriangleMesh->bufferData();
 
 	// Create test Shaders

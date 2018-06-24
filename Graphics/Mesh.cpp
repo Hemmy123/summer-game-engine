@@ -62,6 +62,52 @@ Mesh* Mesh::generateTriangle(){
 	return m;
 }
 
+Mesh* Mesh::readObjFile(std::string path){
+	Mesh* m = new Mesh();
+	
+	std::vector<Vector3> vertices;
+	std::vector<Vector2> uvs;
+	std::vector<Vector3> normals;
+	
+	bool success = OBJReader::readOBJFile(path, vertices, uvs, normals);
+	
+	if(success){
+		// Lose precision here?
+		m->m_numVertices = vertices.size();
+		
+		m->m_vertices = new Vector3[m->m_numVertices];
+		for(int i = 0 ; i < m->m_numVertices; i++){
+			m->m_vertices[i] = vertices[i];
+		}
+		
+		m->m_textureCoords = new Vector2[m->m_numVertices];
+		for(int i = 0 ; i < m->m_numVertices; i++){
+			m->m_textureCoords[i] = uvs[i];
+		}
+		
+		
+		m->m_normals = new Vector3[m->m_numVertices];
+		for(int i = 0 ; i < m->m_numVertices; i++){
+			m->m_normals[i] = normals[i];
+		}
+		
+		
+		m->m_colours = new Vector4[m->m_numVertices];
+		for(int i = 0 ; i < m->m_numVertices; i++){
+			m->m_colours[i] = Vector4(1,0,0,1);
+		}
+		
+
+		
+		
+		return m;
+	} else{
+		std::cout<<"OBJ file failed to be parsed!"<<std::endl;
+		return m;
+	}
+	
+}
+
 void Mesh::bufferData(){
     glGenVertexArrays(1, &m_VAO);
     

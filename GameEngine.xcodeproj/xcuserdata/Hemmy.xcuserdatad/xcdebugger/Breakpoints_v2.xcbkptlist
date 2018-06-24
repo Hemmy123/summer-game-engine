@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "551482698.117681"
+            timestampString = "551545676.516686"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
             landmarkName = "GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem)"
             landmarkType = "7">
          </BreakpointContent>
@@ -222,6 +222,22 @@
             startingLineNumber = "32"
             endingLineNumber = "32"
             landmarkName = "GameNode::checkInputs()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "FileIO/OBJReader.cpp"
+            timestampString = "551545676.518443"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "OBJReader::readOBJFile(std::string path, std::vector&lt;Vector3&gt; &amp;out_vertices, std::vector&lt;Vector2&gt; &amp;out_uvs, std::vector&lt;Vector3&gt; &amp;out_normals)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
