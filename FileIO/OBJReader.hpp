@@ -24,7 +24,8 @@ public:
 	static bool readOBJFile(std::string path,
 					 std::vector<Vector3> &out_vertices,
 					 std::vector<Vector2> &out_uvs,
-					 std::vector<Vector3> &out_normals);
+					 std::vector<Vector3> &out_normals,
+					 std::vector<uint>	  &out_indicies);
 	
 private:
 	Vector2 test;

@@ -8,48 +8,112 @@
 
 #include "GraphicsNode.hpp"
 
+#include "SOIL2.h"
+
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer();
-	// Set Perspective/Ortha Matrix
+
+	initPerspective();
+
+	createDemoScene();
+	
+}
+
+void GraphicsNode::initPerspective(){
+
 	float viewDistance = 1000;
 	float aspectRatio = (float)m_renderer->getWidth() / (float)m_renderer->getHeight();
 	Matrix4 perspective = Matrix4::Perspective(1, viewDistance, aspectRatio, 45.0f);
 	
 	m_renderer->setProjectionMatrix(perspective);
 
-	
-	// Create test Mesh
-//    m_testTriangleMesh = Mesh::generateTriangle();
-	m_testTriangleMesh = Mesh::readObjFile("Assets/Models/cola.OBJ");
-	
-	
-	m_testTriangleMesh->bufferData();
-
-	// Create test Shaders
-	string vertexPath ="Assets/Shaders/Vertex/basicVert.glsl";
-	string fragPath ="Assets/Shaders/Fragment/basicFrag.glsl";
-	m_testShader = new Shader(vertexPath.c_str(),fragPath.c_str() );
-
-	
-	// Create RenderObject
-	m_testRenderObject = new RenderObject(m_testTriangleMesh, m_testShader);
-	
-	Matrix4 const currentPos = m_testRenderObject->getWorldTransform();
-	
-	Matrix4 const trans =  Matrix4::Translation(Vector3(0,0.5,-5));
-	
-	m_testRenderObject->setModelMatrix(trans);
-	
-	m_renderer->addRenderObject(m_testRenderObject);
-
 }
 
 GraphicsNode::~GraphicsNode(){
-    delete m_testShader;
-	delete m_testTriangleMesh;
-    delete m_renderer;
+	
+	for(auto shader: m_shaders){
+		delete shader;
+	}
+	
+	for(auto mesh: m_meshes){
+		delete mesh;
+	}
+	
+	for(auto renderObject: m_renderObjects){
+		delete renderObject;
+	}
+	
+	delete m_renderer;
+
+	
 	
 }
+
+void GraphicsNode::createDemoScene(){
+	string vertexPath ="Assets/Shaders/Vertex/basicVert.glsl";
+	string fragPath ="Assets/Shaders/Fragment/texturedFrag.glsl";
+	Shader* shader = new Shader(vertexPath.c_str(),fragPath.c_str() );
+
+	// --------------------------------------------------
+
+	
+	GLuint texture;
+	int width,height;
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+
+	unsigned char* image = SOIL_load_image("Assets/Textures/cage.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+	
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	SOIL_free_image_data(image);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+	glActiveTexture(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glUniform1i( glGetUniformLocation(shader->getProgram(),"textureSample" ), 0);
+
+	// -----------------------------------------------------------
+				
+				
+				
+	Mesh* colaMesh = Mesh::readObjFile("Assets/Models/cageCube.obj");
+	
+	
+	
+	
+	// ----- OBJ TESTING -----
+	
+	Mesh* tinyObjLoader = Mesh::readObjFileTwo("Assets/Models/cageCube.obj");
+	
+	
+	// -----------------------
+	
+	
+	colaMesh->bufferData();
+	RenderObject* colaRO = new RenderObject(colaMesh, shader);
+	
+	Matrix4 const trans =  Matrix4::Translation(Vector3(0,0.5,-5));
+
+	m_meshes.push_back(colaMesh);
+	m_shaders.push_back(shader);
+	m_renderObjects.push_back(colaRO);
+	
+	colaRO->setModelMatrix(trans);
+	
+	m_renderer->addRenderObject(colaRO);
+	
+	
+}
+
 
 void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){

@@ -49,8 +49,8 @@ public:
 	float	getPitch()	const { return m_pitch; }
 	void	setPitch(float p) { m_pitch = p; }
 	
-	float	getSpeed() const { return m_speed; }
-	void	setSpeed(float s) { m_speed = s; }
+	float	getSpeed() const { return m_movementSpeed; }
+	void	setSpeed(float s) { m_movementSpeed = s; }
 private:
 	float m_dt;
 	
@@ -59,7 +59,7 @@ private:
 	float m_yaw;			// Y (Left right)
 	float m_pitch;			// X (Up Down)
 	Vector3 m_position;
-	float m_speed = 0.5;
+	float m_movementSpeed = 0.1;
 };
 
 #endif /* Camera_hpp */

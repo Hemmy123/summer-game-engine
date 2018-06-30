@@ -17,12 +17,12 @@ void printGLFWVersion(){
 
 
 int main(){
-	EventBus* bus = new EventBus();
-    GraphicsNode* 	graphics 	= new GraphicsNode(bus,Sys_Graphics);
-	InterfaceHandler* inputHandler = new InterfaceHandler(graphics->getWindow());
+	EventBus* 			bus 			= new EventBus();
+    GraphicsNode* 		graphics 		= new GraphicsNode(bus,Sys_Graphics);
+	InterfaceHandler* 	inputHandler 	= new InterfaceHandler(graphics->getWindow());
 	graphics->createCamera(inputHandler);
-	GameNode* 		game 		= new GameNode(bus,Sys_Game,inputHandler);
-	Timer* 			timer 		= new Timer();
+	GameNode* 			game 			= new GameNode(bus,Sys_Game,inputHandler);
+	Timer* 				timer 			= new Timer();
 	printGLFWVersion();
 	
 	inputHandler->update();

@@ -17,10 +17,15 @@
 
 #include "EventNode.hpp"
 
+using std::vector;
+
 class GraphicsNode:public EventNode {
 public:
     GraphicsNode(EventBus* eventBus, SubSystem subSystem);
     ~GraphicsNode();
+	
+	
+	void createDemoScene();
 	
 	void handleEvent(Event event);
 	
@@ -34,11 +39,23 @@ public:
 	
 	
 private:
+	
+	void initPerspective();
+
+	
+	
+	
+	
     Renderer *m_renderer;
+	
+	
+	vector<Shader*> 		m_shaders;
+	vector<Mesh*>			m_meshes;
+	vector<RenderObject*> 	m_renderObjects;
+	
 	
     Shader* m_testShader;
     Mesh* m_testTriangleMesh;
-	
 	RenderObject* m_testRenderObject;
     
 };

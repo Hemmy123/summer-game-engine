@@ -58,6 +58,10 @@
 		3089E77A20BF2B4100C46E54 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71720BF04BB00C46E54 /* libglfw.3.2.dylib */; };
 		3089E77B20BF2B5600C46E54 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E71520BF049C00C46E54 /* libGLEW.2.1.0.dylib */; };
 		3089E78120BF2D0400C46E54 /* libGraphics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3089E76A20BF2A8900C46E54 /* libGraphics.a */; };
+		30ABF54920E7B2CE0073747A /* TinyObjConverter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30ABF54720E7B2CE0073747A /* TinyObjConverter.cpp */; };
+		30ABF54A20E7B2CE0073747A /* TinyObjConverter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */; };
+		30AD405B20E42380007E291A /* tiny_obj_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AD405920E42380007E291A /* tiny_obj_loader.cpp */; };
+		30AD405C20E42380007E291A /* tiny_obj_loader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30AD405A20E42380007E291A /* tiny_obj_loader.hpp */; };
 		30E514D620DEFB83004C2314 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
 		30E514D720DEFB83004C2314 /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
 		30E514DB20DEFBAA004C2314 /* Common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30E514D920DEFBAA004C2314 /* Common.hpp */; };
@@ -84,6 +88,28 @@
 		30FC5C5C20DAB16000C1FE58 /* InterfaceHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30FC5C5A20DAB16000C1FE58 /* InterfaceHandler.cpp */; };
 		30FC5C5D20DAB16000C1FE58 /* InterfaceHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30FC5C5B20DAB16000C1FE58 /* InterfaceHandler.hpp */; };
 		30FEBD1020DFE7C7008F3879 /* libFileIO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E514C720DEFB5F004C2314 /* libFileIO.a */; };
+		30FEBD3520E000EC008F3879 /* stbi_ext_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2020E000EA008F3879 /* stbi_ext_c.h */; };
+		30FEBD3620E000EC008F3879 /* stbi_pkm_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2120E000EA008F3879 /* stbi_pkm_c.h */; };
+		30FEBD3720E000EC008F3879 /* stbi_pvr_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2220E000EA008F3879 /* stbi_pvr_c.h */; };
+		30FEBD3820E000EC008F3879 /* stbi_pvr.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2320E000EB008F3879 /* stbi_pvr.h */; };
+		30FEBD3920E000EC008F3879 /* stb_image.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2420E000EB008F3879 /* stb_image.h */; };
+		30FEBD3A20E000EC008F3879 /* SOIL2.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FEBD2520E000EB008F3879 /* SOIL2.c */; };
+		30FEBD3B20E000EC008F3879 /* stbi_DDS.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2620E000EB008F3879 /* stbi_DDS.h */; };
+		30FEBD3C20E000EC008F3879 /* image_DXT.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2720E000EB008F3879 /* image_DXT.h */; };
+		30FEBD3D20E000EC008F3879 /* image_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2820E000EB008F3879 /* image_helper.h */; };
+		30FEBD3E20E000EC008F3879 /* stbi_DDS_c.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2920E000EB008F3879 /* stbi_DDS_c.h */; };
+		30FEBD3F20E000EC008F3879 /* image_DXT.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FEBD2A20E000EB008F3879 /* image_DXT.c */; };
+		30FEBD4020E000EC008F3879 /* etc1_utils.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2B20E000EB008F3879 /* etc1_utils.h */; };
+		30FEBD4120E000EC008F3879 /* image_helper.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FEBD2C20E000EB008F3879 /* image_helper.c */; };
+		30FEBD4220E000EC008F3879 /* pkm_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2D20E000EB008F3879 /* pkm_helper.h */; };
+		30FEBD4320E000EC008F3879 /* stbi_ext.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD2E20E000EC008F3879 /* stbi_ext.h */; };
+		30FEBD4420E000EC008F3879 /* etc1_utils.c in Sources */ = {isa = PBXBuildFile; fileRef = 30FEBD2F20E000EC008F3879 /* etc1_utils.c */; };
+		30FEBD4520E000EC008F3879 /* jo_jpeg.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3020E000EC008F3879 /* jo_jpeg.h */; };
+		30FEBD4620E000EC008F3879 /* SOIL2.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3120E000EC008F3879 /* SOIL2.h */; };
+		30FEBD4720E000EC008F3879 /* pvr_helper.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3220E000EC008F3879 /* pvr_helper.h */; };
+		30FEBD4820E000EC008F3879 /* stb_image_write.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3320E000EC008F3879 /* stb_image_write.h */; };
+		30FEBD4920E000EC008F3879 /* stbi_pkm.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3420E000EC008F3879 /* stbi_pkm.h */; };
+		30FEBD4C20E00102008F3879 /* libSOIL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FEBD1520E00082008F3879 /* libSOIL2.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -206,6 +232,13 @@
 			remoteGlobalIDString = 30E514C620DEFB5F004C2314;
 			remoteInfo = FileIO;
 		};
+		30FEBD4A20E000FC008F3879 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30FEBD1420E00082008F3879;
+			remoteInfo = SOIL2;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -268,6 +301,10 @@
 		3089E75220BF0F1D00C46E54 /* Renderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Renderer.cpp; sourceTree = "<group>"; };
 		3089E75320BF0F1D00C46E54 /* Renderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Renderer.hpp; sourceTree = "<group>"; };
 		3089E76A20BF2A8900C46E54 /* libGraphics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libGraphics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30ABF54720E7B2CE0073747A /* TinyObjConverter.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TinyObjConverter.cpp; sourceTree = "<group>"; };
+		30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TinyObjConverter.hpp; sourceTree = "<group>"; };
+		30AD405920E42380007E291A /* tiny_obj_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tiny_obj_loader.cpp; sourceTree = "<group>"; };
+		30AD405A20E42380007E291A /* tiny_obj_loader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tiny_obj_loader.hpp; sourceTree = "<group>"; };
 		30E514C720DEFB5F004C2314 /* libFileIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E514D920DEFBAA004C2314 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
 		30E514E120DEFBF5004C2314 /* OBJReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OBJReader.cpp; sourceTree = "<group>"; };
@@ -284,6 +321,28 @@
 		30F1CFC720D2D9CD00664907 /* GameNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameNode.hpp; sourceTree = "<group>"; };
 		30FC5C5A20DAB16000C1FE58 /* InterfaceHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = InterfaceHandler.cpp; sourceTree = "<group>"; };
 		30FC5C5B20DAB16000C1FE58 /* InterfaceHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = InterfaceHandler.hpp; sourceTree = "<group>"; };
+		30FEBD1520E00082008F3879 /* libSOIL2.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSOIL2.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		30FEBD2020E000EA008F3879 /* stbi_ext_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_ext_c.h; sourceTree = "<group>"; };
+		30FEBD2120E000EA008F3879 /* stbi_pkm_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_pkm_c.h; sourceTree = "<group>"; };
+		30FEBD2220E000EA008F3879 /* stbi_pvr_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_pvr_c.h; sourceTree = "<group>"; };
+		30FEBD2320E000EB008F3879 /* stbi_pvr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_pvr.h; sourceTree = "<group>"; };
+		30FEBD2420E000EB008F3879 /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		30FEBD2520E000EB008F3879 /* SOIL2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = SOIL2.c; sourceTree = "<group>"; };
+		30FEBD2620E000EB008F3879 /* stbi_DDS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_DDS.h; sourceTree = "<group>"; };
+		30FEBD2720E000EB008F3879 /* image_DXT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_DXT.h; sourceTree = "<group>"; };
+		30FEBD2820E000EB008F3879 /* image_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image_helper.h; sourceTree = "<group>"; };
+		30FEBD2920E000EB008F3879 /* stbi_DDS_c.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_DDS_c.h; sourceTree = "<group>"; };
+		30FEBD2A20E000EB008F3879 /* image_DXT.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_DXT.c; sourceTree = "<group>"; };
+		30FEBD2B20E000EB008F3879 /* etc1_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = etc1_utils.h; sourceTree = "<group>"; };
+		30FEBD2C20E000EB008F3879 /* image_helper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = image_helper.c; sourceTree = "<group>"; };
+		30FEBD2D20E000EB008F3879 /* pkm_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pkm_helper.h; sourceTree = "<group>"; };
+		30FEBD2E20E000EC008F3879 /* stbi_ext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_ext.h; sourceTree = "<group>"; };
+		30FEBD2F20E000EC008F3879 /* etc1_utils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = etc1_utils.c; sourceTree = "<group>"; };
+		30FEBD3020E000EC008F3879 /* jo_jpeg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = jo_jpeg.h; sourceTree = "<group>"; };
+		30FEBD3120E000EC008F3879 /* SOIL2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SOIL2.h; sourceTree = "<group>"; };
+		30FEBD3220E000EC008F3879 /* pvr_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pvr_helper.h; sourceTree = "<group>"; };
+		30FEBD3320E000EC008F3879 /* stb_image_write.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
+		30FEBD3420E000EC008F3879 /* stbi_pkm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_pkm.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,6 +412,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30FEBD4C20E00102008F3879 /* libSOIL2.a in Frameworks */,
 				30FEBD1020DFE7C7008F3879 /* libFileIO.a in Frameworks */,
 				30F1CFC520D2D91C00664907 /* libEventSystem.a in Frameworks */,
 				300D1FF220C4967F00CF5155 /* CoreFoundation.framework in Frameworks */,
@@ -370,6 +430,13 @@
 			files = (
 				30E514D620DEFB83004C2314 /* libMaths.a in Frameworks */,
 				30E514D720DEFB83004C2314 /* libUtilities.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FEBD1220E00082008F3879 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,6 +564,7 @@
 				3007279420CFE3AA00A33AD7 /* EventSystem */,
 				306CD67D20D574C500394FCF /* Interface */,
 				30E514C820DEFB5F004C2314 /* FileIO */,
+				30FEBD1620E00082008F3879 /* SOIL2 */,
 				3089E70920BF043D00C46E54 /* Products */,
 				3089E71220BF047800C46E54 /* Frameworks */,
 			);
@@ -513,6 +581,7 @@
 				3007279320CFE3AA00A33AD7 /* libEventSystem.a */,
 				306CD67C20D574C500394FCF /* libInterface.a */,
 				30E514C720DEFB5F004C2314 /* libFileIO.a */,
+				30FEBD1520E00082008F3879 /* libSOIL2.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -553,8 +622,40 @@
 				30E514D920DEFBAA004C2314 /* Common.hpp */,
 				30E514E120DEFBF5004C2314 /* OBJReader.cpp */,
 				30E514E220DEFBF5004C2314 /* OBJReader.hpp */,
+				30AD405920E42380007E291A /* tiny_obj_loader.cpp */,
+				30AD405A20E42380007E291A /* tiny_obj_loader.hpp */,
+				30ABF54720E7B2CE0073747A /* TinyObjConverter.cpp */,
+				30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */,
 			);
 			path = FileIO;
+			sourceTree = "<group>";
+		};
+		30FEBD1620E00082008F3879 /* SOIL2 */ = {
+			isa = PBXGroup;
+			children = (
+				30FEBD2F20E000EC008F3879 /* etc1_utils.c */,
+				30FEBD2B20E000EB008F3879 /* etc1_utils.h */,
+				30FEBD2A20E000EB008F3879 /* image_DXT.c */,
+				30FEBD2720E000EB008F3879 /* image_DXT.h */,
+				30FEBD2C20E000EB008F3879 /* image_helper.c */,
+				30FEBD2820E000EB008F3879 /* image_helper.h */,
+				30FEBD3020E000EC008F3879 /* jo_jpeg.h */,
+				30FEBD2D20E000EB008F3879 /* pkm_helper.h */,
+				30FEBD3220E000EC008F3879 /* pvr_helper.h */,
+				30FEBD2520E000EB008F3879 /* SOIL2.c */,
+				30FEBD3120E000EC008F3879 /* SOIL2.h */,
+				30FEBD3320E000EC008F3879 /* stb_image_write.h */,
+				30FEBD2420E000EB008F3879 /* stb_image.h */,
+				30FEBD2920E000EB008F3879 /* stbi_DDS_c.h */,
+				30FEBD2620E000EB008F3879 /* stbi_DDS.h */,
+				30FEBD2020E000EA008F3879 /* stbi_ext_c.h */,
+				30FEBD2E20E000EC008F3879 /* stbi_ext.h */,
+				30FEBD2120E000EA008F3879 /* stbi_pkm_c.h */,
+				30FEBD3420E000EC008F3879 /* stbi_pkm.h */,
+				30FEBD2220E000EA008F3879 /* stbi_pvr_c.h */,
+				30FEBD2320E000EB008F3879 /* stbi_pvr.h */,
+			);
+			path = SOIL2;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -630,7 +731,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				30E514DB20DEFBAA004C2314 /* Common.hpp in Headers */,
+				30ABF54A20E7B2CE0073747A /* TinyObjConverter.hpp in Headers */,
+				30AD405C20E42380007E291A /* tiny_obj_loader.hpp in Headers */,
 				30E514E420DEFBF5004C2314 /* OBJReader.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FEBD1320E00082008F3879 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30FEBD4620E000EC008F3879 /* SOIL2.h in Headers */,
+				30FEBD3720E000EC008F3879 /* stbi_pvr_c.h in Headers */,
+				30FEBD4520E000EC008F3879 /* jo_jpeg.h in Headers */,
+				30FEBD3C20E000EC008F3879 /* image_DXT.h in Headers */,
+				30FEBD4320E000EC008F3879 /* stbi_ext.h in Headers */,
+				30FEBD3920E000EC008F3879 /* stb_image.h in Headers */,
+				30FEBD3E20E000EC008F3879 /* stbi_DDS_c.h in Headers */,
+				30FEBD4720E000EC008F3879 /* pvr_helper.h in Headers */,
+				30FEBD3820E000EC008F3879 /* stbi_pvr.h in Headers */,
+				30FEBD4220E000EC008F3879 /* pkm_helper.h in Headers */,
+				30FEBD4020E000EC008F3879 /* etc1_utils.h in Headers */,
+				30FEBD4920E000EC008F3879 /* stbi_pkm.h in Headers */,
+				30FEBD3520E000EC008F3879 /* stbi_ext_c.h in Headers */,
+				30FEBD4820E000EC008F3879 /* stb_image_write.h in Headers */,
+				30FEBD3B20E000EC008F3879 /* stbi_DDS.h in Headers */,
+				30FEBD3D20E000EC008F3879 /* image_helper.h in Headers */,
+				30FEBD3620E000EC008F3879 /* stbi_pkm_c.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +888,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				30FEBD4B20E000FC008F3879 /* PBXTargetDependency */,
 				30FEBD0F20DFE7BE008F3879 /* PBXTargetDependency */,
 				30F1CFC220D2D5E100664907 /* PBXTargetDependency */,
 				304F93FC20C493AF0017F7E3 /* PBXTargetDependency */,
@@ -788,6 +916,23 @@
 			name = FileIO;
 			productName = FileIO;
 			productReference = 30E514C720DEFB5F004C2314 /* libFileIO.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		30FEBD1420E00082008F3879 /* SOIL2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30FEBD1F20E00082008F3879 /* Build configuration list for PBXNativeTarget "SOIL2" */;
+			buildPhases = (
+				30FEBD1120E00082008F3879 /* Sources */,
+				30FEBD1220E00082008F3879 /* Frameworks */,
+				30FEBD1320E00082008F3879 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SOIL2;
+			productName = SOIL2;
+			productReference = 30FEBD1520E00082008F3879 /* libSOIL2.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -827,6 +972,9 @@
 					30E514C620DEFB5F004C2314 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
+					30FEBD1420E00082008F3879 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 				};
 			};
 			buildConfigurationList = 3089E70320BF043D00C46E54 /* Build configuration list for PBXProject "GameEngine" */;
@@ -849,6 +997,7 @@
 				3007279220CFE3AA00A33AD7 /* EventSystem */,
 				306CD67B20D574C500394FCF /* Interface */,
 				30E514C620DEFB5F004C2314 /* FileIO */,
+				30FEBD1420E00082008F3879 /* SOIL2 */,
 			);
 		};
 /* End PBXProject section */
@@ -928,7 +1077,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AD405B20E42380007E291A /* tiny_obj_loader.cpp in Sources */,
+				30ABF54920E7B2CE0073747A /* TinyObjConverter.cpp in Sources */,
 				30E514E320DEFBF5004C2314 /* OBJReader.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30FEBD1120E00082008F3879 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30FEBD4120E000EC008F3879 /* image_helper.c in Sources */,
+				30FEBD3F20E000EC008F3879 /* image_DXT.c in Sources */,
+				30FEBD4420E000EC008F3879 /* etc1_utils.c in Sources */,
+				30FEBD3A20E000EC008F3879 /* SOIL2.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1182,11 @@
 			target = 30E514C620DEFB5F004C2314 /* FileIO */;
 			targetProxy = 30FEBD0E20DFE7BE008F3879 /* PBXContainerItemProxy */;
 		};
+		30FEBD4B20E000FC008F3879 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30FEBD1420E00082008F3879 /* SOIL2 */;
+			targetProxy = 30FEBD4A20E000FC008F3879 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -1052,6 +1219,7 @@
 		304F93F520C493500017F7E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
@@ -1066,6 +1234,7 @@
 		304F93F620C493500017F7E3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
@@ -1080,6 +1249,7 @@
 		3051906420C2FDDD001167E8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
 				EXECUTABLE_PREFIX = lib;
@@ -1093,6 +1263,7 @@
 		3051906520C2FDDD001167E8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
 				EXECUTABLE_PREFIX = lib;
@@ -1306,6 +1477,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
@@ -1333,6 +1505,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_COMMA = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
@@ -1358,6 +1531,7 @@
 		30E514D020DEFB5F004C2314 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
 				EXECUTABLE_PREFIX = lib;
@@ -1371,6 +1545,37 @@
 		30E514D120DEFB5F004C2314 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		30FEBD1D20E00082008F3879 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		30FEBD1E20E00082008F3879 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_COMMA = NO;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KSG6NDV7ZG;
 				EXECUTABLE_PREFIX = lib;
@@ -1461,6 +1666,15 @@
 			buildConfigurations = (
 				30E514D020DEFB5F004C2314 /* Debug */,
 				30E514D120DEFB5F004C2314 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30FEBD1F20E00082008F3879 /* Build configuration list for PBXNativeTarget "SOIL2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30FEBD1D20E00082008F3879 /* Debug */,
+				30FEBD1E20E00082008F3879 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

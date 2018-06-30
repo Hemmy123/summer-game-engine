@@ -7,6 +7,9 @@
 //
 
 #include "Mesh.hpp"
+#include "tiny_obj_loader.hpp"
+
+#include "OBJReader.hpp"
 
 
 Mesh::Mesh(){
@@ -62,27 +65,75 @@ Mesh* Mesh::generateTriangle(){
 	return m;
 }
 
+Mesh* Mesh::readObjFileTwo(std::string path){
+	
+	Mesh* m = new Mesh();
+
+
+	tinyobj::attrib_t 					attrib;
+	std::vector<tinyobj::shape_t> 		shapes;
+	std::vector<tinyobj::material_t> 	materials;
+	std::string error;
+	
+	
+	bool result = tinyobj::LoadObj(&attrib, &shapes, &materials, &error, path.c_str(),
+								NULL, false);
+	
+	if (!error.empty()) {
+		std::cerr << error << std::endl;
+	}
+	
+	if (!result) {
+		printf("Failed to load/parse .obj.\n");
+		//return false;
+	}
+	
+
+	
+	
+	
+	
+	return m;
+}
+
+
 Mesh* Mesh::readObjFile(std::string path){
 	Mesh* m = new Mesh();
 	
+	
+	// TODO: change these to proper arrays for better performance
 	std::vector<Vector3> vertices;
 	std::vector<Vector2> uvs;
 	std::vector<Vector3> normals;
+	std::vector<uint>	 indicies;
 	
-	bool success = OBJReader::readOBJFile(path, vertices, uvs, normals);
+	
+	bool success = OBJReader::readOBJFile(path, vertices, uvs, normals, indicies);
 	
 	if(success){
-		// Lose precision here?
-		m->m_numVertices = vertices.size();
+		// Cast to stop compiler warning
+		m->m_numVertices = static_cast<GLuint>(vertices.size());
+		m->m_numIndices = static_cast<GLuint>(indicies.size());
+
+		std::cout<< "Vertices: " << m->m_numVertices<<std::endl;
+		std::cout<< "Indicies: " << m->m_numIndices<<std::endl;
+		
 		
 		m->m_vertices = new Vector3[m->m_numVertices];
-		for(int i = 0 ; i < m->m_numVertices; i++){
+		for(int i = 0 ; i < m->m_numVertices ; i++){
 			m->m_vertices[i] = vertices[i];
 		}
 		
-		m->m_textureCoords = new Vector2[m->m_numVertices];
-		for(int i = 0 ; i < m->m_numVertices; i++){
-			m->m_textureCoords[i] = uvs[i];
+		m->m_textureCoords = new Vector2[m->m_numIndices];
+		for(int i = 0 ; i < m->m_numIndices; i++){
+			
+			Vector2 coords(uvs[i].x, 1 - uvs[i].y);
+			m->m_textureCoords[i] = coords;
+
+			//m->m_textureCoords[i] = uvs[i];
+			
+//			std::cout<< coords << std::endl;
+			
 		}
 		
 		
@@ -91,15 +142,19 @@ Mesh* Mesh::readObjFile(std::string path){
 			m->m_normals[i] = normals[i];
 		}
 		
-		
+		// This not needed?
 		m->m_colours = new Vector4[m->m_numVertices];
 		for(int i = 0 ; i < m->m_numVertices; i++){
 			m->m_colours[i] = Vector4(1,0,0,1);
 		}
 		
+		m->m_indices = new GLuint[m->m_numIndices];
+		for(int i = 0 ; i < m->m_numIndices; i++){
+			m->m_indices[i] = indicies[i];
+		}
+		
+		
 
-		
-		
 		return m;
 	} else{
 		std::cout<<"OBJ file failed to be parsed!"<<std::endl;

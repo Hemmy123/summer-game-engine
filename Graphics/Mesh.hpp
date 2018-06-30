@@ -13,7 +13,6 @@
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <stdio.h>
-#include "OBJReader.hpp"
 
 
 #include "Vector2.hpp"
@@ -43,6 +42,8 @@ public:
 	static Mesh* generateTriangle();
 
 	static Mesh* readObjFile(std::string path);
+	
+	static Mesh* readObjFileTwo(std::string path);
 	
     void bufferData();
     void draw();

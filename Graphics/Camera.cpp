@@ -66,26 +66,26 @@ void Camera::updatePositionFromKeyBoard(){
 	
 	switch(s.m_key){
 		case(GLFW_KEY_W): {
-			m_position.z -= m_dt * m_speed;
+			m_position.z -= m_dt * m_movementSpeed;
 			break;
 		case(GLFW_KEY_A):{
-			m_position.x -= m_dt * m_speed;
+			m_position.x -= m_dt * m_movementSpeed;
 			break;
 		}
 		case(GLFW_KEY_S):{
-			m_position.z += m_dt * m_speed;
+			m_position.z += m_dt * m_movementSpeed;
 			break;
 		}
 		case(GLFW_KEY_D):{
-			m_position.x += m_dt * m_speed;
+			m_position.x += m_dt * m_movementSpeed;
 			break;
 		}
 		case(GLFW_KEY_SPACE):{
-			m_position.y += m_dt * m_speed;
+			m_position.y += m_dt * m_movementSpeed;
 			break;
 		}
 		case(GLFW_KEY_C):{
-			m_position.y -= m_dt * m_speed;
+			m_position.y -= m_dt * m_movementSpeed;
 			break;
 		}
 			
@@ -98,9 +98,7 @@ void Camera::updatePositionFromKeyBoard(){
 
 
 Matrix4 Camera::BuildViewMatrix()
-{
-	std::cout<< "Pitch: "<< m_pitch << "Raw: " << m_yaw << "Position: "<<m_position<< std::endl;
-	
+{	
 	Matrix4 pit = Matrix4::Rotation(-m_pitch, Vector3(1, 0, 0));
 	Matrix4 yaw = Matrix4::Rotation(-m_yaw, Vector3(0, 1, 0));
 	Matrix4 pos = Matrix4::Translation(-m_position);
