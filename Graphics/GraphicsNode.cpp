@@ -13,11 +13,28 @@
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer();
 
+	
+	initOGL()
 	initPerspective();
 
 	createDemoScene();
 	
 }
+void GraphicsNode::initOGL(){
+	
+	// Cull faces we can't see
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	
+	// Depth test so stuff doesn't render on top of each other;
+	glEnable(GL_DEPTH_TEST);
+
+	// Blend func for transparent objects;
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	
+}
+
 
 void GraphicsNode::initPerspective(){
 
@@ -67,7 +84,7 @@ void GraphicsNode::createDemoScene(){
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-	unsigned char* image = SOIL_load_image("Assets/Textures/cage.jpg", &width, &height, 0, SOIL_LOAD_RGBA);
+	unsigned char* image = SOIL_load_image("Assets/Textures/Rabbit/Rabbit_D.tga", &width, &height, 0, SOIL_LOAD_RGBA);
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 	
@@ -81,36 +98,56 @@ void GraphicsNode::createDemoScene(){
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glUniform1i( glGetUniformLocation(shader->getProgram(),"textureSample" ), 0);
 
-	// -----------------------------------------------------------
+//	// -----------------------------------------------------------
 				
 				
 				
-	Mesh* colaMesh = Mesh::readObjFile("Assets/Models/cageCube.obj");
+	//Mesh* colaMesh = Mesh::readObjFile("Assets/Models/cageCube.obj");
 	
 	
 	
 	
 	// ----- OBJ TESTING -----
 	
-	Mesh* tinyObjLoader = Mesh::readObjFileTwo("Assets/Models/cageCube.obj");
+	Mesh* mesh1 = Mesh::readObjFileTwo("Assets/Models/Rabbit.obj");
 	
-	
+	m_meshes.push_back(mesh1);
+	m_shaders.push_back(shader);
 	// -----------------------
 	
 	
-	colaMesh->bufferData();
-	RenderObject* colaRO = new RenderObject(colaMesh, shader);
-	
-	Matrix4 const trans =  Matrix4::Translation(Vector3(0,0.5,-5));
+	mesh1->bufferData();
+	RenderObject* ro1 = new RenderObject(mesh1, shader);
+	RenderObject* ro2 = new RenderObject(mesh1, shader);
+	RenderObject* ro3 = new RenderObject(mesh1, shader);
+	RenderObject* ro4 = new RenderObject(mesh1, shader);
 
-	m_meshes.push_back(colaMesh);
-	m_shaders.push_back(shader);
-	m_renderObjects.push_back(colaRO);
 	
-	colaRO->setModelMatrix(trans);
 	
-	m_renderer->addRenderObject(colaRO);
+	Matrix4 const trans1 =  Matrix4::Translation(Vector3(0,0.5,-5));
+	Matrix4 const trans2 =  Matrix4::Translation(Vector3(2,0.5,-5));
+	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.5,-5));
+	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.5,-5));
+
 	
+	
+	
+	
+	
+	m_renderObjects.push_back(ro1);
+	
+	ro1->setModelMatrix(trans1);
+	ro2->setModelMatrix(trans2);
+	ro3->setModelMatrix(trans3);
+	ro4->setModelMatrix(trans4);
+
+	
+	m_renderer->addRenderObject(ro1);
+	m_renderer->addRenderObject(ro2);
+	m_renderer->addRenderObject(ro3);
+	m_renderer->addRenderObject(ro4);
+
+
 	
 }
 

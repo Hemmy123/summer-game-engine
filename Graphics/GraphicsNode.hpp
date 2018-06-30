@@ -24,7 +24,7 @@ public:
     GraphicsNode(EventBus* eventBus, SubSystem subSystem);
     ~GraphicsNode();
 	
-	
+	void initOGL();
 	void createDemoScene();
 	
 	void handleEvent(Event event);

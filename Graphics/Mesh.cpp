@@ -10,7 +10,7 @@
 #include "tiny_obj_loader.hpp"
 
 #include "OBJReader.hpp"
-
+#include "TinyObjConverter.hpp"
 
 Mesh::Mesh(){
     m_numVertices = 0;
@@ -65,9 +65,12 @@ Mesh* Mesh::generateTriangle(){
 	return m;
 }
 
+
+// TODO: Clean this method up! It was left so I could quickly test
+// lighting and other stuff
 Mesh* Mesh::readObjFileTwo(std::string path){
 	
-	Mesh* m = new Mesh();
+	
 
 
 	tinyobj::attrib_t 					attrib;
@@ -76,8 +79,18 @@ Mesh* Mesh::readObjFileTwo(std::string path){
 	std::string error;
 	
 	
+	
+	std::vector<Vector3> vertices;
+	std::vector<Vector2> texCoords;
+	std::vector<Vector3> normals;
+	
+	
 	bool result = tinyobj::LoadObj(&attrib, &shapes, &materials, &error, path.c_str(),
 								NULL, false);
+	
+	
+	
+	
 	
 	if (!error.empty()) {
 		std::cerr << error << std::endl;
@@ -88,9 +101,72 @@ Mesh* Mesh::readObjFileTwo(std::string path){
 		//return false;
 	}
 	
+	
+	// Loop over shapes
+	for( int s = 0; s < shapes.size(); s++){
+		int index_offset = 0;
+		
+		// Loop over faces
+		for (int f = 0; f < shapes[s].mesh.num_face_vertices.size(); f++) {
+			
+			// should always be 3 since triangles
+			int fv = shapes[s].mesh.num_face_vertices[f];
+			
+			std::cout<< "Faces:  " << f<<std::endl;
 
+			// Loop over vertices in that face
+			for (size_t v = 0; v < fv; v++) {
+				tinyobj::index_t idx = shapes[s].mesh.indices[index_offset + v];
+				
+				tinyobj::real_t vx = attrib.vertices[3*idx.vertex_index+0];
+				tinyobj::real_t vy = attrib.vertices[3*idx.vertex_index+1];
+				tinyobj::real_t vz = attrib.vertices[3*idx.vertex_index+2];
+				
+				Vector3 tempV(vx,vy,vz);
+				vertices.push_back(tempV);
+				
+				tinyobj::real_t nx = attrib.normals[3*idx.normal_index+0];
+				tinyobj::real_t ny = attrib.normals[3*idx.normal_index+1];
+				tinyobj::real_t nz = attrib.normals[3*idx.normal_index+2];
+				
+				Vector3 tempN(nx,ny,nz);
+				normals.push_back(tempN);
+				
+				tinyobj::real_t tx = attrib.texcoords[2*idx.texcoord_index+0];
+				tinyobj::real_t ty = 1 - attrib.texcoords[2*idx.texcoord_index+1];
+				
+				Vector2 tempT(tx,ty);
+				texCoords.push_back(tempT);
+				
+			}
+			index_offset += fv;
+			
+			// per-face material
+			shapes[s].mesh.material_ids[f];
+		}
+	}
 	
-	
+	Mesh* m = new Mesh();
+
+	m->m_numVertices = vertices.size();
+
+	m->m_vertices = new Vector3[vertices.size()];
+	for(int i = 0 ; i < vertices.size() ; i++){
+		m->m_vertices[i] = vertices[i];
+	}
+
+	m->m_textureCoords = new Vector2[texCoords.size()];
+	for(int i = 0 ; i < texCoords.size() ; i++){
+		m->m_textureCoords[i] = texCoords[i];
+	}
+
+	m->m_normals = new Vector3[normals.size()];
+	for(int i = 0 ; i < normals.size(); i++){
+		m->m_normals[i] = normals[i];
+	}
+
+
+
 	
 	
 	return m;

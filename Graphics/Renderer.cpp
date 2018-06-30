@@ -74,7 +74,7 @@ void Renderer::pollEvents(){
 
 void Renderer::clearBuffers(){
     glClearColor(m_r, m_g, m_b, m_a);
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
 }
 
