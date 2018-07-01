@@ -66,6 +66,9 @@ public:
 	GLFWwindow* getWindow() const {return m_window;}
 	
 	
+	
+	
+	
 protected:
 	
 	void presentScene();
