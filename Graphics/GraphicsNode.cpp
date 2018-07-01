@@ -70,43 +70,50 @@ void GraphicsNode::createDemoScene(){
 
 	
 	// ----- Create Shaders -----
-	string vertexPath ="Assets/Shaders/Vertex/basicVert.glsl";
-	string fragPath ="Assets/Shaders/Fragment/texturedFrag.glsl";
-	Shader* shader = new Shader(vertexPath.c_str(),fragPath.c_str() );
+	string vertexPath 	= "Assets/Shaders/Vertex/basicVert.glsl";
+	string fragPath 	= "Assets/Shaders/Fragment/texturedFrag.glsl";
+	Shader* shader 		= new Shader(vertexPath.c_str(),fragPath.c_str() );
 	m_shaders.push_back(shader);
 
 
 	// ----- Create Meshes -----
 	
 	Mesh* mesh1 = Mesh::readObjFileTwo("Assets/Models/Rabbit.obj");
+	Mesh* mesh2 = Mesh::readObjFileTwo("Assets/Models/cageCube.obj");
 	mesh1->loadTexture("Assets/Textures/Rabbit/Rabbit_D.tga");
-	m_meshes.push_back(mesh1);
+	mesh2->loadTexture("Assets/Textures/cage.jpg");
 	mesh1->bufferData();
+	mesh2->bufferData();
 
-	
+	m_meshes.push_back(mesh1);
+	m_meshes.push_back(mesh2);
+
 	// ----- Render Objects -----
 	
-	
+	RenderObject* ground = new RenderObject(mesh2, shader);
+
 	RenderObject* ro1 = new RenderObject(mesh1, shader);
 	RenderObject* ro2 = new RenderObject(mesh1, shader);
 	RenderObject* ro3 = new RenderObject(mesh1, shader);
 	RenderObject* ro4 = new RenderObject(mesh1, shader);
 
-	
-	
-	Matrix4 const trans1 =  Matrix4::Translation(Vector3(0,0.5,-5));
-	Matrix4 const trans2 =  Matrix4::Translation(Vector3(2,0.5,-5));
-	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.5,-5));
-	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.5,-5));
+	Matrix4 const trans1 =  Matrix4::Translation(Vector3(0,0.0,-5));
+	Matrix4 const trans2 =  Matrix4::Translation(Vector3(2,0.0,-5));
+	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.0,-5));
+	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.0,-5));
 
 
-
+	Matrix4 const cubeScale = Matrix4::Scale(Vector3(5,1,1));
+	Matrix4 const cubeTrans = Matrix4::Translation(Vector3(1,-4,-5));
 	
+	
+	ground->setModelMatrix(cubeScale* cubeTrans);
 	ro1->setModelMatrix(trans1);
 	ro2->setModelMatrix(trans2);
 	ro3->setModelMatrix(trans3);
 	ro4->setModelMatrix(trans4);
 
+	m_renderer->addRenderObject(ground);
 	m_renderer->addRenderObject(ro1);
 	m_renderer->addRenderObject(ro2);
 	m_renderer->addRenderObject(ro3);

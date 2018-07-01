@@ -216,7 +216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "552153742.692421"
+            timestampString = "552154601.1953371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -248,11 +248,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Mesh.cpp"
-            timestampString = "552071152.9031529"
+            timestampString = "552154601.1956969"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "Mesh::readObjFile(std::string path)"
             landmarkType = "7">
          </BreakpointContent>

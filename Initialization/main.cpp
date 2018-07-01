@@ -23,7 +23,7 @@ int main(){
 	graphics->createCamera(inputHandler);
 	GameNode* 			game 			= new GameNode(bus,Sys_Game,inputHandler);
 	Timer* 				timer 			= new Timer();
-	printGLFWVersion();
+	//printGLFWVersion();
 	
 	inputHandler->update();
 	

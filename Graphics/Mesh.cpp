@@ -34,6 +34,8 @@ Mesh::~Mesh(){
 
 	// TODO: Need to delete texture here.
 	
+	
+	
     glDeleteVertexArrays(1, &m_VAO);            //Delete our VAO
     glDeleteBuffers(MAX_BUFFER, m_VBO);        //Delete our VBOs
     
