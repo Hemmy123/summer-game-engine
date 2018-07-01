@@ -31,7 +31,7 @@ public:
 	
     void update(float msec);
     
-	void renderTriangle();
+	void renderTriangleTest();
 	
 	void createCamera(InterfaceHandler* ih) { m_renderer->createCamera(ih);}
 	

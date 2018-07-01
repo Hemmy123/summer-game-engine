@@ -15,14 +15,37 @@ Renderer::Renderer(): WIDTH(800),HEIGHT(600)
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
     };
 	
+	m_sceneShader  = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
+	m_combineShader = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
+	m_quad = Mesh::generateQuad();
 }
 
 Renderer::~Renderer(){
+	
+	
+	glDeleteTextures(2, m_bufferColourTex);
+	glDeleteTextures(1, &m_bufferDepthTex);
+	glDeleteFramebuffers(1, &m_bufferFBO);
+	glDeleteFramebuffers(1, &m_processFBO);
+
+	
     glfwTerminate();
 	delete m_camera;
     
 }
 
+
+void Renderer::update(float msec){
+	m_dt = msec;
+	pollEvents();
+	updateScene(m_dt);
+
+	clearBuffers();
+	renderScene();
+	swapBuffers();
+	
+	
+}
 
 int Renderer::init(){
     
@@ -55,6 +78,18 @@ int Renderer::init(){
     
     glViewport(0, 0, screenWidth, screenHeight);
 	
+	
+	// Cull faces we can't see
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+	
+	// Depth test so stuff doesn't render on top of each other;
+	glEnable(GL_DEPTH_TEST);
+	
+	// Blend func for transparent objects;
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+	
 
 	
     return 0;
@@ -74,20 +109,95 @@ void Renderer::pollEvents(){
 
 void Renderer::clearBuffers(){
     glClearColor(m_r, m_g, m_b, m_a);
-    glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
+    glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 
+}
+
+void Renderer::drawScene(){
+	
+	// Makes it so the scene is drawn to m_bufferFBO!
+	glBindFramebuffer(GL_FRAMEBUFFER, m_bufferFBO);
+	
+	clearBuffers();
+	
+	setCurrentShader(m_sceneShader);
+	updateShaderMatrices(m_currentShader->getProgram());
+	
+	for(auto iter: m_opaqueObjects){
+		drawRenderObject(*iter);
+	}
+	
+	for(auto iter: m_transparentObjects){
+		drawRenderObject(*iter);
+	}
+	
+	glUseProgram(0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	
+	
 }
 
 void Renderer::renderScene(){
 	
 	
-	for(auto iter: m_opaqueObjects){
-		renderRenderObject(*iter);
+	drawScene();
+	
+	drawPostProcess();
+	presentScene();
+	
+	
+}
+
+void Renderer::drawPostProcess(){
+	glBindFramebuffer(GL_FRAMEBUFFER, m_processFBO);
+	
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_bufferColourTex[1], 0);
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	
+	// set shader here!!!!
+	setCurrentShader(m_combineShader);
+	
+	m_projMatrix = Matrix4::Orthographic(-1, 1, 1, -1, -1, 1);
+	m_viewMatrix.ToIdentity();
+	setCurrentShader(m_sceneShader);
+	
+	updateShaderMatrices(m_currentShader->getProgram());
+	glDisable(GL_DEPTH_TEST);
+	
+	GLuint uniform = glGetUniformLocation(m_currentShader->getProgram(), "pixelSize");
+	glUniform2f(uniform, 1.0f/WIDTH, 1.0f/HEIGHT);
+	
+	int passes = 10;
+	
+	for (int i  = 0 ; i < passes; ++i ){
+		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_bufferColourTex[1] , 0);
+		GLuint uniform = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
+		glUniform1i(uniform, 0);
+		
+		m_quad->setTexture(m_bufferColourTex[0]);
+		m_quad->draw();
+		
+		// Swap colour buffers
+		
+		GLuint uniform2 = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
+		glUniform1i(uniform2, 1); // Setting uniform to true?
+		
+		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_bufferColourTex[0], 0 );
+		
+		m_quad->setTexture(m_bufferColourTex[1]);
+		m_quad->draw();
+		
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glUseProgram(0);
+		
+		glEnable(GL_DEPTH_TEST);
+		
+		
+		
 	}
 	
-	for(auto iter: m_transparentObjects){
-		renderRenderObject(*iter);
-	}
+	
+	
 	
 }
 
@@ -103,7 +213,7 @@ void Renderer::addRenderObject(RenderObject *renderObject){
 	}
 }
 
-void Renderer::renderRenderObject(const RenderObject &o){
+void Renderer::drawRenderObject(const RenderObject &o){
 	m_modelMatrix = o.getModelMatrix();
 	if (o.getShader() && o.getMesh()) {
 		GLuint program = o.getShader()->getProgram();
@@ -113,7 +223,7 @@ void Renderer::renderRenderObject(const RenderObject &o){
 	}
 	
 	for(auto iter:o.getChildren() ){
-		renderRenderObject(*iter);
+		drawRenderObject(*iter);
 
 	}
 
@@ -156,6 +266,72 @@ void Renderer::updateShaderMatrices(GLuint program){
 	glUniformMatrix4fv(glGetUniformLocation(program, "mvp"), 1, false, (float*)&mvp);
 }
 
+
+
+void Renderer::generateFBOTexture(){
+	// Generate depth texture
+	glGenTextures(1, &m_bufferDepthTex);
+	glBindTexture(GL_TEXTURE_2D, m_bufferDepthTex);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP); 	// clamping to make sure no sampling happens that
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);	// might distort the edges. (Try turning htis off?)
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, WIDTH, HEIGHT, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
+	// Note:
+	// GL_DEPTH24_STENCIL8 and GL_DEPTH_STENCIL because it's a depth texture
+	
+	
+	
+	// Generate colour texture
+	// ( i < 2 because there are 2 colour textures
+	for(int i = 0; i >2 ; i++){
+		glGenTextures(1, &m_bufferColourTex[i]);
+		glBindTexture(GL_TEXTURE_2D, m_bufferColourTex[i]);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP); 	// clamping to make sure no sampling happens that
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);	// might distort the edges. (Try turning htis off?)
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, WIDTH, HEIGHT, 0, GL_RGBA8, GL_UNSIGNED_BYTE, NULL);
+
+	}
+	
+	// Generate FBOs
+	glGenFramebuffers(1, &m_bufferFBO);
+	glGenFramebuffers(1, &m_processFBO);
+	
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, m_bufferFBO);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, 	GL_TEXTURE_2D, m_bufferDepthTex, 	0);		// Depth attachment
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, 	GL_TEXTURE_2D, m_bufferDepthTex, 	0);		// Stencil attachment
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 	GL_TEXTURE_2D, m_bufferColourTex[0],0);		// Colour attackment (only one?)
+	
+	
+	// Checking if FBO attackment was successful
+	
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE || !m_bufferDepthTex || !m_bufferColourTex[0]  ){
+		return;
+	}
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glEnable(GL_DEPTH_TEST);
+
+}
+
+void Renderer::presentScene(){
+	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+	
+	setCurrentShader(m_sceneShader);
+	m_projMatrix = Matrix4::Orthographic(-1,1,1,-1,-1,1);
+	m_viewMatrix.ToIdentity();
+	updateShaderMatrices(m_currentShader->getProgram());
+	m_quad->setTexture(m_bufferColourTex[0]);
+	m_quad->draw();
+	glUseProgram(0);
+	
+	
+}
 
 
 

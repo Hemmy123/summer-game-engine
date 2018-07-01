@@ -51,6 +51,36 @@ Mesh::~Mesh(){
 
 
 
+Mesh* Mesh::generateQuad(){
+	
+	Mesh* m = new Mesh();
+	m->m_numVertices = 4;
+	
+	m->m_vertices = new Vector3[m->m_numVertices];
+	m->m_vertices[0] = Vector3(1.0f, 1.0f, 0.0f);
+	m->m_vertices[1] = Vector3(1.0f, -1.0f, 0.0f);
+	m->m_vertices[2] = Vector3(-1.0f, -1.0f, 0.0f);
+	m->m_vertices[3] = Vector3(-1.0f, 1.0f, 0.0f);
+	
+	m->m_textureCoords = new Vector2[m->m_numVertices];
+	m->m_textureCoords[0] = Vector2(1.0f, 1.0f);
+	m->m_textureCoords[1] = Vector2(1.0f, 0.0f);
+	m->m_textureCoords[2] = Vector2(0.0f, 0.0f);
+	m->m_textureCoords[4] = Vector2(0.0f, 1.0f);
+	
+	m->m_colours = new Vector4[m->m_numVertices];
+	m->m_colours[0] = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+	m->m_colours[1] = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+	m->m_colours[2] = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+	m->m_colours[3] = Vector4(1.0f, 0.0f, 1.0f, 1.0f);
+	
+	m->bufferData();
+	
+	return m;
+	
+	
+}
+
 Mesh* Mesh::generateTriangle(){
     Mesh* m = new Mesh();
 	m->m_numVertices = 3;

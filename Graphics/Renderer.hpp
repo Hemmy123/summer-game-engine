@@ -32,14 +32,19 @@ public:
     //void update();
     int init();
 	
+	void update(float msec);
+	
 	void createCamera(InterfaceHandler* ih);
 	
     void pollEvents();
     void clearBuffers();
     void swapBuffers();
 	
+	void drawScene();
+	
 	void renderScene();
-	void renderRenderObject(const RenderObject &o);
+	
+	void drawRenderObject(const RenderObject &o);
 
 	void updateScene(float msec);
 	
@@ -65,19 +70,30 @@ public:
 	
 	GLFWwindow* getWindow() const {return m_window;}
 	
+	// ---------- Post processing test methods ---------- //
 	
+	void generateFBOTexture();
 	
+	void setCurrentShader(Shader* s) {m_currentShader = s;}
 	
 	
 protected:
 	
+	float m_dt;
+	
 	void presentScene();
 	void drawPostProcess();
 	
+	Mesh*	m_quad;
+	Shader* m_sceneShader;
+	Shader* m_combineShader;
+	Shader* m_currentShader;
 	
-	GLuint bufferFBO;
-	GLuint processFBO;
 	
+	GLuint m_bufferFBO;
+	GLuint m_processFBO;
+	GLuint m_bufferColourTex[2];
+	GLuint m_bufferDepthTex;
 	
 	
 	vector<RenderObject*> m_opaqueObjects;

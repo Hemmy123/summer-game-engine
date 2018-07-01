@@ -40,7 +40,7 @@ public:
     ~Mesh();
     
 	static Mesh* generateTriangle();
-
+	static Mesh* generateQuad();
 	
 	// TODO: Get rid of this method!
 	static Mesh* readObjFile(std::string path);

@@ -13,25 +13,9 @@
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer();
 
-	
-	initOGL();
 	initPerspective();
 
 	createDemoScene();
-	
-}
-void GraphicsNode::initOGL(){
-	
-	// Cull faces we can't see
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	
-	// Depth test so stuff doesn't render on top of each other;
-	glEnable(GL_DEPTH_TEST);
-
-	// Blend func for transparent objects;
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
 	
 }
 
@@ -127,18 +111,20 @@ void GraphicsNode::createDemoScene(){
 void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
-		m_renderer->pollEvents();
-		m_renderer->updateScene(msec);
-
+//		m_renderer->pollEvents();
+//		m_renderer->updateScene(msec);
+//
+//
+//        m_renderer->clearBuffers();
+//		m_renderer->renderScene();
+//        m_renderer->swapBuffers();
+		m_renderer->update(msec);
 		
-        m_renderer->clearBuffers();
-		m_renderer->renderScene();
-        m_renderer->swapBuffers();
     }
 }
 
 
-void GraphicsNode::renderTriangle(){
+void GraphicsNode::renderTriangleTest(){
     GLuint program = m_testShader->getProgram();
     glUseProgram(program);
     m_testRenderObject->draw();

@@ -216,11 +216,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "552154601.1953371"
+            timestampString = "552169888.921082"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "GraphicsNode::~GraphicsNode()"
             landmarkType = "7">
          </BreakpointContent>
@@ -248,12 +248,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Mesh.cpp"
-            timestampString = "552154601.1956969"
+            timestampString = "552169888.921463"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "Mesh::readObjFile(std::string path)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Graphics/GraphicsNode.cpp"
+            timestampString = "552169888.921518"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
+            landmarkName = "GraphicsNode::update(float msec)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
