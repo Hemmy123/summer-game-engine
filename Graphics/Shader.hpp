@@ -3,7 +3,6 @@
 //  Graphics
 //
 //  Created by Hemmy on 31/05/2018.
-//  Copyright © 2018 Hemmy. All rights reserved.
 //
 #define GLEW_STATIC
 #include <GL/glew.h>
@@ -22,6 +21,18 @@
 IO code taken from:
 https://badvertex.com/2012/11/20/how-to-load-a-glsl-shader-in-opengl-using-c.html
 */
+
+
+enum ShaderStage {
+	SHADER_VERTEX = 0,
+	SHADER_FRAGMENT,
+	SHADER_GEOMETRY,
+	SHADER_TCS,
+	SHADER_TES,
+	SHADER_MAX
+};
+
+
 using std::string;
 class Shader{
 public:
@@ -35,7 +46,7 @@ public:
     
     
     void checkShader(GLuint shader);
-    
+	void bindAttributes();
     
     GLuint getProgram() {return m_program;};
 private:

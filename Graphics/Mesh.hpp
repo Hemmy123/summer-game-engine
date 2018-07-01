@@ -14,7 +14,7 @@
 #include <GL/glew.h>
 #include <stdio.h>
 
-
+#include "SOIL2.h"
 #include "Vector2.hpp"
 #include "Vector3.hpp"
 #include "Vector4.hpp"
@@ -41,6 +41,8 @@ public:
     
 	static Mesh* generateTriangle();
 
+	
+	// TODO: Get rid of this method!
 	static Mesh* readObjFile(std::string path);
 	
 	static Mesh* readObjFileTwo(std::string path);
@@ -50,13 +52,19 @@ public:
     
     GLuint m_type;
 
-    
+	void setTexture(GLuint tex) {m_texture = tex;}
 
+	GLuint loadTexture(std::string path) {
+		m_texture = SOIL_load_OGL_texture(path.c_str(), SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, 0);
+		return m_texture;
+	}
+	
 private:
     GLuint m_VAO;
     GLuint m_VBO[MAX_BUFFER];
 
-
+	GLuint m_texture;
+	
 	//Number of vertices for this mesh
 	GLuint			m_numVertices;
 	//Number of indices for this mesh

@@ -13,6 +13,7 @@
 #include "TinyObjConverter.hpp"
 
 Mesh::Mesh(){
+	m_texture = 0;
     m_numVertices = 0;
 	m_type = GL_TRIANGLES;
 
@@ -29,6 +30,10 @@ Mesh::Mesh(){
 }
 
 Mesh::~Mesh(){
+	
+
+	// TODO: Need to delete texture here.
+	
     glDeleteVertexArrays(1, &m_VAO);            //Delete our VAO
     glDeleteBuffers(MAX_BUFFER, m_VBO);        //Delete our VBOs
     
@@ -112,7 +117,6 @@ Mesh* Mesh::readObjFileTwo(std::string path){
 			// should always be 3 since triangles
 			int fv = shapes[s].mesh.num_face_vertices[f];
 			
-			std::cout<< "Faces:  " << f<<std::endl;
 
 			// Loop over vertices in that face
 			for (size_t v = 0; v < fv; v++) {
@@ -285,7 +289,9 @@ void Mesh::bufferData(){
 
 void Mesh::draw(){
     
-  
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+	
+	
     glBindVertexArray(m_VAO);
 
     // If we're using indices:
@@ -298,7 +304,9 @@ void Mesh::draw(){
     }
     // Unbind for good practice
     glBindVertexArray(0);
-    
+	
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
 }
 
 

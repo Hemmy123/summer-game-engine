@@ -66,8 +66,17 @@ public:
 	GLFWwindow* getWindow() const {return m_window;}
 	
 	
-private:
-    
+protected:
+	
+	void presentScene();
+	void drawPostProcess();
+	
+	
+	GLuint bufferFBO;
+	GLuint processFBO;
+	
+	
+	
 	vector<RenderObject*> m_opaqueObjects;
 	vector<RenderObject*> m_transparentObjects;
 	

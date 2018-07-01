@@ -14,7 +14,7 @@ GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,sub
     m_renderer = new Renderer();
 
 	
-	initOGL()
+	initOGL();
 	initPerspective();
 
 	createDemoScene();
@@ -67,56 +67,26 @@ GraphicsNode::~GraphicsNode(){
 }
 
 void GraphicsNode::createDemoScene(){
+
+	
+	// ----- Create Shaders -----
 	string vertexPath ="Assets/Shaders/Vertex/basicVert.glsl";
 	string fragPath ="Assets/Shaders/Fragment/texturedFrag.glsl";
 	Shader* shader = new Shader(vertexPath.c_str(),fragPath.c_str() );
-
-	// --------------------------------------------------
-
-	
-	GLuint texture;
-	int width,height;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	m_shaders.push_back(shader);
 
 
-	unsigned char* image = SOIL_load_image("Assets/Textures/Rabbit/Rabbit_D.tga", &width, &height, 0, SOIL_LOAD_RGBA);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
-	
-	glGenerateMipmap(GL_TEXTURE_2D);
-
-	SOIL_free_image_data(image);
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	glActiveTexture(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, texture);
-	glUniform1i( glGetUniformLocation(shader->getProgram(),"textureSample" ), 0);
-
-//	// -----------------------------------------------------------
-				
-				
-				
-	//Mesh* colaMesh = Mesh::readObjFile("Assets/Models/cageCube.obj");
-	
-	
-	
-	
-	// ----- OBJ TESTING -----
+	// ----- Create Meshes -----
 	
 	Mesh* mesh1 = Mesh::readObjFileTwo("Assets/Models/Rabbit.obj");
-	
+	mesh1->loadTexture("Assets/Textures/Rabbit/Rabbit_D.tga");
 	m_meshes.push_back(mesh1);
-	m_shaders.push_back(shader);
-	// -----------------------
-	
-	
 	mesh1->bufferData();
+
+	
+	// ----- Render Objects -----
+	
+	
 	RenderObject* ro1 = new RenderObject(mesh1, shader);
 	RenderObject* ro2 = new RenderObject(mesh1, shader);
 	RenderObject* ro3 = new RenderObject(mesh1, shader);
@@ -129,19 +99,14 @@ void GraphicsNode::createDemoScene(){
 	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.5,-5));
 	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.5,-5));
 
-	
-	
-	
-	
-	
-	m_renderObjects.push_back(ro1);
+
+
 	
 	ro1->setModelMatrix(trans1);
 	ro2->setModelMatrix(trans2);
 	ro3->setModelMatrix(trans3);
 	ro4->setModelMatrix(trans4);
 
-	
 	m_renderer->addRenderObject(ro1);
 	m_renderer->addRenderObject(ro2);
 	m_renderer->addRenderObject(ro3);

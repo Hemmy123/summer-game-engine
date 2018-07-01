@@ -7,7 +7,7 @@
 //
 
 #include "Shader.hpp"
-
+#include "Mesh.hpp"
 
 Shader::Shader(const char *vertex_path, const char *fragment_path){
     m_program = loadVertexAndFrag(vertex_path, fragment_path); // Load shaders
@@ -98,4 +98,17 @@ void Shader::checkShader(GLuint shader){
     glGetShaderInfoLog(shader, logLength, NULL, &vertShaderError[0]);
     std::cout << &vertShaderError[0] << std::endl;
 }
+
+void Shader::bindAttributes(){
+	glBindAttribLocation(m_program, VERTEX_BUFFER,  "position");
+	glBindAttribLocation(m_program, COLOUR_BUFFER,  "colour");
+	glBindAttribLocation(m_program, NORMAL_BUFFER,  "normal");
+	glBindAttribLocation(m_program, TANGENT_BUFFER, "tangent");
+	glBindAttribLocation(m_program, TEXTURE_BUFFER, "texCoord");
+	
+	
+	
+	
+}
+
 
