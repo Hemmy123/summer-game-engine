@@ -86,7 +86,7 @@ protected:
 	
 	Mesh*	m_quad;
 	Shader* m_sceneShader;
-	Shader* m_combineShader;
+	Shader* m_processShader;
 	Shader* m_currentShader;
 	
 	

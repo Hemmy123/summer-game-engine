@@ -16,12 +16,17 @@ Renderer::Renderer(): WIDTH(800),HEIGHT(600)
     };
 	
 	m_sceneShader  = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
-	m_combineShader = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
+	m_processShader = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
 	m_quad = Mesh::generateQuad();
+	generateFBOTexture();
+	
 }
 
 Renderer::~Renderer(){
 	
+	delete m_sceneShader;
+	delete m_processShader;
+	delete m_quad;
 	
 	glDeleteTextures(2, m_bufferColourTex);
 	glDeleteTextures(1, &m_bufferDepthTex);
@@ -155,7 +160,7 @@ void Renderer::drawPostProcess(){
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
 	// set shader here!!!!
-	setCurrentShader(m_combineShader);
+	setCurrentShader(m_processShader);
 	
 	m_projMatrix = Matrix4::Orthographic(-1, 1, 1, -1, -1, 1);
 	m_viewMatrix.ToIdentity();
@@ -306,9 +311,10 @@ void Renderer::generateFBOTexture(){
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 	GL_TEXTURE_2D, m_bufferColourTex[0],0);		// Colour attackment (only one?)
 	
 	
-	// Checking if FBO attackment was successful
-	
-	if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE || !m_bufferDepthTex || !m_bufferColourTex[0]  ){
+	// Checking if FBO attachment was successful
+	//
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER)  != GL_FRAMEBUFFER_COMPLETE || !m_bufferDepthTex  || !m_bufferColourTex[0]){
+		std::cout << "FBO Attachment failed " << std::endl;
 		return;
 	}
 	
