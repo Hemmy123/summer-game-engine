@@ -79,6 +79,10 @@ public:
 	
 protected:
 	
+	std::string glEnumToString(uint e);
+	void checkErrors();
+	
+	
 	float m_dt;
 	
 	void presentScene();

@@ -15,6 +15,7 @@ Renderer::Renderer(): WIDTH(800),HEIGHT(600)
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
     };
 	
+	
 	m_sceneShader  = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
 	m_processShader = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
 	m_quad = Mesh::generateQuad();
@@ -72,7 +73,8 @@ int Renderer::init(){
         glfwTerminate();
         return -1;
     }
-    
+	
+	
     glfwMakeContextCurrent(m_window);
     glewExperimental = GL_TRUE;
     
@@ -82,19 +84,19 @@ int Renderer::init(){
     }
     
     glViewport(0, 0, screenWidth, screenHeight);
+
 	
-	
-	// Cull faces we can't see
-	glEnable(GL_CULL_FACE);
-	glCullFace(GL_BACK);
-	
-	// Depth test so stuff doesn't render on top of each other;
-	glEnable(GL_DEPTH_TEST);
-	
-	// Blend func for transparent objects;
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glEnable(GL_BLEND);
-	
+//	// Cull faces we can't see
+//	glEnable(GL_CULL_FACE);
+//	glCullFace(GL_BACK);
+//
+//	// Depth test so stuff doesn't render on top of each other;
+//	glEnable(GL_DEPTH_TEST);
+//
+//	// Blend func for transparent objects;
+//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+//	glEnable(GL_BLEND);
+//
 
 	
     return 0;
@@ -277,26 +279,34 @@ void Renderer::generateFBOTexture(){
 	// Generate depth texture
 	glGenTextures(1, &m_bufferDepthTex);
 	glBindTexture(GL_TEXTURE_2D, m_bufferDepthTex);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP); 	// clamping to make sure no sampling happens that
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);	// might distort the edges. (Try turning htis off?)
+	checkErrors();
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); 	// clamping to make sure no sampling happens that
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);	// might distort the edges. (Try turning htis off?)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8, WIDTH, HEIGHT, 0, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8, NULL);
+	checkErrors();
+
 	// Note:
 	// GL_DEPTH24_STENCIL8 and GL_DEPTH_STENCIL because it's a depth texture
-	
+
 	
 	
 	// Generate colour texture
 	// ( i < 2 because there are 2 colour textures
-	for(int i = 0; i >2 ; i++){
+	for(int i = 0; i <2 ; i++){
 		glGenTextures(1, &m_bufferColourTex[i]);
 		glBindTexture(GL_TEXTURE_2D, m_bufferColourTex[i]);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP); 	// clamping to make sure no sampling happens that
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);	// might distort the edges. (Try turning htis off?)
+
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); 	// clamping to make sure no sampling happens that
+		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);	// might distort the edges. (Try turning htis off?)
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, WIDTH, HEIGHT, 0, GL_RGBA8, GL_UNSIGNED_BYTE, NULL);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, WIDTH, HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+
+		checkErrors();
 
 	}
 	
@@ -309,12 +319,17 @@ void Renderer::generateFBOTexture(){
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, 	GL_TEXTURE_2D, m_bufferDepthTex, 	0);		// Depth attachment
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, 	GL_TEXTURE_2D, m_bufferDepthTex, 	0);		// Stencil attachment
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 	GL_TEXTURE_2D, m_bufferColourTex[0],0);		// Colour attackment (only one?)
-	
+	checkErrors();
+
 	
 	// Checking if FBO attachment was successful
 	//
+	
 	if(glCheckFramebufferStatus(GL_FRAMEBUFFER)  != GL_FRAMEBUFFER_COMPLETE || !m_bufferDepthTex  || !m_bufferColourTex[0]){
-		std::cout << "FBO Attachment failed " << std::endl;
+
+		std::cout << "FBO Attachment failed "<<  std::endl;
+		checkErrors();
+
 		return;
 	}
 	
@@ -339,7 +354,59 @@ void Renderer::presentScene(){
 	
 }
 
+std::string Renderer::glEnumToString(uint e){
+	
+	std::string errStr = "Could not convert error to string!";
+	switch(e){
+		case GL_NO_ERROR : {
+			errStr = "GL_NO_ERROR";
+			break;
+		}
+		case GL_INVALID_ENUM: {
+			errStr = "GL_INVALID_ENUM";
+			break;
+		}
+		case GL_INVALID_VALUE: {
+			errStr = "GL_INVALID_VALUE";
+			break;
+		}
+		case GL_INVALID_OPERATION: {
+			errStr = "GL_INVALID_OPERATION";
+			
+		}
+		case GL_INVALID_FRAMEBUFFER_OPERATION: {
+			errStr = "GL_INVALID_FRAMEBUFFER_OPERATION";
+			break;
+		}
+		case GL_OUT_OF_MEMORY: {
+			errStr = "GL_OUT_OF_MEMORY";
+			break;
+		}
+		case GL_STACK_UNDERFLOW: {
+			errStr = "GL_STACK_UNDERFLOW";
+			break;
+		}
+		case GL_STACK_OVERFLOW: {
+			errStr = "GL_STACK_OVERFLOW";
+			break;
+		}
 
+	}
+	
+	return errStr;
+	
+	
+}
+
+
+void Renderer::checkErrors(){
+	auto error = glGetError();
+	if( error != GL_NO_ERROR){
+		std::cout<<"Something went wrong! " <<  glEnumToString(error) <<std::endl;
+	}
+	
+
+}
 
 
 
