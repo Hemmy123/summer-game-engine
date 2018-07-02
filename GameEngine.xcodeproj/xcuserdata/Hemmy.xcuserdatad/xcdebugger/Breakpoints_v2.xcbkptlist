@@ -216,12 +216,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "552169888.921082"
+            timestampString = "552264354.407337"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "GraphicsNode::initPerspective()"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "GraphicsNode::~GraphicsNode()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -264,12 +264,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "552169888.921518"
+            timestampString = "552264354.407989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
-            landmarkName = "GraphicsNode::createDemoScene()"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "GraphicsNode::update(float msec)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -280,11 +280,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "552262797.1362489"
+            timestampString = "552264354.4082741"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "359"
-            endingLineNumber = "359"
+            startingLineNumber = "363"
+            endingLineNumber = "363"
             landmarkName = "Renderer::glEnumToString(uint e)"
             landmarkType = "7">
          </BreakpointContent>
@@ -296,11 +296,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "552262797.13664"
+            timestampString = "552264354.408627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "Renderer::checkErrors()"
             landmarkType = "7">
          </BreakpointContent>
@@ -308,16 +308,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "552262797.13696"
+            timestampString = "552264354.408914"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "329"
-            endingLineNumber = "329"
-            landmarkName = "Renderer::generateFBOTexture()"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "Renderer::drawPostProcess()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -328,12 +328,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "552262797.13719"
+            timestampString = "552264354.409385"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "309"
-            endingLineNumber = "309"
-            landmarkName = "Renderer::generateFBOTexture()"
+            startingLineNumber = "345"
+            endingLineNumber = "345"
+            landmarkName = "Renderer::presentScene()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

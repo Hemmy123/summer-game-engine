@@ -16,7 +16,7 @@ Renderer::Renderer(): WIDTH(800),HEIGHT(600)
     };
 	
 	
-	m_sceneShader  = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
+	m_sceneShader  = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/texturedFrag.glsl");
 	m_processShader = new Shader("Assets/Shaders/Vertex/basicVert.glsl","Assets/Shaders/Fragment/processFrag.glsl");
 	m_quad = Mesh::generateQuad();
 	generateFBOTexture();
@@ -50,7 +50,7 @@ void Renderer::update(float msec){
 	renderScene();
 	swapBuffers();
 	
-	
+
 }
 
 int Renderer::init(){
@@ -124,12 +124,17 @@ void Renderer::drawScene(){
 	
 	// Makes it so the scene is drawn to m_bufferFBO!
 	glBindFramebuffer(GL_FRAMEBUFFER, m_bufferFBO);
-	
 	clearBuffers();
-	
 	setCurrentShader(m_sceneShader);
+
+	//TODO: Move this asap!!!
+	float viewDistance = 1000;
+	float aspectRatio = (float)WIDTH / (float)HEIGHT;
+	Matrix4 perspective = Matrix4::Perspective(1, viewDistance, aspectRatio, 45.0f);
+	m_projMatrix = perspective;
 	updateShaderMatrices(m_currentShader->getProgram());
-	
+	checkErrors();
+
 	for(auto iter: m_opaqueObjects){
 		drawRenderObject(*iter);
 	}
@@ -137,19 +142,21 @@ void Renderer::drawScene(){
 	for(auto iter: m_transparentObjects){
 		drawRenderObject(*iter);
 	}
-	
+
 	glUseProgram(0);
+
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	
+
 	
 }
 
 void Renderer::renderScene(){
 	
-	
+
 	drawScene();
-	
+
 	drawPostProcess();
+
 	presentScene();
 	
 	
@@ -157,30 +164,26 @@ void Renderer::renderScene(){
 
 void Renderer::drawPostProcess(){
 	glBindFramebuffer(GL_FRAMEBUFFER, m_processFBO);
-	
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_bufferColourTex[1], 0);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	
-	// set shader here!!!!
 	setCurrentShader(m_processShader);
-	
 	m_projMatrix = Matrix4::Orthographic(-1, 1, 1, -1, -1, 1);
 	m_viewMatrix.ToIdentity();
-	setCurrentShader(m_sceneShader);
-	
 	updateShaderMatrices(m_currentShader->getProgram());
 	glDisable(GL_DEPTH_TEST);
 	
 	GLuint uniform = glGetUniformLocation(m_currentShader->getProgram(), "pixelSize");
 	glUniform2f(uniform, 1.0f/WIDTH, 1.0f/HEIGHT);
 	
+
 	int passes = 10;
 	
 	for (int i  = 0 ; i < passes; ++i ){
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_bufferColourTex[1] , 0);
 		GLuint uniform = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
 		glUniform1i(uniform, 0);
-		
+
 		m_quad->setTexture(m_bufferColourTex[0]);
 		m_quad->draw();
 		
@@ -188,22 +191,15 @@ void Renderer::drawPostProcess(){
 		
 		GLuint uniform2 = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
 		glUniform1i(uniform2, 1); // Setting uniform to true?
-		
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_bufferColourTex[0], 0 );
-		
 		m_quad->setTexture(m_bufferColourTex[1]);
 		m_quad->draw();
-		
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glUseProgram(0);
-		
-		glEnable(GL_DEPTH_TEST);
-		
-		
-		
 	}
 	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glUseProgram(0);
 	
+	glEnable(GL_DEPTH_TEST);
 	
 	
 }
@@ -263,7 +259,10 @@ void Renderer::updateRenderObjects(float msec){
 }
 
 void Renderer::updateShaderMatrices(GLuint program){
-	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix")  , 1, false, (float*)&m_modelMatrix);
+	glUseProgram(program);
+	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix") , 1, false, (float*)&m_modelMatrix);
+	checkErrors();
+
 	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix")   , 1, false, (float*)&m_viewMatrix);
 	glUniformMatrix4fv(glGetUniformLocation(program, "projMatrix")   , 1, false, (float*)&m_projMatrix);
 	glUniformMatrix4fv(glGetUniformLocation(program, "textureMatrix"), 1, false, (float*)&m_textureMatrix);
@@ -342,15 +341,19 @@ void Renderer::presentScene(){
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-	
+	checkErrors();
+
 	setCurrentShader(m_sceneShader);
 	m_projMatrix = Matrix4::Orthographic(-1,1,1,-1,-1,1);
 	m_viewMatrix.ToIdentity();
 	updateShaderMatrices(m_currentShader->getProgram());
+	checkErrors();
+
 	m_quad->setTexture(m_bufferColourTex[0]);
 	m_quad->draw();
 	glUseProgram(0);
-	
+	checkErrors();
+
 	
 }
 

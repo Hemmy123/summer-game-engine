@@ -22,11 +22,8 @@ GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,sub
 
 void GraphicsNode::initPerspective(){
 
-	float viewDistance = 1000;
-	float aspectRatio = (float)m_renderer->getWidth() / (float)m_renderer->getHeight();
-	Matrix4 perspective = Matrix4::Perspective(1, viewDistance, aspectRatio, 45.0f);
 	
-	m_renderer->setProjectionMatrix(perspective);
+	//m_renderer->setProjectionMatrix(perspective);
 
 }
 
