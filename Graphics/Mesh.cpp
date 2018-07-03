@@ -76,7 +76,6 @@ Mesh* Mesh::generateQuad(){
 	m->m_textureCoords[4] = Vector2(1.0f,	1.0f);
 	m->m_textureCoords[5] = Vector2(0.0f,	1.0f);
 	
-	m->bufferData();
 	
 	return m;
 	

@@ -93,11 +93,13 @@ protected:
 	Shader* m_processShader;
 	Shader* m_currentShader;
 	
-	
-	GLuint m_bufferFBO;
+	// Our Frame buffer objects
+	GLuint m_sceneFBO;
 	GLuint m_processFBO;
-	GLuint m_bufferColourTex[2];
-	GLuint m_bufferDepthTex;
+	
+	// Frame Attachments  for FBOs
+	GLuint m_buffColourAttachment[2];
+	GLuint m_buffDepthAttachment;
 	
 	
 	vector<RenderObject*> m_opaqueObjects;
@@ -107,7 +109,9 @@ protected:
     
     const GLint WIDTH;
     const GLint HEIGHT;
-    
+	
+	int m_actualWidth;
+	int m_actualHeight;
     
     // Clear Colour
     float m_r = 0.3;
@@ -115,9 +119,11 @@ protected:
     float m_b = 0.4;
     float m_a = 1;
 	
-	Matrix4 ortho = Matrix4::Orthographic(0,10,10,-10,-10,10);
+	int n = 2;
 
-	
+	//Matrix4 ortho = Matrix4::Orthographic(-1,6,12,4,2,-2);
+	Matrix4 ortho = Matrix4::Orthographic(-n,3,		n,-n,	n,-n);
+
 	
 	Matrix4 m_projMatrix;
 	Matrix4 m_modelMatrix;
