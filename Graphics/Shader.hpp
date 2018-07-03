@@ -43,7 +43,7 @@ public:
     string readFile(const char* filePath);
     GLuint loadVertexAndFrag(const char *vertex_path, const char *fragment_path);
     
-    
+	bool linkProgram();
     
     void checkShader(GLuint shader);
 	void bindAttributes();

@@ -11,7 +11,8 @@
 Camera::Camera(InterfaceHandler* ih):
 m_interfaceHandler(ih),
 m_yaw(0),
-m_pitch(0){
+m_pitch(0),
+m_position(Vector3(0,0,0)){
 	m_windowListener = m_interfaceHandler->getWindowListener();
 }
 

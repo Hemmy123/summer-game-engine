@@ -115,6 +115,10 @@ protected:
     float m_b = 0.4;
     float m_a = 1;
 	
+	Matrix4 ortho = Matrix4::Orthographic(0,10,10,-10,-10,10);
+
+	
+	
 	Matrix4 m_projMatrix;
 	Matrix4 m_modelMatrix;
 	Matrix4 m_viewMatrix;

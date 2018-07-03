@@ -99,6 +99,22 @@ void Shader::checkShader(GLuint shader){
     std::cout << &vertShaderError[0] << std::endl;
 }
 
+bool Shader::linkProgram(){
+	glLinkProgram(m_program);
+	
+	GLint status;
+	glGetProgramiv(m_program, GL_LINK_STATUS, &status);
+	
+	if (status == GL_FALSE)	{
+		std::cout << "Linking failed! Error log as follows:" << std::endl;
+		char error[2048];
+		glGetProgramInfoLog(m_program, sizeof(error), NULL, error);
+		std::cout << error << std::endl;
+		return false;
+	}
+	return true;
+}
+
 void Shader::bindAttributes(){
 	glBindAttribLocation(m_program, VERTEX_BUFFER,  "position");
 	glBindAttribLocation(m_program, COLOUR_BUFFER,  "colour");
