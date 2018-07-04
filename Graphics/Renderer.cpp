@@ -9,7 +9,9 @@
 #include "Renderer.hpp"
 
 
-Renderer::Renderer(): WIDTH(800),HEIGHT(600)
+//Renderer::Renderer(): WIDTH(900),HEIGHT(700)
+Renderer::Renderer(): WIDTH(1024 ),HEIGHT(1024)
+
 {
     if ( init() != 0){
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
@@ -92,16 +94,16 @@ int Renderer::init(){
 
 	
 //	// Cull faces we can't see
-//	glEnable(GL_CULL_FACE);
-//	glCullFace(GL_BACK);
-//
-//	// Depth test so stuff doesn't render on top of each other;
-//	glEnable(GL_DEPTH_TEST);
-//
-//	// Blend func for transparent objects;
-//	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-//	glEnable(GL_BLEND);
-//
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+
+	// Depth test so stuff doesn't render on top of each other;
+	glEnable(GL_DEPTH_TEST);
+
+	// Blend func for transparent objects;
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glEnable(GL_BLEND);
+
 
 	
     return 0;
@@ -139,14 +141,13 @@ void Renderer::drawScene(){
 	float aspectRatio = (float)m_actualWidth / (float)m_actualHeight;
 	m_projMatrix = Matrix4::Perspective(1, viewDistance, aspectRatio, 45.0f);
 	
-	updateShaderMatrices(m_currentShader->getProgram());
-	//glUniform1i(glGetUniformLocation(m_currentShader->getProgram(), "diffuseTex"),  0);
+	updateShaderMatrices(m_currentShader);
 	checkErrors();
 	
 
 	for(auto iter: m_opaqueObjects){ 		drawRenderObject(*iter); }
 	for(auto iter: m_transparentObjects){ 	drawRenderObject(*iter); }
-
+	
 	glUseProgram(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -167,21 +168,23 @@ void Renderer::drawPostProcess(){
 	// Bind the process FBO
 	glBindFramebuffer(GL_FRAMEBUFFER, m_processFBO);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_buffColourAttachment[1], 0);
-	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT );
-	
+	clearBuffers();
+
 	setCurrentShader(m_processShader);
 	m_projMatrix = ortho;
 	m_viewMatrix.ToIdentity();
-	updateShaderMatrices(m_currentShader->getProgram());
+	updateShaderMatrices(m_currentShader);
 	glDisable(GL_DEPTH_TEST);
 	
 	GLuint uniform = glGetUniformLocation(m_currentShader->getProgram(), "pixelSize");
-	glUniform2f(uniform, 1.0f/WIDTH, 1.0f/HEIGHT);
 	
+	glUniform2f(uniform, 1.0f/ (WIDTH), 1.0f/ (HEIGHT));
+
 
 	int passes = 1;
 	
 	for (int i  = 0 ; i < passes; ++i ){
+
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_buffColourAttachment[1] , 0);
 		GLuint uni1 = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
 		glUniform1i(uni1, 0);
@@ -223,7 +226,7 @@ void Renderer::drawRenderObject(const RenderObject &o){
 	if (o.getShader() && o.getMesh()) {
 		GLuint program = o.getShader()->getProgram();
 		glUseProgram(program);
-		updateShaderMatrices(program);
+		updateShaderMatrices(o.getShader());
 		o.draw();
 	}
 	
@@ -260,7 +263,9 @@ void Renderer::updateRenderObjects(float msec){
 	
 }
 
-void Renderer::updateShaderMatrices(GLuint program){
+void Renderer::updateShaderMatrices(Shader* shader){
+	
+	GLuint program = shader->getProgram();
 	glUseProgram(program);
 	glUniformMatrix4fv(glGetUniformLocation(program, "modelMatrix")  , 1, false, (float*)&m_modelMatrix);
 	glUniformMatrix4fv(glGetUniformLocation(program, "viewMatrix")   , 1, false, (float*)&m_viewMatrix);
@@ -295,7 +300,7 @@ void Renderer::generateFBOTexture(){
 	
 	// Generate colour texture
 	// ( i < 2 because there are 2 colour textures
-	for(int i = 0; i <2 ; i++){
+	for(int i = 0; i <2 ; ++i){
 		glGenTextures(1, &m_buffColourAttachment[i]);
 		glBindTexture(GL_TEXTURE_2D, m_buffColourAttachment[i]);
 
@@ -304,7 +309,7 @@ void Renderer::generateFBOTexture(){
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, m_actualWidth, m_actualHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_actualWidth, m_actualHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 
 		checkErrors();
 
@@ -315,7 +320,7 @@ void Renderer::generateFBOTexture(){
 	glGenFramebuffers(1, &m_processFBO);
 	glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
 	
-	// Attaching attachments to bufferFBO
+	// Attaching attachments to sceneFBO
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, 	GL_TEXTURE_2D, m_buffDepthAttachment, 	0);		// Depth attachment
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, 	GL_TEXTURE_2D, m_buffDepthAttachment, 	0);		// Stencil attachment
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 	GL_TEXTURE_2D, m_buffColourAttachment[0],0);		// Colour attackment (only one?)
@@ -346,7 +351,8 @@ void Renderer::presentScene(){
 	setCurrentShader(m_sceneShader);
 	m_projMatrix = ortho;
 	m_viewMatrix.ToIdentity();
-	updateShaderMatrices(m_currentShader->getProgram());
+	
+	updateShaderMatrices(m_currentShader);
 	checkErrors();
 
 	m_quad->setTexture(m_buffColourAttachment[0]);

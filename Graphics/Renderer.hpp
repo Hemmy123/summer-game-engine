@@ -50,7 +50,7 @@ public:
 	
 	void updateRenderObjects(float msec);
 
-	void updateShaderMatrices(GLuint program);
+	void updateShaderMatrices(Shader* shader);
 	
 	
 	
@@ -119,10 +119,11 @@ protected:
     float m_b = 0.4;
     float m_a = 1;
 	
-	int n = 2;
+	int n = 10;
 
 	//Matrix4 ortho = Matrix4::Orthographic(-1,6,12,4,2,-2);
-	Matrix4 ortho = Matrix4::Orthographic(-n,3,		n,-n,	n,-n);
+	//Matrix4 ortho = Matrix4::Orthographic(-n,n,		n,-n,	n,-n);
+	Matrix4 ortho = Matrix4::Orthographic(-n,n,		n,-n,	-n,n);
 
 	
 	Matrix4 m_projMatrix;
