@@ -88,6 +88,8 @@ protected:
 	void presentScene();
 	void drawPostProcess();
 	
+	void updateUniforms();
+	
 	Mesh*	m_quad;
 	Shader* m_sceneShader;
 	Shader* m_processShader;

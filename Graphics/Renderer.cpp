@@ -29,7 +29,7 @@ Renderer::Renderer(): WIDTH(1024 ),HEIGHT(1024)
 	m_quad->bufferData();
 	
 	generateFBOTexture();
-	
+	setCurrentShader(m_sceneShader);
 }
 
 Renderer::~Renderer(){
@@ -52,13 +52,16 @@ Renderer::~Renderer(){
 
 void Renderer::update(float msec){
 	m_dt = msec;
+	
 	pollEvents();
 	updateScene(m_dt);
+
 
 	clearBuffers();
 	renderScene();
 	swapBuffers();
-	
+	updateUniforms();
+
 
 }
 
@@ -90,7 +93,7 @@ int Renderer::init(){
         return -1;
     }
     
-    glViewport(0, 0, m_actualWidth, m_actualHeight);
+	glViewport(0, 0, m_actualWidth, m_actualHeight);
 
 	
 //	// Cull faces we can't see
@@ -180,9 +183,9 @@ void Renderer::drawPostProcess(){
 	
 	glUniform2f(uniform, 1.0f/ (WIDTH), 1.0f/ (HEIGHT));
 
-
+	// -----
 	int passes = 1;
-	
+
 	for (int i  = 0 ; i < passes; ++i ){
 
 		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_buffColourAttachment[1] , 0);
@@ -191,15 +194,21 @@ void Renderer::drawPostProcess(){
 
 		m_quad->setTexture(m_buffColourAttachment[0]);
 		m_quad->draw();
-		
+
 		// Swap colour buffers
-		
+
 		GLuint uni2 = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
 		glUniform1i(uni2, 1); // Setting uniform to true?
 		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_buffColourAttachment[0], 0 );
 		m_quad->setTexture(m_buffColourAttachment[1]);
 		m_quad->draw();
 	}
+	// -----
+
+	
+	GLuint timeID = glGetUniformLocation(m_currentShader->getProgram(), "time");
+	
+	glUniform1f(timeID, (float)(glfwGetTime()*10.0f) );
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glUseProgram(0);
@@ -415,6 +424,12 @@ void Renderer::checkErrors(){
 	}
 	
 
+}
+
+void Renderer::updateUniforms(){
+
+
+	
 }
 
 
