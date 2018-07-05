@@ -10,14 +10,22 @@
 
 
 //Renderer::Renderer(): WIDTH(900),HEIGHT(700)
-Renderer::Renderer(): WIDTH(1024 ),HEIGHT(1024)
+Renderer::Renderer():
+WIDTH(1024 ),
+HEIGHT(1024),
+m_clearColour(Vector4(0.3,0.5,0.4,1))
 
 {
     if ( init() != 0){
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
     };
 	
-	
+	glClearColor(
+		m_clearColour.x, 
+		m_clearColour.y, 
+		m_clearColour.z, 
+		m_clearColour.w);
+
 	m_sceneShader  = new Shader("Assets/Shaders/Vertex/passThroughVertex.glsl","Assets/Shaders/Fragment/sceneFrag.glsl");
 	m_processShader = new Shader("Assets/Shaders/Vertex/passThroughVertex.glsl","Assets/Shaders/Fragment/processFrag.glsl");
 	
@@ -49,88 +57,87 @@ Renderer::~Renderer(){
     
 }
 
-
 void Renderer::update(float msec){
 	m_dt = msec;
 	
-	pollEvents();
+	glfwPollEvents();
 	updateScene(m_dt);
-
-
-	clearBuffers();
+	
+	
+	glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
 	renderScene();
 	swapBuffers();
-	updateUniforms();
-
-
+	
+	
 }
 
-int Renderer::init(){
-    
-    glfwInit( );
-    
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);                  // Trying setting opengl window to 3?
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);   // Setting core profile?
-    
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // For running on Mac
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);                       // Can't resize
-    m_window = glfwCreateWindow(WIDTH, HEIGHT, "OpenglTest", nullptr, nullptr);
-    
-    glfwGetFramebufferSize(m_window, &m_actualWidth, &m_actualHeight); // have to do this because of retina mac scaling issue?
-    if(m_window == nullptr){
-        std::cout<< "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return -1;
-    }
-	
-	
-    glfwMakeContextCurrent(m_window);
-    glewExperimental = GL_TRUE;
-    
-    if(glewInit() != GLEW_OK ){
-        std::cout<< "Failed to initlialize GLEW" <<std::endl;
-        return -1;
-    }
-    
-	glViewport(0, 0, m_actualWidth, m_actualHeight);
 
+int Renderer::init(){
 	
-//	// Cull faces we can't see
+	glfwInit( );
+	
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);                  // Trying setting opengl window to 3?
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE,GLFW_OPENGL_CORE_PROFILE);   // Setting core profile?
+	
+	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);            // For running on Mac
+	glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);                       // Can't resize
+	m_window = glfwCreateWindow(WIDTH, HEIGHT, "OpenglTest", nullptr, nullptr);
+	
+	glfwGetFramebufferSize(m_window, &m_actualWidth, &m_actualHeight); // have to do this because of retina mac scaling issue?
+	if(m_window == nullptr){
+		std::cout<< "Failed to create GLFW window" << std::endl;
+		glfwTerminate();
+		return -1;
+	}
+	
+	
+	glfwMakeContextCurrent(m_window);
+	glewExperimental = GL_TRUE;
+	
+	if(glewInit() != GLEW_OK ){
+		std::cout<< "Failed to initlialize GLEW" <<std::endl;
+		return -1;
+	}
+	
+	glViewport(0, 0, m_actualWidth, m_actualHeight);
+	
+	
+	// Cull faces we can't see
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
-
+	
 	// Depth test so stuff doesn't render on top of each other;
 	glEnable(GL_DEPTH_TEST);
-
+	
 	// Blend func for transparent objects;
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
-
-
 	
-    return 0;
-    
-    
+	
+	
+	return 0;
+	
+	
 }
+
+
 
 
 void Renderer::createCamera(InterfaceHandler *ih){
 	m_camera = new Camera(ih);
-	
 }
 
-void Renderer::pollEvents(){
-    glfwPollEvents();
-}
+
+
 
 void Renderer::clearBuffers(){
-    glClearColor(m_r, m_g, m_b, m_a);
-    glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+	glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+	
 
 }
 
-void Renderer::drawScene(){
+void Renderer::drawSceneToFBO(){
 	
 	// Makes it so the scene is drawn to m_bufferFBO!
 	glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
@@ -158,7 +165,7 @@ void Renderer::drawScene(){
 void Renderer::renderScene(){
 	
 
-	drawScene();
+	drawSceneToFBO();
 
 	drawPostProcess();
 
@@ -426,11 +433,6 @@ void Renderer::checkErrors(){
 
 }
 
-void Renderer::updateUniforms(){
-
-
-	
-}
 
 
 

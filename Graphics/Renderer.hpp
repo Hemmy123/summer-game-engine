@@ -29,46 +29,69 @@ public:
     Renderer();
     ~Renderer();
     
-    //void update();
     int init();
 	
-	void update(float msec);
 	
+	void clearBuffers();
+	void swapBuffers();
+	
+	
+	/// This needs to be called after creating a Renderer. This is due
+	/// to GLFW requireing a window to get user input. Maybe code should
+	/// be restructured to avoid this?
 	void createCamera(InterfaceHandler* ih);
 	
-    void pollEvents();
-    void clearBuffers();
-    void swapBuffers();
+	// ---------- Rendering ---------- //
 	
-	void drawScene();
-	
+	/// Carries out the whole rendering process, drawing to scene FBO,
+	/// add post processing and then presenting the scene to the screen.
 	void renderScene();
 	
+	///Draws the scene onto the scene FBO. Not the actual screen!
+	void drawSceneToFBO();
+	
+	/// Adds any post-processing stuff onto the scene FBO and then draws
+	/// it to the process FBO.
+	void drawPostProcess();
+
+	/// Draws a renderObject onto whatever FBO is currently bound.
 	void drawRenderObject(const RenderObject &o);
 
+	
+	// ---------- Updating ---------- //
+
+	/// The 'master' update method which updates everything in the scene
+	/// and then calls the render methods to draw to the screen.
+	void update(float msec);
+	
+	/// Updates the camera and view matrix, and then updates the
+	/// Objects via the updateRenderObjects method.
 	void updateScene(float msec);
 	
+	/// Loops through all renderObjects and updates their world transform
 	void updateRenderObjects(float msec);
 
+	/// Update the matrices being pushing to shaders via uniforms
 	void updateShaderMatrices(Shader* shader);
 	
+	// ---------- Getters/Setters ---------- //
 	
-	
-    bool checkWindow() {return glfwWindowShouldClose(m_window);}
-
 	void setOpaqueObjects(vector<RenderObject*> renderObjects);
 	void setTransparentObjects(vector<RenderObject*> renderObjects);
 	
 	void addRenderObject(RenderObject* renderObject);
 
-	
-	void setProjectionMatrix(Matrix4 proj) {m_projMatrix = proj;}
-	
-	
 	GLint getWidth()const 	{return WIDTH;}
 	GLint getHeight()const 	{return HEIGHT;}
 	
 	GLFWwindow* getWindow() const {return m_window;}
+
+
+
+	
+	void setProjectionMatrix(Matrix4 proj) {m_projMatrix = proj;}
+	
+	
 	
 	// ---------- Post processing test methods ---------- //
 	
@@ -76,7 +99,9 @@ public:
 	
 	void setCurrentShader(Shader* s) {m_currentShader = s;}
 	
-	
+	// ---------- Misc ---------- //
+	bool checkWindow() {return glfwWindowShouldClose(m_window);}
+
 protected:
 	
 	std::string glEnumToString(uint e);
@@ -86,9 +111,7 @@ protected:
 	float m_dt;
 	
 	void presentScene();
-	void drawPostProcess();
 	
-	void updateUniforms();
 	
 	Mesh*	m_quad;
 	Shader* m_sceneShader;
@@ -116,6 +139,8 @@ protected:
 	int m_actualHeight;
     
     // Clear Colour
+	Vector4 m_clearColour;
+
     float m_r = 0.3;
     float m_g = 0.5;
     float m_b = 0.4;
