@@ -62,7 +62,7 @@ void GraphicsNode::createDemoScene(){
 	Mesh* mesh1 = Mesh::readObjFileTwo("Assets/Models/Rabbit.obj");
 	Mesh* mesh2 = Mesh::readObjFileTwo("Assets/Models/cageCube.obj");
 	mesh1->loadTexture("Assets/Textures/Rabbit/Rabbit_D.tga");
-	mesh2->loadTexture("Assets/Textures/cage.jpg");
+	mesh2->loadTexture("Assets/Textures/nyan.jpg");
 	mesh1->bufferData();
 	mesh2->bufferData();
 

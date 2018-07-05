@@ -172,7 +172,7 @@ Mesh* Mesh::readObjFileTwo(std::string path){
 				tinyobj::real_t tx = attrib.texcoords[2*idx.texcoord_index+0];
 				tinyobj::real_t ty = 1 - attrib.texcoords[2*idx.texcoord_index+1];
 				
-				Vector2 tempT(tx,ty);
+				Vector2 tempT(tx,ty);
 				texCoords.push_back(tempT);
 				
 			}

@@ -110,6 +110,8 @@
 		30FEBD4820E000EC008F3879 /* stb_image_write.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3320E000EC008F3879 /* stb_image_write.h */; };
 		30FEBD4920E000EC008F3879 /* stbi_pkm.h in Headers */ = {isa = PBXBuildFile; fileRef = 30FEBD3420E000EC008F3879 /* stbi_pkm.h */; };
 		30FEBD4C20E00102008F3879 /* libSOIL2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30FEBD1520E00082008F3879 /* libSOIL2.a */; };
+		30FF488D20EE6F4E00BE3EEA /* MasterRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30FF488B20EE6F4E00BE3EEA /* MasterRenderer.cpp */; };
+		30FF488E20EE6F4E00BE3EEA /* MasterRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30FF488C20EE6F4E00BE3EEA /* MasterRenderer.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -343,6 +345,8 @@
 		30FEBD3220E000EC008F3879 /* pvr_helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pvr_helper.h; sourceTree = "<group>"; };
 		30FEBD3320E000EC008F3879 /* stb_image_write.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image_write.h; sourceTree = "<group>"; };
 		30FEBD3420E000EC008F3879 /* stbi_pkm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stbi_pkm.h; sourceTree = "<group>"; };
+		30FF488B20EE6F4E00BE3EEA /* MasterRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MasterRenderer.cpp; sourceTree = "<group>"; };
+		30FF488C20EE6F4E00BE3EEA /* MasterRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MasterRenderer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -612,6 +616,8 @@
 			children = (
 				305190A020C43810001167E8 /* Source */,
 				3051909B20C435A4001167E8 /* Headers */,
+				30FF488B20EE6F4E00BE3EEA /* MasterRenderer.cpp */,
+				30FF488C20EE6F4E00BE3EEA /* MasterRenderer.hpp */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -718,6 +724,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30EB224F20BF60CA002D1B3E /* GraphicsNode.hpp in Headers */,
+				30FF488E20EE6F4E00BE3EEA /* MasterRenderer.hpp in Headers */,
 				304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */,
 				306CD6A020D5A19900394FCF /* HeightMap.hpp in Headers */,
 				30E7640D20CC437000934522 /* Camera.hpp in Headers */,
@@ -1069,6 +1076,7 @@
 				30EB224E20BF60CA002D1B3E /* GraphicsNode.cpp in Sources */,
 				30EB225220BF6AC3002D1B3E /* Shader.cpp in Sources */,
 				30E7640C20CC437000934522 /* Camera.cpp in Sources */,
+				30FF488D20EE6F4E00BE3EEA /* MasterRenderer.cpp in Sources */,
 				3051905520C2FC4D001167E8 /* Mesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

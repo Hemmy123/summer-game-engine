@@ -11,11 +11,9 @@
 
 //Renderer::Renderer(): WIDTH(900),HEIGHT(700)
 Renderer::Renderer():
-WIDTH(1024 ),
-HEIGHT(1024),
-m_clearColour(Vector4(0.3,0.5,0.4,1))
-
-{
+WIDTH(1024),
+HEIGHT(800),
+m_clearColour(Vector4(0.3,0.5,0.4,1)){
     if ( init() != 0){
         std::cout<<"OpenGL Failed to initialize!"<<std::endl;
     };
@@ -38,6 +36,12 @@ m_clearColour(Vector4(0.3,0.5,0.4,1))
 	
 	generateFBOTexture();
 	setCurrentShader(m_sceneShader);
+	
+	
+	m_aspectRatio =(float)m_actualWidth / (float)m_actualHeight;
+	m_ortho = Matrix4::Orthographic(-10,10,		10,-10,	-10,10);
+	m_persp = Matrix4::Perspective(1, m_viewDistance, m_aspectRatio, m_fov);
+	
 }
 
 Renderer::~Renderer(){
@@ -46,7 +50,7 @@ Renderer::~Renderer(){
 	delete m_processShader;
 	delete m_quad;
 	
-	glDeleteTextures(2, m_buffColourAttachment);
+	glDeleteTextures(1, &m_buffColourAttachment);
 	glDeleteTextures(1, &m_buffDepthAttachment);
 	glDeleteFramebuffers(1, &m_sceneFBO);
 	glDeleteFramebuffers(1, &m_processFBO);
@@ -57,19 +61,6 @@ Renderer::~Renderer(){
     
 }
 
-void Renderer::update(float msec){
-	m_dt = msec;
-	
-	glfwPollEvents();
-	updateScene(m_dt);
-	
-	
-	glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
-	renderScene();
-	swapBuffers();
-	
-	
-}
 
 
 int Renderer::init(){
@@ -118,8 +109,22 @@ int Renderer::init(){
 	
 	return 0;
 	
+}
+
+
+void Renderer::update(float msec){
+	m_dt = msec;
+	
+	glfwPollEvents();
+	updateScene(m_dt);
+	clearBuffers();
+	
+	renderScene();
+	swapBuffers();
+	
 	
 }
+
 
 
 
@@ -130,12 +135,12 @@ void Renderer::createCamera(InterfaceHandler *ih){
 
 
 
-
-void Renderer::clearBuffers(){
-	glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
-	
-
+void Renderer::renderScene(){
+	drawSceneToFBO();
+	drawPostProcess();
+	presentScene();
 }
+
 
 void Renderer::drawSceneToFBO(){
 	
@@ -144,12 +149,7 @@ void Renderer::drawSceneToFBO(){
 	clearBuffers();
 	setCurrentShader(m_sceneShader);
 
-
-	
-	//TODO: Move this asap!!!
-	float viewDistance = 1000;
-	float aspectRatio = (float)m_actualWidth / (float)m_actualHeight;
-	m_projMatrix = Matrix4::Perspective(1, viewDistance, aspectRatio, 45.0f);
+	m_projMatrix = m_persp;
 	
 	updateShaderMatrices(m_currentShader);
 	checkErrors();
@@ -162,68 +162,55 @@ void Renderer::drawSceneToFBO(){
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
-void Renderer::renderScene(){
-	
-
-	drawSceneToFBO();
-
-	drawPostProcess();
-
-	presentScene();
-	
-	
-}
-
 void Renderer::drawPostProcess(){
+	
+	/*
+	 Adds post processing to the scene.
+	 
+	 Assuming the scene has been drawn to a FBO, this bindes the
+	 processFBO, sets the texture to whatever was drawn before (so
+	 the scene) and then applies post processing effect via a shader
+	 by calling m_quad->draw()
+	 
+	 Whatever is drawn is put into m_bufferColourAttachment (I think?)
+	 */
+	
 	// Bind the process FBO
 	glBindFramebuffer(GL_FRAMEBUFFER, m_processFBO);
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_buffColourAttachment[1], 0);
-	clearBuffers();
 
-	setCurrentShader(m_processShader);
-	m_projMatrix = ortho;
+	setCurrentShader(m_processShader);	// Change to our post processing shader
+	m_projMatrix = m_ortho;				// Change projection Matrix to orthographic
 	m_viewMatrix.ToIdentity();
 	updateShaderMatrices(m_currentShader);
 	glDisable(GL_DEPTH_TEST);
 	
-	GLuint uniform = glGetUniformLocation(m_currentShader->getProgram(), "pixelSize");
-	
-	glUniform2f(uniform, 1.0f/ (WIDTH), 1.0f/ (HEIGHT));
+	// Update screen size uniform.
+	GLuint screenSizeID = glGetUniformLocation(m_currentShader->getProgram(), "screenSize");
+	glUniform2f(screenSizeID, (WIDTH), (HEIGHT));
 
-	// -----
-	int passes = 1;
-
-	for (int i  = 0 ; i < passes; ++i ){
-
-		glFramebufferTexture2D( GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D, m_buffColourAttachment[1] , 0);
-		GLuint uni1 = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
-		glUniform1i(uni1, 0);
-
-		m_quad->setTexture(m_buffColourAttachment[0]);
-		m_quad->draw();
-
-		// Swap colour buffers
-
-		GLuint uni2 = glGetUniformLocation(m_currentShader->getProgram(), "isVertical");
-		glUniform1i(uni2, 1); // Setting uniform to true?
-		glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_buffColourAttachment[0], 0 );
-		m_quad->setTexture(m_buffColourAttachment[1]);
-		m_quad->draw();
-	}
-	// -----
-
-	
 	GLuint timeID = glGetUniformLocation(m_currentShader->getProgram(), "time");
-	
 	glUniform1f(timeID, (float)(glfwGetTime()*10.0f) );
+	
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, m_buffColourAttachment, 0 );
+	m_quad->setTexture(m_buffColourAttachment);
+	m_quad->draw();
+	
+	
+
 	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glUseProgram(0);
 	
-	glEnable(GL_DEPTH_TEST);
-	
-	
+	glEnable(GL_DEPTH_TEST);	
 }
+
+
+
+void Renderer::clearBuffers(){
+	glClear(GL_DEPTH_BUFFER_BIT|GL_COLOR_BUFFER_BIT|GL_STENCIL_BUFFER_BIT);
+}
+
+
 
 void Renderer::swapBuffers(){
     glfwSwapBuffers(m_window);
@@ -313,23 +300,20 @@ void Renderer::generateFBOTexture(){
 	// GL_DEPTH24_STENCIL8 and GL_DEPTH_STENCIL because it's a depth texture
 
 	
+
+	glGenTextures(1, &m_buffColourAttachment);
+	glBindTexture(GL_TEXTURE_2D, m_buffColourAttachment);
+
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); 	// clamping to make sure no sampling happens that
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);	// might distort the edges. (Try turning htis off?)
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_actualWidth, m_actualHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+
+	checkErrors();
+
 	
-	// Generate colour texture
-	// ( i < 2 because there are 2 colour textures
-	for(int i = 0; i <2 ; ++i){
-		glGenTextures(1, &m_buffColourAttachment[i]);
-		glBindTexture(GL_TEXTURE_2D, m_buffColourAttachment[i]);
-
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); 	// clamping to make sure no sampling happens that
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);	// might distort the edges. (Try turning htis off?)
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-		glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_actualWidth, m_actualHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-
-		checkErrors();
-
-	}
 	
 	// Generate FBOs
 	glGenFramebuffers(1, &m_sceneFBO);
@@ -339,12 +323,12 @@ void Renderer::generateFBOTexture(){
 	// Attaching attachments to sceneFBO
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, 	GL_TEXTURE_2D, m_buffDepthAttachment, 	0);		// Depth attachment
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, 	GL_TEXTURE_2D, m_buffDepthAttachment, 	0);		// Stencil attachment
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 	GL_TEXTURE_2D, m_buffColourAttachment[0],0);		// Colour attackment (only one?)
+	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, 	GL_TEXTURE_2D, m_buffColourAttachment,0);		// Colour attackment (only one?)
 	checkErrors();
 
 	
 	// Checking if FBO attachment was successful
-	if(glCheckFramebufferStatus(GL_FRAMEBUFFER)  != GL_FRAMEBUFFER_COMPLETE || !m_buffDepthAttachment  || !m_buffColourAttachment[0]){
+	if(glCheckFramebufferStatus(GL_FRAMEBUFFER)  != GL_FRAMEBUFFER_COMPLETE || !m_buffDepthAttachment  || !m_buffColourAttachment){
 
 		std::cout << "FBO Attachment failed "<<  std::endl;
 		checkErrors();
@@ -361,17 +345,16 @@ void Renderer::presentScene(){
 	
 	// unbind framebuffers to render to normal screen
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 	checkErrors();
 
 	setCurrentShader(m_sceneShader);
-	m_projMatrix = ortho;
+	m_projMatrix = m_ortho;
 	m_viewMatrix.ToIdentity();
 	
 	updateShaderMatrices(m_currentShader);
 	checkErrors();
 
-	m_quad->setTexture(m_buffColourAttachment[0]);
+	m_quad->setTexture(m_buffColourAttachment);
 	m_quad->draw();
 	glUseProgram(0);
 	checkErrors();
@@ -381,7 +364,7 @@ void Renderer::presentScene(){
 
 std::string Renderer::glEnumToString(uint e){
 	
-	std::string errStr = "Could not convert error to string!";
+	std::string errStr = "Could not convert error enum to string!";
 	switch(e){
 		case GL_NO_ERROR : {
 			errStr = "GL_NO_ERROR";

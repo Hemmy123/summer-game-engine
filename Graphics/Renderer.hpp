@@ -29,12 +29,12 @@ public:
     Renderer();
     ~Renderer();
     
-    int init();
-	
-	
+    /// Clear depth, colour and stencil buffers.
 	void clearBuffers();
-	void swapBuffers();
 	
+	
+	void swapBuffers();
+
 	
 	/// This needs to be called after creating a Renderer. This is due
 	/// to GLFW requireing a window to get user input. Maybe code should
@@ -86,11 +86,7 @@ public:
 	
 	GLFWwindow* getWindow() const {return m_window;}
 
-
-
-	
 	void setProjectionMatrix(Matrix4 proj) {m_projMatrix = proj;}
-	
 	
 	
 	// ---------- Post processing test methods ---------- //
@@ -104,54 +100,71 @@ public:
 
 protected:
 	
-	std::string glEnumToString(uint e);
+	
+
+	// ---------- Functions ---------- //
+	
+	int init();
+
+
+	
+	
+	/// Presents the scene to the screen (after all post processing and
+	/// extras are finished.
+	void presentScene();
+
+	
+	/// Calls glGetError and then prints out the error.
 	void checkErrors();
+
+	
+	/// Turns a glError enum into a string because OGL
+	/// apparently doesn't have one of these :|
+	std::string glEnumToString(uint e);
 	
 	
+	
+	// ---------- Fields ---------- //
 	float m_dt;
 	
-	void presentScene();
 	
 	
-	Mesh*	m_quad;
-	Shader* m_sceneShader;
-	Shader* m_processShader;
+	Mesh*	m_quad;				// Quad for rendering FBO to screen
+	Shader* m_sceneShader;		//
+	Shader* m_processShader;	//
 	Shader* m_currentShader;
 	
-	// Our Frame buffer objects
-	GLuint m_sceneFBO;
+	// -- Frame Buffer Objects
+	GLuint m_sceneFBO;			// FBO to represent the
 	GLuint m_processFBO;
 	
-	// Frame Attachments  for FBOs
-	GLuint m_buffColourAttachment[2];
+	
+	// -- Frame Buffer Attachments
+	GLuint m_buffColourAttachment;
 	GLuint m_buffDepthAttachment;
 	
-	
+	// -- RenderObjects to render
 	vector<RenderObject*> m_opaqueObjects;
 	vector<RenderObject*> m_transparentObjects;
 	
     GLFWwindow *m_window;
-    
+	
+	// -- Dimensions of the screen
     const GLint WIDTH;
     const GLint HEIGHT;
 	
-	int m_actualWidth;
+	int m_actualWidth;		// Dimensions reported by dimensional
 	int m_actualHeight;
     
-    // Clear Colour
 	Vector4 m_clearColour;
 
-    float m_r = 0.3;
-    float m_g = 0.5;
-    float m_b = 0.4;
-    float m_a = 1;
+	// ----- View and Matrices ----- //
+	float m_viewDistance 	= 1000;
+	float m_fov 			= 45.0f;
+	float m_aspectRatio;
 	
-	int n = 10;
-
-	//Matrix4 ortho = Matrix4::Orthographic(-1,6,12,4,2,-2);
-	//Matrix4 ortho = Matrix4::Orthographic(-n,n,		n,-n,	n,-n);
-	Matrix4 ortho = Matrix4::Orthographic(-n,n,		n,-n,	-n,n);
-
+	Matrix4 m_ortho;
+	Matrix4 m_persp;
 	
 	Matrix4 m_projMatrix;
 	Matrix4 m_modelMatrix;
