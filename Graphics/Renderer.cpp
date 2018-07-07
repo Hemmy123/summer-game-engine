@@ -58,9 +58,7 @@ Renderer::~Renderer(){
 	
     glfwTerminate();
 	delete m_camera;
-    
 }
-
 
 
 int Renderer::init(){
@@ -120,14 +118,8 @@ void Renderer::update(float msec){
 	clearBuffers();
 	
 	renderScene();
-	swapBuffers();
-	
-	
+	swapBuffers();	
 }
-
-
-
-
 
 void Renderer::createCamera(InterfaceHandler *ih){
 	m_camera = new Camera(ih);
