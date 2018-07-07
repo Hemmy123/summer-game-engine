@@ -17,6 +17,7 @@
 #include <GLFW/glfw3.h>
 #include <stdio.h>
 
+#include "MasterRenderer.hpp"
 #include "RenderObject.hpp"
 #include "Camera.hpp"
 
@@ -24,17 +25,11 @@
 
 using std::vector;
 
-class Renderer{
+class Renderer: public MasterRenderer{
 public:
-    Renderer();
+    Renderer(int height, int width);
     ~Renderer();
     
-    /// Clear depth, colour and stencil buffers.
-	void clearBuffers();
-	
-	
-	void swapBuffers();
-
 	
 	/// This needs to be called after creating a Renderer. This is due
 	/// to GLFW requireing a window to get user input. Maybe code should
@@ -85,8 +80,6 @@ public:
 	GLint getHeight()const 	{return HEIGHT;}
 	
 	GLFWwindow* getWindow() const {return m_window;}
-
-	void setProjectionMatrix(Matrix4 proj) {m_projMatrix = proj;}
 	
 	
 	// ---------- Post processing test methods ---------- //
@@ -104,23 +97,12 @@ protected:
 
 	// ---------- Functions ---------- //
 	
-	int init();
-
-
-	
-	
 	/// Presents the scene to the screen (after all post processing and
 	/// extras are finished.
 	void presentScene();
 
 	
-	/// Calls glGetError and then prints out the error.
-	void checkErrors();
 
-	
-	/// Turns a glError enum into a string because OGL
-	/// apparently doesn't have one of these :|
-	std::string glEnumToString(uint e);
 	
 	
 	
@@ -146,30 +128,13 @@ protected:
 	// -- RenderObjects to render
 	vector<RenderObject*> m_opaqueObjects;
 	vector<RenderObject*> m_transparentObjects;
-	
-    GLFWwindow *m_window;
-	
-	// -- Dimensions of the screen
-    const GLint WIDTH;
-    const GLint HEIGHT;
-	
-	int m_actualWidth;		// Dimensions reported by dimensional
-	int m_actualHeight;
-    
+		
 	Vector4 m_clearColour;
 
 	// ----- View and Matrices ----- //
 	float m_viewDistance 	= 1000;
 	float m_fov 			= 45.0f;
 	float m_aspectRatio;
-	
-	Matrix4 m_ortho;
-	Matrix4 m_persp;
-	
-	Matrix4 m_projMatrix;
-	Matrix4 m_modelMatrix;
-	Matrix4 m_viewMatrix;
-	Matrix4 m_textureMatrix;
 
 	Camera* m_camera;
 };

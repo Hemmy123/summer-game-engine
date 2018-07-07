@@ -11,9 +11,9 @@
 #include "SOIL2.h"
 
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
-    m_renderer = new Renderer();
+    m_renderer = new Renderer(800, 1024);
 
-	initPerspective();
+	//initPerspective();
 
 	createDemoScene();
 	

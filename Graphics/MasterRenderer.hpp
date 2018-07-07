@@ -29,16 +29,17 @@
 
 class MasterRenderer {
 public:
-	MasterRenderer();
-	~MasterRenderer();
+	MasterRenderer(int height,int width):HEIGHT(height), WIDTH(width){};
+	~MasterRenderer(){};
 	
-	virtual void update(float dt) = 0;
-	virtual void renderScene() = 0;
-
+	virtual void update(float dt) 	= 0;
+	virtual void renderScene() 		= 0;
 	virtual void clearBuffers();
 	
 	
 	void swapBuffers();
+	
+
 	
 	
 	// ---------- Getters/Setters ---------- //
@@ -56,8 +57,19 @@ public:
 	
 protected:
 	
+	// ---------- Functions ---------- //
+	
+	/// Turns a glError enum into a string because OGL
+	/// apparently doesn't have one of these :|
+	std::string glEnumToString(uint e);
+	
+	/// Calls glGetError and then prints out the error.
+	void checkErrors();
+	
 	int init();
 	
+	// ---------- Values ---------- //
+
 	float m_dt;
 	
 	GLFWwindow *m_window;
@@ -79,7 +91,8 @@ protected:
 	Matrix4 m_modelMatrix;
 	Matrix4 m_viewMatrix;
 	Matrix4 m_textureMatrix;
-	
 };
+
+
 
 #endif /* MasterRenderer_hpp */

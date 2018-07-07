@@ -9,6 +9,7 @@
 #include "MasterRenderer.hpp"
 
 
+
 int MasterRenderer::init(){
 	glfwInit( );
 	
@@ -63,3 +64,62 @@ void MasterRenderer::clearBuffers(){
 void MasterRenderer::swapBuffers(){
 	glfwSwapBuffers(m_window);
 }
+
+
+void MasterRenderer::checkErrors(){
+	auto error = glGetError();
+	if( error != GL_NO_ERROR){
+		std::cout<<"Something went wrong! " <<  glEnumToString(error) <<std::endl;
+	}
+	
+	
+}
+
+
+
+std::string MasterRenderer::glEnumToString(uint e){
+	
+	std::string errStr = "Could not convert error enum to string!";
+	switch(e){
+		case GL_NO_ERROR : {
+			errStr = "GL_NO_ERROR";
+			break;
+		}
+		case GL_INVALID_ENUM: {
+			errStr = "GL_INVALID_ENUM";
+			break;
+		}
+		case GL_INVALID_VALUE: {
+			errStr = "GL_INVALID_VALUE";
+			break;
+		}
+		case GL_INVALID_OPERATION: {
+			errStr = "GL_INVALID_OPERATION";
+			
+		}
+		case GL_INVALID_FRAMEBUFFER_OPERATION: {
+			errStr = "GL_INVALID_FRAMEBUFFER_OPERATION";
+			break;
+		}
+		case GL_OUT_OF_MEMORY: {
+			errStr = "GL_OUT_OF_MEMORY";
+			break;
+		}
+		case GL_STACK_UNDERFLOW: {
+			errStr = "GL_STACK_UNDERFLOW";
+			break;
+		}
+		case GL_STACK_OVERFLOW: {
+			errStr = "GL_STACK_OVERFLOW";
+			break;
+		}
+			
+	}
+	
+	return errStr;
+	
+	
+}
+
+
+
