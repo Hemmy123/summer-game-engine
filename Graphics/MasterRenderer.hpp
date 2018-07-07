@@ -33,15 +33,31 @@ public:
 	~MasterRenderer();
 	
 	virtual void update(float dt) = 0;
-	
+	virtual void renderScene() = 0;
+
 	virtual void clearBuffers();
 	
-	virtual void renderScene();
 	
 	void swapBuffers();
 	
 	
+	// ---------- Getters/Setters ---------- //
+	
+	void setProjectionMatrix(Matrix4 proj) 		{ m_projMatrix = proj;};
+	void setViewMatrix(Matrix4 view) 			{ m_viewMatrix = view;};
+	void setOrthographicMatrix(Matrix4 ortho) 	{ m_ortho = ortho; }
+	void setPerspectiveMatrix(Matrix4 persp) 	{ m_persp = persp; }
+	
+	Matrix4 getProjectionMatrix() 		const { return m_projMatrix;}
+	Matrix4 getViewMatrix() 			const { return m_viewMatrix;}
+	Matrix4 getOrthographicMatrix() 	const { return m_ortho;}
+	Matrix4 getPerspectiveMatrix() 		const { return m_persp;}
+
+	
 protected:
+	
+	int init();
+	
 	float m_dt;
 	
 	GLFWwindow *m_window;

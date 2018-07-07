@@ -518,6 +518,7 @@
 		3051909B20C435A4001167E8 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				30FF488C20EE6F4E00BE3EEA /* MasterRenderer.hpp */,
 				30E7640B20CC437000934522 /* Camera.hpp */,
 				304F93E520C458880017F7E3 /* RenderObject.hpp */,
 				3089E75320BF0F1D00C46E54 /* Renderer.hpp */,
@@ -533,6 +534,7 @@
 		305190A020C43810001167E8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				30FF488B20EE6F4E00BE3EEA /* MasterRenderer.cpp */,
 				3089E75220BF0F1D00C46E54 /* Renderer.cpp */,
 				30EB224C20BF60CA002D1B3E /* GraphicsNode.cpp */,
 				30EB225020BF6AC3002D1B3E /* Shader.cpp */,
@@ -616,8 +618,6 @@
 			children = (
 				305190A020C43810001167E8 /* Source */,
 				3051909B20C435A4001167E8 /* Headers */,
-				30FF488B20EE6F4E00BE3EEA /* MasterRenderer.cpp */,
-				30FF488C20EE6F4E00BE3EEA /* MasterRenderer.hpp */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
