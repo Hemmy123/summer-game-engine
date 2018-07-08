@@ -141,8 +141,6 @@ void Renderer::drawPostProcess(){
 	m_quad->draw();
 	
 	
-
-	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glUseProgram(0);
 	
