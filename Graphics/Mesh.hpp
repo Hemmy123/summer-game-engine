@@ -47,7 +47,8 @@ public:
 	
     void bufferData();
     void draw();
-    
+	void generateNormals();
+	
     GLuint m_type;
 
 	void setTexture(GLuint tex) {m_texture = tex;}

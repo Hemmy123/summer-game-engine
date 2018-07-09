@@ -26,6 +26,7 @@
 
 #include "Matrix4.hpp"
 #include "Shader.hpp"
+#include "Light.hpp"
 
 class MasterRenderer {
 public:
@@ -65,6 +66,8 @@ protected:
 	
 	/// Calls glGetError and then prints out the error.
 	void checkErrors();
+	
+	
 	
 	int init();
 	

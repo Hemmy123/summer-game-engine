@@ -41,6 +41,11 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 	m_ortho = Matrix4::Orthographic(-10,10,		10,-10,	-10,10);
 	m_persp = Matrix4::Perspective(1, m_viewDistance, m_aspectRatio, m_fov);
 	
+	renderPostEffect = false;
+	
+	// Change this value later on.
+	m_light = new Light(Vector3(0,20,-5) , Vector4(1,1,1,1), 100);
+	
 }
 
 Renderer::~Renderer(){
@@ -48,6 +53,7 @@ Renderer::~Renderer(){
 	delete m_sceneShader;
 	delete m_processShader;
 	delete m_quad;
+	delete m_light;
 	
 	glDeleteTextures(1, &m_buffColourAttachment);
 	glDeleteTextures(1, &m_buffDepthAttachment);
@@ -82,7 +88,10 @@ void Renderer::createCamera(InterfaceHandler *ih){
 
 void Renderer::renderScene(){
 	drawSceneToFBO();
-	drawPostProcess();
+	if(renderPostEffect){
+		drawPostProcess();
+
+	}
 	presentScene();
 }
 
@@ -97,6 +106,7 @@ void Renderer::drawSceneToFBO(){
 	m_projMatrix = m_persp;
 	
 	updateShaderMatrices(m_currentShader);
+	setShaderLight(*m_light);
 	checkErrors();
 	
 
@@ -295,6 +305,21 @@ void Renderer::presentScene(){
 	
 }
 
+
+void Renderer::setShaderLight(const Light &light){
+	GLint posLoc = glGetUniformLocation(m_currentShader->getProgram(), "lightPos");
+	GLint colLoc = glGetUniformLocation(m_currentShader->getProgram(), "lightColour");
+	GLint radLoc = glGetUniformLocation(m_currentShader->getProgram(), "lightRadius");
+
+	Vector3 pos = light.getPosition();
+	Vector4 col = light.getColour();
+	glUniform3fv(posLoc,	1, (float*)&pos);
+	glUniform4fv(colLoc,	1, (float*)&col);
+	glUniform1f(radLoc,			light.getRadius());
+
+	
+	
+}
 
 
 

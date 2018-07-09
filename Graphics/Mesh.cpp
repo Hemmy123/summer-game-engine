@@ -49,6 +49,55 @@ Mesh::~Mesh(){
 
 
 
+void Mesh::generateNormals(){
+	
+	// Create array Vector3
+	if(!m_normals){
+		m_normals = new Vector3[m_numVertices];
+	}
+	// Set each value to Vector3(0,0,0)
+	for(GLuint i = 0; i <m_numVertices; i++){
+		m_normals[i] = Vector3();
+	}
+	
+	// Iterate through indicies
+	if(m_indices){
+		for(GLuint i = 0; i< m_numIndices; i += 3){
+			unsigned int a = m_indices[i];
+			unsigned int b = m_indices[i + 1];
+			unsigned int c = m_indices[i + 2];
+			
+			Vector3 normal = Vector3::Cross(
+											m_vertices[b] - m_vertices[a],
+											m_vertices[c] - m_vertices[a]);
+			
+	
+		}
+	} else{
+		
+		for(GLuint i = 0; i < m_numVertices; i += 3){
+			Vector3 &a = m_vertices[i];
+			Vector3 &b = m_vertices[i + 1];
+			Vector3 &c = m_vertices[i + 2];
+			
+			Vector3 normal = Vector3::Cross(b-a, c-a);
+			
+			m_normals[i] 	 += normal;
+			m_normals[i + 1] += normal;
+			m_normals[i + 2] += normal;
+		}
+	}
+	
+	// Normalise all normals
+	for(GLuint i = 0; i <m_numVertices; ++i){
+		m_normals[i].Normalise();
+	}
+	
+	
+}
+
+
+
 Mesh* Mesh::generateQuad(){
 	
 	Mesh* m = new Mesh();
@@ -246,7 +295,15 @@ void Mesh::bufferData(){
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_VBO[INDEX_BUFFER]);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_numIndices * sizeof(GLuint), m_indices, GL_STATIC_DRAW);
     }
-    
+	
+	if(m_normals){
+		glGenBuffers(1, &m_VBO[NORMAL_BUFFER]);
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO[NORMAL_BUFFER]);
+		glBufferData(GL_ARRAY_BUFFER, m_numVertices * sizeof(Vector3), m_normals, GL_STATIC_DRAW);
+		glVertexAttribPointer(NORMAL_BUFFER, 3, GL_FLOAT, GL_FALSE, 0,0);
+		glEnableVertexAttribArray(NORMAL_BUFFER);
+	}
+	
     //Once we're done with the vertex buffer binding, we can unbind the VAO,
     //ready to reapply later, such as in the Draw function above!
     glBindVertexArray(0);

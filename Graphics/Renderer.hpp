@@ -88,9 +88,13 @@ public:
 	
 	void setCurrentShader(Shader* s) {m_currentShader = s;}
 	
+	
 	// ---------- Misc ---------- //
 	bool checkWindow() {return glfwWindowShouldClose(m_window);}
 
+	void setShaderLight(const Light &l);
+
+	
 protected:
 	
 	
@@ -109,7 +113,7 @@ protected:
 	// ---------- Fields ---------- //
 	float m_dt;
 	
-	
+	bool renderPostEffect;
 	
 	Mesh*	m_quad;				// Quad for rendering FBO to screen
 	Shader* m_sceneShader;		//
@@ -137,6 +141,7 @@ protected:
 	float m_aspectRatio;
 
 	Camera* m_camera;
+	Light* 	m_light;
 };
 
 

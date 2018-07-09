@@ -62,6 +62,8 @@
 		30ABF54A20E7B2CE0073747A /* TinyObjConverter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */; };
 		30AD405B20E42380007E291A /* tiny_obj_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AD405920E42380007E291A /* tiny_obj_loader.cpp */; };
 		30AD405C20E42380007E291A /* tiny_obj_loader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30AD405A20E42380007E291A /* tiny_obj_loader.hpp */; };
+		30D10CB620F26F63001218AF /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30D10CB420F26F63001218AF /* Light.cpp */; };
+		30D10CB720F26F63001218AF /* Light.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30D10CB520F26F63001218AF /* Light.hpp */; };
 		30E514D620DEFB83004C2314 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
 		30E514D720DEFB83004C2314 /* libUtilities.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 304F93EC20C493500017F7E3 /* libUtilities.a */; };
 		30E514DB20DEFBAA004C2314 /* Common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30E514D920DEFBAA004C2314 /* Common.hpp */; };
@@ -307,6 +309,8 @@
 		30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TinyObjConverter.hpp; sourceTree = "<group>"; };
 		30AD405920E42380007E291A /* tiny_obj_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tiny_obj_loader.cpp; sourceTree = "<group>"; };
 		30AD405A20E42380007E291A /* tiny_obj_loader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tiny_obj_loader.hpp; sourceTree = "<group>"; };
+		30D10CB420F26F63001218AF /* Light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
+		30D10CB520F26F63001218AF /* Light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
 		30E514C720DEFB5F004C2314 /* libFileIO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFileIO.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E514D920DEFBAA004C2314 /* Common.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Common.hpp; sourceTree = "<group>"; };
 		30E514E120DEFBF5004C2314 /* OBJReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = OBJReader.cpp; sourceTree = "<group>"; };
@@ -527,6 +531,8 @@
 				3051905420C2FC4D001167E8 /* Mesh.hpp */,
 				306CD69D20D5A19900394FCF /* HeightMap.cpp */,
 				306CD69E20D5A19900394FCF /* HeightMap.hpp */,
+				30D10CB420F26F63001218AF /* Light.cpp */,
+				30D10CB520F26F63001218AF /* Light.hpp */,
 			);
 			name = Headers;
 			sourceTree = "<group>";
@@ -730,6 +736,7 @@
 				30E7640D20CC437000934522 /* Camera.hpp in Headers */,
 				3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */,
 				30EB225320BF6AC3002D1B3E /* Shader.hpp in Headers */,
+				30D10CB720F26F63001218AF /* Light.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1070,6 +1077,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D10CB620F26F63001218AF /* Light.cpp in Sources */,
 				3089E77720BF2B2400C46E54 /* Renderer.cpp in Sources */,
 				306CD69F20D5A19900394FCF /* HeightMap.cpp in Sources */,
 				304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */,
