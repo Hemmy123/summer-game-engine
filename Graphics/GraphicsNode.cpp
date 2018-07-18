@@ -10,6 +10,7 @@
 
 #include "SOIL2.h"
 
+#include "Common.hpp"
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
 
@@ -51,18 +52,18 @@ void GraphicsNode::createDemoScene(){
 
 	
 	// ----- Create Shaders -----
-	string vertexPath 	= "Assets/Shaders/Vertex/basicVert.glsl";
-	string fragPath 	= "Assets/Shaders/Fragment/texturedFrag.glsl";
+	string vertexPath 	= SHADERVERTDIR"basicVert.glsl";
+	string fragPath 	= SHADERFRAGDIR"texturedFrag.glsl";
 	Shader* shader 		= new Shader(vertexPath.c_str(),fragPath.c_str() );
 	m_shaders.push_back(shader);
 
 
 	// ----- Create Meshes -----
 	
-	Mesh* mesh1 = Mesh::readObjFileTwo("Assets/Models/Rabbit.obj");
-	Mesh* mesh2 = Mesh::readObjFileTwo("Assets/Models/cageCube.obj");
-	mesh1->loadTexture("Assets/Textures/Rabbit/Rabbit_D.tga");
-	mesh2->loadTexture("Assets/Textures/nyan.jpg");
+	Mesh* mesh1 = Mesh::readObjFileTwo(MODELSDIR"Rabbit.obj");
+	Mesh* mesh2 = Mesh::readObjFileTwo(MODELSDIR"cageCube.obj");
+	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
+	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
 	mesh1->bufferData();
 	mesh2->bufferData();
 

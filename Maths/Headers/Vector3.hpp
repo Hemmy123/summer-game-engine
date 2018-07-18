@@ -36,7 +36,7 @@ public:
     //    return Vector2(x, y);
     //}
     
-    void            Normalise() {
+    Vector3            Normalise() {
         float length = Length();
         
         if(length != 0.0f)    {
@@ -45,6 +45,7 @@ public:
             y = y * length;
             z = z * length;
         }
+		return Vector3(x,y,z);
     }
     
     void        ToZero() {

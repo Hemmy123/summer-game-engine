@@ -14,6 +14,7 @@
 #include "Shader.hpp"
 #include "Mesh.hpp"
 #include "RenderObject.hpp"
+#include "GameObject.hpp"
 
 #include "EventNode.hpp"
 
@@ -43,7 +44,7 @@ private:
 	void initPerspective();
 
 	
-	
+
 	
 	
     Renderer *m_renderer;

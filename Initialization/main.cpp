@@ -28,16 +28,24 @@ int main(){
 	inputHandler->update();
 	
 	
-	float dt = timer->getDelta();
+	//float dt = timer->getDelta();
+	const float MAXDT = 1/60;
+	
     while(!game->getEndGame()){
+		float frameTime = timer->getDelta();
 		
-		inputHandler->update();
-		graphics->update(dt);
-		game->update(dt);
-		bus->update();
-		
-		dt = timer->getDelta();
-    }
+		while (frameTime > 0){
+			float dt = MathUtils::min(frameTime, MAXDT);
+
+			
+			inputHandler->update();
+			graphics->update(dt);
+			game->update(dt);
+			bus->update();
+			frameTime -= dt;
+
+		}
+	}
 	
     
 
