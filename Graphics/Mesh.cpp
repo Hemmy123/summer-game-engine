@@ -53,7 +53,12 @@ void Mesh::generateNormals(){
 	
 	// Create array Vector3
 	if(!m_normals){
+	
 		m_normals = new Vector3[m_numVertices];
+	} else{
+		delete[] m_normals;
+		m_normals = new Vector3[m_numVertices];
+
 	}
 	// Set each value to Vector3(0,0,0)
 	for(GLuint i = 0; i <m_numVertices; i++){
@@ -67,11 +72,12 @@ void Mesh::generateNormals(){
 			unsigned int b = m_indices[i + 1];
 			unsigned int c = m_indices[i + 2];
 			
-			Vector3 normal = Vector3::Cross(
-											m_vertices[b] - m_vertices[a],
+			Vector3 normal = Vector3::Cross(m_vertices[b] - m_vertices[a],
 											m_vertices[c] - m_vertices[a]);
 			
-	
+			m_normals[a] += normal;
+			m_normals[b] += normal;
+			m_normals[c] += normal;
 		}
 	} else{
 		
@@ -93,7 +99,7 @@ void Mesh::generateNormals(){
 		m_normals[i].Normalise();
 	}
 	
-	
+	int i = 0;
 }
 
 
@@ -153,11 +159,8 @@ Mesh* Mesh::generateTriangle(){
 
 // TODO: Clean this method up! It was left so I could quickly test
 // lighting and other stuff
-Mesh* Mesh::readObjFileTwo(std::string path){
+Mesh* Mesh::readObjFile(std::string path){
 	
-	
-
-
 	tinyobj::attrib_t 					attrib;
 	std::vector<tinyobj::shape_t> 		shapes;
 	std::vector<tinyobj::material_t> 	materials;

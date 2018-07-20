@@ -9,9 +9,9 @@
 #include "Shader.hpp"
 #include "Mesh.hpp"
 
-Shader::Shader(const char *vertex_path, const char *fragment_path){
-    m_program = loadVertexAndFrag(vertex_path, fragment_path); // Load shaders
-	
+Shader::Shader(string vertex_path, string fragment_path){
+    m_program = loadVertexAndFrag(vertex_path.c_str(), fragment_path.c_str()); // Load shaders
+	bindAttributes();
 }
 
 
@@ -66,7 +66,6 @@ GLuint Shader::loadVertexAndFrag(const char *vertex_path, const char *fragment_p
     checkShader(fragShader);
     
     // Link Shaders
-
     std::cout << "Linking program" << std::endl;
     m_program = glCreateProgram();
     glAttachShader(m_program, vertShader);
@@ -121,9 +120,6 @@ void Shader::bindAttributes(){
 	glBindAttribLocation(m_program, NORMAL_BUFFER,  "normal");
 	glBindAttribLocation(m_program, TANGENT_BUFFER, "tangent");
 	glBindAttribLocation(m_program, TEXTURE_BUFFER, "texCoord");
-	
-	
-	
 	
 }
 

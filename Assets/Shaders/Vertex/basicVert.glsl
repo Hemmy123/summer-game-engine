@@ -4,8 +4,8 @@
 layout (location = 0)
 
 in  vec3 position;
-in  vec2 texCoord;
 in  vec4 colour;
+in  vec2 texCoord;
 
 uniform mat4 mvp;
 

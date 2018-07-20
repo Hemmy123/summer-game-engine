@@ -43,7 +43,7 @@ public:
 	static Mesh* generateQuad();
 	
 	
-	static Mesh* readObjFileTwo(std::string path);
+	static Mesh* readObjFile(std::string path);
 	
     void bufferData();
     void draw();

@@ -17,6 +17,7 @@
 #include <fstream>
 #include <vector>
 #include <algorithm>
+#include "Light.hpp"
 /**
 IO code taken from:
 https://badvertex.com/2012/11/20/how-to-load-a-glsl-shader-in-opengl-using-c.html
@@ -37,7 +38,7 @@ using std::string;
 class Shader{
 public:
     
-    Shader(const char *vertex_path, const char *fragment_path);
+    Shader(string vertex_path, string fragment_path);
     ~Shader();
     
     string readFile(const char* filePath);
@@ -49,6 +50,7 @@ public:
 	void bindAttributes();
     
     GLuint getProgram() {return m_program;};
+	
 private:
     
     GLuint m_program;

@@ -54,16 +54,26 @@ void GraphicsNode::createDemoScene(){
 	// ----- Create Shaders -----
 	string vertexPath 	= SHADERVERTDIR"basicVert.glsl";
 	string fragPath 	= SHADERFRAGDIR"texturedFrag.glsl";
-	Shader* shader 		= new Shader(vertexPath.c_str(),fragPath.c_str() );
+	
+	string lightingVert = SHADERVERTDIR"lightingVertex.glsl";
+	string lightingFrag = SHADERFRAGDIR"lightingFragment.glsl";
+	
+	//Shader* shader 		= new Shader(vertexPath,fragPath);
+	Shader* shader 		= new Shader(lightingVert,lightingFrag);
 	m_shaders.push_back(shader);
 
-
+	Light* testLight = new Light(Vector3(0,5,5) , Vector4(0.5,0.5,0.5,1), 100);
+	m_renderer->setShaderLight(shader, *testLight);
+	
 	// ----- Create Meshes -----
 	
-	Mesh* mesh1 = Mesh::readObjFileTwo(MODELSDIR"Rabbit.obj");
-	Mesh* mesh2 = Mesh::readObjFileTwo(MODELSDIR"cageCube.obj");
+	Mesh* mesh1 = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
+	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
+	mesh2->generateNormals();
+	//mesh1->generateNormals();
+	
 	mesh1->bufferData();
 	mesh2->bufferData();
 
@@ -79,13 +89,15 @@ void GraphicsNode::createDemoScene(){
 	RenderObject* ro3 = new RenderObject(mesh1, shader);
 	RenderObject* ro4 = new RenderObject(mesh1, shader);
 
+	// ----- Transformations -----
+	
 	Matrix4 const trans1 =  Matrix4::Translation(Vector3(0,0.0,-5));
 	Matrix4 const trans2 =  Matrix4::Translation(Vector3(2,0.0,-5));
 	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.0,-5));
 	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.0,-5));
 
 
-	Matrix4 const cubeScale = Matrix4::Scale(Vector3(5,1,1));
+	Matrix4 const cubeScale = Matrix4::Scale(Vector3(1,1,1));
 	Matrix4 const cubeTrans = Matrix4::Translation(Vector3(1,-4,-5));
 	
 	
@@ -109,13 +121,6 @@ void GraphicsNode::createDemoScene(){
 void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
-//		m_renderer->pollEvents();
-//		m_renderer->updateScene(msec);
-//
-//
-//        m_renderer->clearBuffers();
-//		m_renderer->renderScene();
-//        m_renderer->swapBuffers();
 		m_renderer->update(msec);
 		
     }

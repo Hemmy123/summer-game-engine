@@ -26,13 +26,13 @@ public:
 	
 	
 	// ---------- Getters / Setters ---------- //
-	Vector3 getPosition() 	const {return m_position;}
-	Vector4 getColour() 	const {return m_colour;}
-	float 	getRadius() 	const {return m_radius;}
+	Vector3 getPosition() 	const { return m_position;}
+	Vector4 getColour() 	const { return m_colour;}
+	float 	getRadius() 	const { return m_radius;}
 	
-	void setPosition(Vector3 position) 	{m_position = position;}
-	void setColour(Vector4 colour) 		{m_colour = colour;}
-	void setRadius(float radius) 		{m_radius = radius;}
+	void setPosition(Vector3 position) 	{ m_position = position;}
+	void setColour(Vector4 colour) 		{ m_colour 	= colour;}
+	void setRadius(float radius) 		{ m_radius 	= radius;}
 	
 
 protected:

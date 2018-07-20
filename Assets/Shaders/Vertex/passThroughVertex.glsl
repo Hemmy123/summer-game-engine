@@ -8,6 +8,9 @@ in  vec2 texCoord;
 in  vec4 colour;
 
 uniform mat4 mvp;
+uniform vec3 cameraPos;
+
+
 
 out Vertex	{
 	vec2 texCoord;

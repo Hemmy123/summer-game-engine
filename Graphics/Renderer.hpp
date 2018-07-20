@@ -92,7 +92,7 @@ public:
 	// ---------- Misc ---------- //
 	bool checkWindow() {return glfwWindowShouldClose(m_window);}
 
-	void setShaderLight(const Light &l);
+	void setShaderLight(Shader* shader, Light &light);
 
 	
 protected:
@@ -119,6 +119,7 @@ protected:
 	Shader* m_sceneShader;		//
 	Shader* m_processShader;	//
 	Shader* m_currentShader;
+	Shader* m_lightingShader;
 	
 	// -- Frame Buffer Objects
 	GLuint m_sceneFBO;			// FBO to represent the

@@ -1,4 +1,4 @@
-#version 150 core
+#version 330 core
 
 uniform sampler2D diffuseTex;
 
@@ -18,21 +18,27 @@ out vec4 outColour;
 
 void main(void) {
 	
-	vec4 	diffuse		= texture(diffuseTex, IN.texCoord);
-	
-	vec3	incident	= normalize(lightPos - IN.worldPos);
-	float 	lambert		= max( 0.0, dot(incident, IN.normal));
-	
+
+	vec3	incident	= normalize(lightPos	- IN.worldPos);
+	vec3	viewDir		= normalize(cameraPos 	- IN.worldPos);
+	vec3	halfDir 	= normalize(incident 	+ viewDir);
+
 	float	dist		= length(lightPos - IN.worldPos);
 	float 	atten		= 1.0 - clamp(dist / lightRadius, 0.0, 1.0);
-	vec3	viewDir		= normalize(cameraPos - IN.worldPos);
-	vec3	halfDir 	= normalize(incident + viewDir);
+	float 	lambert		= max(0.0, dot(incident, IN.normal));
+	float 	rFactor		= max(0.0, dot(halfDir, IN.normal));
+	float 	sFactor		= pow(rFactor, 10.0);
 
-	float rFactor		= max(0.0, dot(halfDir, IN.normal));
-	float sFactor		= pow(rFactor, 50.0);
+	vec4 	texCol		= texture(diffuseTex, IN.texCoord);
 
-	vec3 colour 		= (diffuse.rgb * lightColour.rgb);
-	colour 				+= (lightColour.rgb *sFactor) * 0.33;
-	outColour			= vec4(colour * atten * lambert, diffuse.a);
-	outColour.rgb		+= (diffuse.rgb * lightColour.rgb) + 0.1; 
+	vec3 	ambient  	= texCol.rgb   * lightColour.rgb * 0.4;
+	vec3  	diffuse     = texCol.rgb   * lightColour.rgb * lambert * atten;
+	vec3  	specular    = lightColour.rgb  * sFactor * atten;
+	
+	//outColour       	= vec4(ambient  , texCol.a);
+
+	outColour       	= vec4(ambient + diffuse + specular , texCol.a);
+
+
+	
 }

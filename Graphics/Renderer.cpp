@@ -44,8 +44,7 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 	renderPostEffect = false;
 	
 	// Change this value later on.
-	m_light = new Light(Vector3(0,20,-5) , Vector4(1,1,1,1), 100);
-	
+	m_light = new Light(Vector3(0,20,-5) , Vector4(0.5,0.9,0.5,0.5), 1);
 }
 
 Renderer::~Renderer(){
@@ -71,7 +70,7 @@ Renderer::~Renderer(){
 
 void Renderer::update(float msec){
 	m_dt = msec;
-	
+	checkErrors();
 	glfwPollEvents();
 	updateScene(m_dt);
 	clearBuffers();
@@ -106,7 +105,6 @@ void Renderer::drawSceneToFBO(){
 	m_projMatrix = m_persp;
 	
 	updateShaderMatrices(m_currentShader);
-	setShaderLight(*m_light);
 	checkErrors();
 	
 
@@ -306,16 +304,26 @@ void Renderer::presentScene(){
 }
 
 
-void Renderer::setShaderLight(const Light &light){
-	GLint posLoc = glGetUniformLocation(m_currentShader->getProgram(), "lightPos");
-	GLint colLoc = glGetUniformLocation(m_currentShader->getProgram(), "lightColour");
-	GLint radLoc = glGetUniformLocation(m_currentShader->getProgram(), "lightRadius");
-
+void Renderer::setShaderLight(Shader* shader, Light &light){
+	
+	GLuint program = shader->getProgram();
+	glUseProgram(program);
+	
+	
+	GLint posLoc = glGetUniformLocation(program, "lightPos");
+	GLint colLoc = glGetUniformLocation(program, "lightColour");
+	GLint radLoc = glGetUniformLocation(program, "lightRadius");
+	checkErrors();
 	Vector3 pos = light.getPosition();
 	Vector4 col = light.getColour();
+	
+	
 	glUniform3fv(posLoc,	1, (float*)&pos);
+	checkErrors();
 	glUniform4fv(colLoc,	1, (float*)&col);
-	glUniform1f(radLoc,			light.getRadius());
+	checkErrors();
+	glUniform1f(radLoc,		light.getRadius());
+	checkErrors();
 
 	
 	
