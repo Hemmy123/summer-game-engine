@@ -54,9 +54,9 @@ private:
 	vector<Mesh*>			m_meshes;
 	vector<RenderObject*> 	m_renderObjects;
 	
-	
-    Shader* m_testShader;
-    Mesh* m_testTriangleMesh;
+	Light* 		m_light;
+    Shader*		m_testShader;
+    Mesh* 		m_testTriangleMesh;
 	RenderObject* m_testRenderObject;
     
 };

@@ -62,8 +62,8 @@ void GraphicsNode::createDemoScene(){
 	Shader* shader 		= new Shader(lightingVert,lightingFrag);
 	m_shaders.push_back(shader);
 
-	Light* testLight = new Light(Vector3(0,5,5) , Vector4(0.5,0.5,0.5,1), 100);
-	m_renderer->setShaderLight(shader, *testLight);
+	m_light = new Light(Vector3(0,2,-1) , Vector4(1,1,1,1), 100);
+	
 	
 	// ----- Create Meshes -----
 	
@@ -71,7 +71,7 @@ void GraphicsNode::createDemoScene(){
 	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
-	mesh2->generateNormals();
+	//mesh2->generateNormals();
 	//mesh1->generateNormals();
 	
 	mesh1->bufferData();
@@ -107,6 +107,14 @@ void GraphicsNode::createDemoScene(){
 	ro3->setModelMatrix(trans3);
 	ro4->setModelMatrix(trans4);
 
+	
+	m_renderObjects.push_back(ground);
+	m_renderObjects.push_back(ro1);
+	m_renderObjects.push_back(ro2);
+	m_renderObjects.push_back(ro3);
+	m_renderObjects.push_back(ro4);
+
+	
 	m_renderer->addRenderObject(ground);
 	m_renderer->addRenderObject(ro1);
 	m_renderer->addRenderObject(ro2);
@@ -122,6 +130,22 @@ void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
 		m_renderer->update(msec);
+		
+		/* --- Temp lighting test --- */
+		
+		
+		for(auto ro: m_renderObjects){
+			Shader* shader = ro->getShader();
+			
+			GLuint program = shader->getProgram();
+			m_renderer->setShaderLight(shader, *m_light);
+
+			glUseProgram(program);
+			Vector3 cameraPos = m_renderer->getCamera()->GetPosition();
+			glUniform3fv(glGetUniformLocation(program, "cameraPos"),1,(float*)&cameraPos);
+		}
+		
+		/* ------------------------- */
 		
     }
 }

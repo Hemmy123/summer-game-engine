@@ -12,6 +12,9 @@
 Shader::Shader(string vertex_path, string fragment_path){
     m_program = loadVertexAndFrag(vertex_path.c_str(), fragment_path.c_str()); // Load shaders
 	bindAttributes();
+	linkProgram();
+	
+	
 }
 
 
@@ -109,8 +112,11 @@ bool Shader::linkProgram(){
 		char error[2048];
 		glGetProgramInfoLog(m_program, sizeof(error), NULL, error);
 		std::cout << error << std::endl;
+		m_linkSuccess = false;
+
 		return false;
 	}
+	m_linkSuccess = true;
 	return true;
 }
 
@@ -122,5 +128,6 @@ void Shader::bindAttributes(){
 	glBindAttribLocation(m_program, TEXTURE_BUFFER, "texCoord");
 	
 }
+
 
 

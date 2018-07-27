@@ -69,6 +69,7 @@ public:
 	/// Update the matrices being pushing to shaders via uniforms
 	void updateShaderMatrices(Shader* shader);
 	
+	
 	// ---------- Getters/Setters ---------- //
 	
 	void setOpaqueObjects(vector<RenderObject*> renderObjects);
@@ -79,8 +80,9 @@ public:
 	GLint getWidth()const 	{return WIDTH;}
 	GLint getHeight()const 	{return HEIGHT;}
 	
-	GLFWwindow* getWindow() const {return m_window;}
+	GLFWwindow* getWindow() const { return m_window;}
 	
+	Camera* getCamera()		const { return m_camera;}
 	
 	// ---------- Post processing test methods ---------- //
 	

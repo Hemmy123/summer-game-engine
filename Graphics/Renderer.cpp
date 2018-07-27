@@ -26,6 +26,7 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 	m_sceneShader  = new Shader("Assets/Shaders/Vertex/passThroughVertex.glsl","Assets/Shaders/Fragment/sceneFrag.glsl");
 	m_processShader = new Shader("Assets/Shaders/Vertex/passThroughVertex.glsl","Assets/Shaders/Fragment/processFrag.glsl");
 	
+	
 	if(!m_sceneShader->linkProgram() || !m_processShader->linkProgram()){
 		std::cout<<"something went wrong!" << std::endl;
 	}
@@ -44,7 +45,7 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 	renderPostEffect = false;
 	
 	// Change this value later on.
-	m_light = new Light(Vector3(0,20,-5) , Vector4(0.5,0.9,0.5,0.5), 1);
+	m_light = new Light(Vector3(0,20,-5) , Vector4(0.5,0.9,0.5,0.5), 100);
 }
 
 Renderer::~Renderer(){
@@ -99,11 +100,12 @@ void Renderer::drawSceneToFBO(){
 	
 	// Makes it so the scene is drawn to m_bufferFBO!
 	glBindFramebuffer(GL_FRAMEBUFFER, m_sceneFBO);
+	
+	
 	clearBuffers();
 	setCurrentShader(m_sceneShader);
 
 	m_projMatrix = m_persp;
-	
 	updateShaderMatrices(m_currentShader);
 	checkErrors();
 	
@@ -176,7 +178,6 @@ void Renderer::drawRenderObject(const RenderObject &o){
 	
 	for(auto iter:o.getChildren() ){
 		drawRenderObject(*iter);
-
 	}
 
 }
@@ -219,9 +220,11 @@ void Renderer::updateShaderMatrices(Shader* shader){
 	Matrix4 mvp = m_projMatrix * m_viewMatrix * m_modelMatrix;
 	
 	glUniformMatrix4fv(glGetUniformLocation(program, "mvp"), 1, false, (float*)&mvp);
+	
+	
+	
+
 }
-
-
 
 void Renderer::generateFBOTexture(){
 	// Generate depth texture
@@ -316,13 +319,13 @@ void Renderer::setShaderLight(Shader* shader, Light &light){
 	checkErrors();
 	Vector3 pos = light.getPosition();
 	Vector4 col = light.getColour();
-	
+	float 	rad = light.getRadius();
 	
 	glUniform3fv(posLoc,	1, (float*)&pos);
 	checkErrors();
 	glUniform4fv(colLoc,	1, (float*)&col);
 	checkErrors();
-	glUniform1f(radLoc,		light.getRadius());
+	glUniform1f(radLoc,		rad);
 	checkErrors();
 
 	

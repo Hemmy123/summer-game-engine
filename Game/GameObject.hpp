@@ -19,7 +19,6 @@
 // turned into a proper data driven method
 // later as this card coded tag method
 // is rather messy
-
 enum ObjectTag{
 	T_Player,
 	T_Wall,
@@ -27,6 +26,23 @@ enum ObjectTag{
 	T_Trigger,
 	
 };
+
+
+// The base data required for a game object.
+// This can be used by other subsystems like
+// graphics, physics and audio for postioning
+// data
+struct {
+	char* m_UID;
+	
+	Vector3 m_position;
+	Vector3 m_rotation; // Change to quaternion?
+	Vector3 m_scale;
+	
+	Matrix4 m_modelMatrix;
+	
+}GameObjectData;
+
 
 class GameObject {
 public:

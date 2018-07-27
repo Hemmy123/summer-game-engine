@@ -99,7 +99,6 @@ void Mesh::generateNormals(){
 		m_normals[i].Normalise();
 	}
 	
-	int i = 0;
 }
 
 

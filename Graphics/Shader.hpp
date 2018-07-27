@@ -51,9 +51,11 @@ public:
     
     GLuint getProgram() {return m_program;};
 	
+	bool getLinkSuccess()	const{return m_linkSuccess;}
 private:
-    
-    GLuint m_program;
+	
+	bool	m_linkSuccess;
+    GLuint 	m_program;
     
 };
  
