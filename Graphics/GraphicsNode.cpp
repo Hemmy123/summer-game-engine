@@ -9,7 +9,7 @@
 #include "GraphicsNode.hpp"
 
 #include "SOIL2.h"
-
+#include "HeightMap.hpp"
 #include "Common.hpp"
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
@@ -20,13 +20,6 @@ GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,sub
 	
 }
 
-
-void GraphicsNode::initPerspective(){
-
-	
-	//m_renderer->setProjectionMatrix(perspective);
-
-}
 
 GraphicsNode::~GraphicsNode(){
 	
@@ -63,17 +56,33 @@ void GraphicsNode::createDemoScene(){
 	m_shaders.push_back(shader);
 
 	m_light = new Light(Vector3(0,2,-1) , Vector4(1,1,1,1), 100);
-	
+
+
 	
 	// ----- Create Meshes -----
+	int rawWidth = 10;
+	int rawHeight = 10;
+	float heightMap_x = 1;
+	float heightMap_z = 1;
+	float heightMap_y = 100;
+	float heightMap_tex_x = 1/heightMap_x;
+	float heightMap_tex_z = 1/heightMap_z;
 	
+	
+	HeightMap* heightmap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z);
+	heightmap->generateFlatTerrain();
 	Mesh* mesh1 = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
 	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
+	heightmap->loadTexture(TEXTUREDIR"nyan.jpg");
+
 	//mesh2->generateNormals();
 	//mesh1->generateNormals();
 	
+	heightmap->generateNormals();
+
+	heightmap->bufferData();
 	mesh1->bufferData();
 	mesh2->bufferData();
 
@@ -82,6 +91,9 @@ void GraphicsNode::createDemoScene(){
 
 	// ----- Render Objects -----
 	
+	
+	RenderObject* terrain = new RenderObject(heightmap, shader);
+
 	RenderObject* ground = new RenderObject(mesh2, shader);
 
 	RenderObject* ro1 = new RenderObject(mesh1, shader);
@@ -96,32 +108,28 @@ void GraphicsNode::createDemoScene(){
 	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.0,-5));
 	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.0,-5));
 
-
 	Matrix4 const cubeScale = Matrix4::Scale(Vector3(1,1,1));
 	Matrix4 const cubeTrans = Matrix4::Translation(Vector3(1,-4,-5));
 	
+	Matrix4 const terrainpos = Matrix4::Translation(Vector3(-2,-5,-8));
 	
-	ground->setModelMatrix(cubeScale* cubeTrans);
+	terrain->setModelMatrix(terrainpos);
+	ground->setModelMatrix(cubeScale * cubeTrans);
 	ro1->setModelMatrix(trans1);
 	ro2->setModelMatrix(trans2);
 	ro3->setModelMatrix(trans3);
 	ro4->setModelMatrix(trans4);
 
 	
+	m_renderObjects.push_back(terrain);
 	m_renderObjects.push_back(ground);
 	m_renderObjects.push_back(ro1);
 	m_renderObjects.push_back(ro2);
 	m_renderObjects.push_back(ro3);
 	m_renderObjects.push_back(ro4);
 
-	
-	m_renderer->addRenderObject(ground);
-	m_renderer->addRenderObject(ro1);
-	m_renderer->addRenderObject(ro2);
-	m_renderer->addRenderObject(ro3);
-	m_renderer->addRenderObject(ro4);
-
-
+	m_renderer->setRenderObjects(m_renderObjects);
+		
 	
 }
 
@@ -134,7 +142,7 @@ void GraphicsNode::update(float msec){
 		/* --- Temp lighting test --- */
 		
 		
-		for(auto ro: m_renderObjects){
+		for(auto ro: m_renderer->getOpaqueObjects()){
 			Shader* shader = ro->getShader();
 			
 			GLuint program = shader->getProgram();
@@ -150,13 +158,6 @@ void GraphicsNode::update(float msec){
     }
 }
 
-
-void GraphicsNode::renderTriangleTest(){
-    GLuint program = m_testShader->getProgram();
-    glUseProgram(program);
-    m_testRenderObject->draw();
-  
-}
 
 void GraphicsNode::handleEvent(Event event){
 	SubSystem sender = event.getSender();

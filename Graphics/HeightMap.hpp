@@ -1,7 +1,7 @@
 ////========================================
 // Class: HeightMap
 // Author: Hemmy
-// Date: 16/06/2018
+// Date: 28/07/2018
 // Description:
 //
 // ========================================
@@ -10,13 +10,24 @@
 #define HeightMap_hpp
 
 #include <stdio.h>
+#include "Mesh.hpp"
 
-class HeightMap {
+class HeightMap:public Mesh{
 public:
-	HeightMap();
+	
+	HeightMap(
+	int rawWidth,
+	int rawHeight,
+	float heightMap_x,
+	float heightMap_z,
+	float heightMap_y,
+	float heightMap_tex_x,
+	float heightMap_tex_z);
+	
 	~HeightMap();
 	
-	void generateFlatHeightMap();
+	void generateFlatTerrain();
+
 	
 private:
 	int m_rawWidth;
@@ -28,6 +39,8 @@ private:
 	
 	float m_xTexCoord;
 	float m_zTexCoord;
+	
 };
+
 
 #endif /* HeightMap_hpp */

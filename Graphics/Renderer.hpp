@@ -72,8 +72,13 @@ public:
 	
 	// ---------- Getters/Setters ---------- //
 	
-	void setOpaqueObjects(vector<RenderObject*> renderObjects);
-	void setTransparentObjects(vector<RenderObject*> renderObjects);
+	/// Checks if the objects are transparent or not and then adds
+	/// them into the relevant vector
+	void setRenderObjects(vector<RenderObject*> renderObjects);
+	
+	
+	vector<RenderObject*> getOpaqueObjects() 		const { return m_opaqueObjects;}
+	vector<RenderObject*> getTransparentObjectS() 	const	{return m_transparentObjects;};
 	
 	void addRenderObject(RenderObject* renderObject);
 
@@ -121,7 +126,6 @@ protected:
 	Shader* m_sceneShader;		//
 	Shader* m_processShader;	//
 	Shader* m_currentShader;
-	Shader* m_lightingShader;
 	
 	// -- Frame Buffer Objects
 	GLuint m_sceneFBO;			// FBO to represent the
@@ -144,7 +148,6 @@ protected:
 	float m_aspectRatio;
 
 	Camera* m_camera;
-	Light* 	m_light;
 };
 
 

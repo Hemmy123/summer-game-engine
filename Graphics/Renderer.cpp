@@ -45,7 +45,6 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 	renderPostEffect = false;
 	
 	// Change this value later on.
-	m_light = new Light(Vector3(0,20,-5) , Vector4(0.5,0.9,0.5,0.5), 100);
 }
 
 Renderer::~Renderer(){
@@ -53,14 +52,12 @@ Renderer::~Renderer(){
 	delete m_sceneShader;
 	delete m_processShader;
 	delete m_quad;
-	delete m_light;
 	
 	glDeleteTextures(1, &m_buffColourAttachment);
 	glDeleteTextures(1, &m_buffDepthAttachment);
 	glDeleteFramebuffers(1, &m_sceneFBO);
 	glDeleteFramebuffers(1, &m_processFBO);
 
-	
     glfwTerminate();
 	delete m_camera;
 }
@@ -157,6 +154,14 @@ void Renderer::drawPostProcess(){
 	glEnable(GL_DEPTH_TEST);	
 }
 
+
+
+
+void Renderer::setRenderObjects(vector<RenderObject*> renderObjects){
+	for(auto ro: renderObjects){
+		addRenderObject(ro);
+	}
+}
 
 
 void Renderer::addRenderObject(RenderObject *renderObject){

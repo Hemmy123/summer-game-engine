@@ -58,7 +58,7 @@ public:
 		return m_texture;
 	}
 	
-private:
+protected:
     GLuint m_VAO;
     GLuint m_VBO[MAX_BUFFER];
 

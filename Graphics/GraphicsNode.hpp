@@ -27,13 +27,8 @@ public:
 	
 	void initOGL();
 	void createDemoScene();
-	
 	void handleEvent(Event event);
-	
     void update(float msec);
-    
-	void renderTriangleTest();
-	
 	void createCamera(InterfaceHandler* ih) { m_renderer->createCamera(ih);}
 	
 	GLFWwindow* getWindow() const {return m_renderer->getWindow();}
@@ -41,23 +36,16 @@ public:
 	
 private:
 	
-	void initPerspective();
-
-	
-
-	
-	
     Renderer *m_renderer;
 	
 	
 	vector<Shader*> 		m_shaders;
 	vector<Mesh*>			m_meshes;
 	vector<RenderObject*> 	m_renderObjects;
+	vector<Light*>			m_lights;
 	
 	Light* 		m_light;
-    Shader*		m_testShader;
-    Mesh* 		m_testTriangleMesh;
-	RenderObject* m_testRenderObject;
+
     
 };
 

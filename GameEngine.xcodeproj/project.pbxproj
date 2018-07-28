@@ -21,6 +21,8 @@
 		300D1FFA20C4973F00CF5155 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FED20C4961300CF5155 /* IOKit.framework */; };
 		300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300DF96F20D93D420018BBA5 /* MouseInterface.cpp */; };
 		300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 300DF97020D93D420018BBA5 /* MouseInterface.hpp */; };
+		3028A8BD210C94A700C9CF8D /* HeightMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3028A8BB210C94A700C9CF8D /* HeightMap.cpp */; };
+		3028A8BE210C94A700C9CF8D /* HeightMap.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3028A8BC210C94A700C9CF8D /* HeightMap.hpp */; };
 		304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93E420C458880017F7E3 /* RenderObject.cpp */; };
 		304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 304F93E520C458880017F7E3 /* RenderObject.hpp */; };
 		304F93F920C4936F0017F7E3 /* IDGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93F720C4936F0017F7E3 /* IDGenerator.cpp */; };
@@ -315,6 +317,8 @@
 		300D1FF820C4973800CF5155 /* libswiftIOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftIOKit.tbd; path = System/Library/PrivateFrameworks/Swift/libswiftIOKit.tbd; sourceTree = SDKROOT; };
 		300DF96F20D93D420018BBA5 /* MouseInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MouseInterface.cpp; sourceTree = "<group>"; };
 		300DF97020D93D420018BBA5 /* MouseInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseInterface.hpp; sourceTree = "<group>"; };
+		3028A8BB210C94A700C9CF8D /* HeightMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HeightMap.cpp; sourceTree = "<group>"; };
+		3028A8BC210C94A700C9CF8D /* HeightMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HeightMap.hpp; sourceTree = "<group>"; };
 		304F93E420C458880017F7E3 /* RenderObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		304F93E520C458880017F7E3 /* RenderObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderObject.hpp; sourceTree = "<group>"; };
 		304F93EC20C493500017F7E3 /* libUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtilities.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -586,6 +590,7 @@
 		3051909B20C435A4001167E8 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
+				3028A8BC210C94A700C9CF8D /* HeightMap.hpp */,
 				30D5102020F6A29B0053BD71 /* GraphicsUtils.hpp */,
 				30FF488C20EE6F4E00BE3EEA /* MasterRenderer.hpp */,
 				30E7640B20CC437000934522 /* Camera.hpp */,
@@ -605,6 +610,7 @@
 		305190A020C43810001167E8 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3028A8BB210C94A700C9CF8D /* HeightMap.cpp */,
 				30D5101F20F6A29B0053BD71 /* GraphicsUtils.cpp */,
 				30FF488B20EE6F4E00BE3EEA /* MasterRenderer.cpp */,
 				3089E75220BF0F1D00C46E54 /* Renderer.cpp */,
@@ -810,6 +816,7 @@
 				30FF488E20EE6F4E00BE3EEA /* MasterRenderer.hpp in Headers */,
 				304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */,
 				306CD6A020D5A19900394FCF /* HeightMap.hpp in Headers */,
+				3028A8BE210C94A700C9CF8D /* HeightMap.hpp in Headers */,
 				30E7640D20CC437000934522 /* Camera.hpp in Headers */,
 				3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */,
 				30EB225320BF6AC3002D1B3E /* Shader.hpp in Headers */,
@@ -1199,6 +1206,7 @@
 				30EB225220BF6AC3002D1B3E /* Shader.cpp in Sources */,
 				30E7640C20CC437000934522 /* Camera.cpp in Sources */,
 				30FF488D20EE6F4E00BE3EEA /* MasterRenderer.cpp in Sources */,
+				3028A8BD210C94A700C9CF8D /* HeightMap.cpp in Sources */,
 				3051905520C2FC4D001167E8 /* Mesh.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
