@@ -11,6 +11,7 @@
 #include "SOIL2.h"
 #include "HeightMap.hpp"
 #include "Common.hpp"
+#include "PerlinNoise.hpp"
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
 
@@ -60,17 +61,20 @@ void GraphicsNode::createDemoScene(){
 
 	
 	// ----- Create Meshes -----
-	int rawWidth = 10;
-	int rawHeight = 10;
+	int rawWidth = 100;
+	int rawHeight = 100;
 	float heightMap_x = 1;
 	float heightMap_z = 1;
-	float heightMap_y = 100;
+	float heightMap_y = 20;
 	float heightMap_tex_x = 1/heightMap_x;
 	float heightMap_tex_z = 1/heightMap_z;
 	
+	PerlinNoise* perlin = new PerlinNoise(rawWidth,10);
+
 	
-	HeightMap* heightmap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z);
-	heightmap->generateFlatTerrain();
+	
+	HeightMap* heightmap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z,perlin);
+	heightmap->generateRandomTerrain(Vector3(0,0,0), 3, 2, 0.5);
 	Mesh* mesh1 = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
 	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
