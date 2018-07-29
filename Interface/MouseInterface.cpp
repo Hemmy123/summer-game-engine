@@ -17,6 +17,8 @@ m_relativePosition(Vector2(0,0)),
 m_lastAbsolute(Vector2(0,0)){
 	
 	glfwSetInputMode(m_windowListener, GLFW_STICKY_KEYS, 1);
+	glfwSetInputMode(m_windowListener, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 	
 }
 

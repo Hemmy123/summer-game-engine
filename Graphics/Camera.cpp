@@ -42,19 +42,16 @@ void Camera::UpdateCamera(float msec)
 
 void Camera::update(float msec){
 	m_pitch -= (m_interfaceHandler->getMouseRelativePos().y);
-	m_yaw -= (m_interfaceHandler->getMouseRelativePos().x);
+	m_yaw 	-= (m_interfaceHandler->getMouseRelativePos().x);
 	
-//	m_pitch = MathUtils::min(m_pitch, 90.f); // Restricts pitch so you cant look over your head
-//	m_pitch = MathUtils::max(m_pitch, -90.f); // Restricts pitch so you cant look under and behind your head
-//	
+	m_pitch = MathUtils::min(m_pitch, -90.f); // Restricts pitch so you cant look over your head
+	m_pitch = MathUtils::max(m_pitch, 90.f); // Restricts pitch so you cant look under and behind your head
 
-	if (m_yaw < 0)
-	{
+	if (m_yaw < 0){
 		m_yaw += 360.0f;
 	}
 	
-	if (m_yaw > 360.0f)
-	{
+	if (m_yaw > 360.0f){
 		m_yaw -= 360.0f;
 	}
 
