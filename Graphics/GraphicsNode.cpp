@@ -56,7 +56,7 @@ void GraphicsNode::createDemoScene(){
 	Shader* shader 		= new Shader(lightingVert,lightingFrag);
 	m_shaders.push_back(shader);
 
-	m_light = new Light(Vector3(0,2,-1) , Vector4(1,1,1,1), 100);
+	m_light = new Light(Vector3(60,50,25) , Vector4(1,1,1,1), 100);
 
 
 	
@@ -71,21 +71,22 @@ void GraphicsNode::createDemoScene(){
 	
 	PerlinNoise* perlin = new PerlinNoise(rawWidth,10);
 
-	
-	
 	HeightMap* heightmap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z,perlin);
-	heightmap->generateRandomTerrain(Vector3(0,0,0), 3, 2, 0.5);
+	
+	heightmap->generateRandomTerrain(Vector3(0,0,0), 8, 2, 0.5);
 	Mesh* mesh1 = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
 	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
-	heightmap->loadTexture(TEXTUREDIR"nyan.jpg");
+	heightmap->loadTexture(TEXTUREDIR"Grass.jpg");
 
 	//mesh2->generateNormals();
 	//mesh1->generateNormals();
 	
 	heightmap->generateNormals();
-
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	
 	heightmap->bufferData();
 	mesh1->bufferData();
 	mesh2->bufferData();
@@ -107,22 +108,22 @@ void GraphicsNode::createDemoScene(){
 
 	// ----- Transformations -----
 	
-	Matrix4 const trans1 =  Matrix4::Translation(Vector3(0,0.0,-5));
-	Matrix4 const trans2 =  Matrix4::Translation(Vector3(2,0.0,-5));
-	Matrix4 const trans3 =  Matrix4::Translation(Vector3(4,0.0,-5));
-	Matrix4 const trans4 =  Matrix4::Translation(Vector3(6,0.0,-5));
+	Matrix4 const trans1 =  Matrix4::Translation(Vector3(0,	10,-5));
+	Matrix4 const trans2 =  Matrix4::Translation(Vector3(10,10,-5));
+	Matrix4 const trans3 =  Matrix4::Translation(Vector3(20,10,-5));
+	Matrix4 const trans4 =  Matrix4::Translation(Vector3(30,10,-5));
 
-	Matrix4 const cubeScale = Matrix4::Scale(Vector3(1,1,1));
+	Matrix4 const cubeScale = Matrix4::Scale(Vector3(10,10,10));
 	Matrix4 const cubeTrans = Matrix4::Translation(Vector3(1,-4,-5));
 	
-	Matrix4 const terrainpos = Matrix4::Translation(Vector3(-2,-5,-8));
+	Matrix4 const terrainpos = Matrix4::Translation(Vector3(-20,-5,-15));
 	
 	terrain->setModelMatrix(terrainpos);
 	ground->setModelMatrix(cubeScale * cubeTrans);
-	ro1->setModelMatrix(trans1);
-	ro2->setModelMatrix(trans2);
-	ro3->setModelMatrix(trans3);
-	ro4->setModelMatrix(trans4);
+	ro1->setModelMatrix(trans1 * cubeScale);
+	ro2->setModelMatrix(trans2 * cubeScale);
+	ro3->setModelMatrix(trans3 * cubeScale);
+	ro4->setModelMatrix(trans4 * cubeScale);
 
 	
 	m_renderObjects.push_back(terrain);

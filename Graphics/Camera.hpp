@@ -28,7 +28,7 @@ public:
 	void	UpdateCamera(float msec);
 	
 	
-	
+	void 	update(float msec);
 	// Updates rotation and position from user input.
 	// Theses methods tend to be used for debugging as
 	// the player wil probably not control the camera
@@ -59,7 +59,7 @@ private:
 	float m_yaw;			// Y (Left right)
 	float m_pitch;			// X (Up Down)
 	Vector3 m_position;
-	float m_movementSpeed = 0.1;
+	float m_movementSpeed = 1;
 };
 
 #endif /* Camera_hpp */

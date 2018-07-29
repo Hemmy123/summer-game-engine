@@ -29,10 +29,70 @@ m_position(pos){
 void Camera::UpdateCamera(float msec)
 {
 	m_dt = msec;
-	updateRotationFromMouse();
-	updatePositionFromKeyBoard();
+//	updateRotationFromMouse();
+//	updatePositionFromKeyBoard();
+//
+	update(msec);
 	
 	
+	
+	
+}
+
+
+void Camera::update(float msec){
+	m_pitch -= (m_interfaceHandler->getMouseRelativePos().y);
+	m_yaw -= (m_interfaceHandler->getMouseRelativePos().x);
+	
+//	m_pitch = MathUtils::min(m_pitch, 90.f); // Restricts pitch so you cant look over your head
+//	m_pitch = MathUtils::max(m_pitch, -90.f); // Restricts pitch so you cant look under and behind your head
+//	
+
+	if (m_yaw < 0)
+	{
+		m_yaw += 360.0f;
+	}
+	
+	if (m_yaw > 360.0f)
+	{
+		m_yaw -= 360.0f;
+	}
+
+	
+	KeyState s = m_interfaceHandler->getKeyState();
+	
+	switch(s.m_key){
+		case(GLFW_KEY_W): {
+			m_position += Matrix4::Rotation(m_yaw, Vector3(0.0f, 1.0f, 0.0f)) *
+			Vector3(0.0f, 0.0f, -1.0f) * msec * m_movementSpeed;
+			break;
+		}
+		case(GLFW_KEY_A):{
+			m_position += Matrix4::Rotation(m_yaw, Vector3(0.0f, 1.0f, 0.0f)) *
+			Vector3(-1.0f, 0.0f, 0.0f) * msec * m_movementSpeed;
+			break;
+		}
+		case(GLFW_KEY_S):{
+			m_position -= Matrix4::Rotation(m_yaw, Vector3(0.0f, 1.0f, 0.0f)) *
+			Vector3(0.0f, 0.0f, -1.0f) * msec * m_movementSpeed;
+			break;
+		}
+		case(GLFW_KEY_D):{
+			m_position -= Matrix4::Rotation(m_yaw, Vector3(0.0f, 1.0f, 0.0f)) *
+			Vector3(-1.0f, 0.0f, 0.0f) * msec * m_movementSpeed;
+			break;
+		}
+		case(GLFW_KEY_SPACE):{
+			m_position.y += m_dt * m_movementSpeed;
+			break;
+		}
+		case(GLFW_KEY_C):{
+			m_position.y -= m_dt * m_movementSpeed;
+			break;
+		}
+		
+	}
+
 }
 
 void Camera::updateRotationFromMouse(){
@@ -89,12 +149,9 @@ void Camera::updatePositionFromKeyBoard(){
 			m_position.y -= m_dt * m_movementSpeed;
 			break;
 		}
-			
-			
-		}
 	}
 	
-	
+	}
 }
 
 
