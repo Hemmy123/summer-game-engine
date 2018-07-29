@@ -192,7 +192,7 @@ void Renderer::updateScene(float msec){
 	if(m_camera == nullptr){
 		std::cout<<"No camera has been created/set" <<std::endl;
 	} else{
-		m_camera->UpdateCamera(msec);
+		m_camera->update(msec);
 		m_viewMatrix = m_camera->BuildViewMatrix();
 		updateRenderObjects(msec);
 	}

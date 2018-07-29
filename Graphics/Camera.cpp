@@ -26,27 +26,14 @@ m_position(pos){
 }
 
 
-void Camera::UpdateCamera(float msec)
+void Camera::updateCamera(float msec)
 {
-	m_dt = msec;
-//	updateRotationFromMouse();
-//	updatePositionFromKeyBoard();
-//
-	update(msec);
-	
-	
-	
-	
-}
-
-
-void Camera::update(float msec){
 	m_pitch -= (m_interfaceHandler->getMouseRelativePos().y);
 	m_yaw 	-= (m_interfaceHandler->getMouseRelativePos().x);
 	
-	m_pitch = MathUtils::min(m_pitch, -90.f); // Restricts pitch so you cant look over your head
-	m_pitch = MathUtils::max(m_pitch, 90.f); // Restricts pitch so you cant look under and behind your head
-
+	m_pitch = MathUtils::min(m_pitch, 90.f); // Restricts pitch so you cant look over your head
+	m_pitch = MathUtils::max(m_pitch, -90.f); // Restricts pitch so you cant look under and behind your head
+	
 	if (m_yaw < 0){
 		m_yaw += 360.0f;
 	}
@@ -54,7 +41,7 @@ void Camera::update(float msec){
 	if (m_yaw > 360.0f){
 		m_yaw -= 360.0f;
 	}
-
+	
 	
 	KeyState s = m_interfaceHandler->getKeyState();
 	
@@ -87,68 +74,17 @@ void Camera::update(float msec){
 			m_position.y -= m_dt * m_movementSpeed;
 			break;
 		}
-		
+			
 	}
-
 }
 
-void Camera::updateRotationFromMouse(){
-	// updates rotation based on the mouse movement
-	
-	m_pitch -= (m_interfaceHandler->getMouseRelativePos().y);
-	m_yaw 	-= (m_interfaceHandler->getMouseRelativePos().x);
 
+void Camera::update(float msec){
+	m_dt = msec;
+	updateCamera(msec);
 	
-	m_pitch = fmin(m_pitch, 90.f); // Restricts pitch so you cant look over your head
-	m_pitch = fmax(m_pitch, -90.f); // Restricts pitch so you cant look under and behind your head
 	
 
-	if (m_yaw < 0)
-	{
-		m_yaw += 360.0f;
-	}
-
-	if (m_yaw > 360.0f)
-	{
-		m_yaw -= 360.0f;
-	}
-
-
-	
-}
-
-void Camera::updatePositionFromKeyBoard(){
-	// Updates Position based on keyboard input.
-	
-	KeyState s = m_interfaceHandler->getKeyState();
-	
-	switch(s.m_key){
-		case(GLFW_KEY_W): {
-			m_position.z -= m_dt * m_movementSpeed;
-			break;
-		case(GLFW_KEY_A):{
-			m_position.x -= m_dt * m_movementSpeed;
-			break;
-		}
-		case(GLFW_KEY_S):{
-			m_position.z += m_dt * m_movementSpeed;
-			break;
-		}
-		case(GLFW_KEY_D):{
-			m_position.x += m_dt * m_movementSpeed;
-			break;
-		}
-		case(GLFW_KEY_SPACE):{
-			m_position.y += m_dt * m_movementSpeed;
-			break;
-		}
-		case(GLFW_KEY_C):{
-			m_position.y -= m_dt * m_movementSpeed;
-			break;
-		}
-	}
-	
-	}
 }
 
 

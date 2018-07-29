@@ -29,15 +29,20 @@ int main(){
 	
 	
 	//float dt = timer->getDelta();
-	const float MAXDT = 1/60;
+	
+	// TODO: Fix the timestep issue!
+	const float MAXDT = (1.0f/60.0f) * 1000;
+	float currentTime = timer->getDelta();
+	
 	
     while(!game->getEndGame()){
 		float frameTime = timer->getDelta();
-		
+		std::cout <<"Outside "<< std::endl;
+
 		while (frameTime > 0){
 			float dt = MathUtils::min(frameTime, MAXDT);
 
-			
+			std::cout <<"Inside "<< std::endl;
 			inputHandler->update();
 			graphics->update(dt);
 			game->update(dt);

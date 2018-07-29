@@ -22,10 +22,10 @@ Timer::~Timer(){
 
 float Timer::getDelta(){
 	clock_t now = clock();
-	double duration = ( now - m_lastRecorded ) / (double) CLOCKS_PER_SEC;
+	double duration = ( now - m_lastRecorded ) / (double) CLOCKS_PER_SEC; // dt in seconds
 	m_lastRecorded = clock();
 	
-	return duration * 1000;
+	return duration * 1000; // dt in milliseconds
 	
 }
 

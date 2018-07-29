@@ -123,9 +123,13 @@ protected:
 	bool renderPostEffect;
 	
 	Mesh*	m_quad;				// Quad for rendering FBO to screen
-	Shader* m_sceneShader;		//
-	Shader* m_processShader;	//
-	Shader* m_currentShader;
+	Shader* m_sceneShader;		// For drawing the scene onto the quad
+	Shader* m_processShader;	// For any post processing effects
+	Shader* m_currentShader;	// The current shader in use
+	
+	Shader* m_reflectShader;	// For the water refections
+	Shader* m_skyboxShader;		// For drawing the skybox.
+	
 	
 	// -- Frame Buffer Objects
 	GLuint m_sceneFBO;			// FBO to represent the
@@ -148,6 +152,13 @@ protected:
 	float m_aspectRatio;
 
 	Camera* m_camera;
+	
+	
+	// -- Misc
+
+	GLuint 	m_cubeMap;
+	float 	m_waterRotate;
+	
 };
 
 

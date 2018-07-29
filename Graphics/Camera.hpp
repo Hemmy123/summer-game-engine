@@ -25,17 +25,11 @@ public:
 	
 	~Camera(void) {};
 	
-	void	UpdateCamera(float msec);
+	void	updateCamera(float msec);
 	
 	
 	void 	update(float msec);
-	// Updates rotation and position from user input.
-	// Theses methods tend to be used for debugging as
-	// the player wil probably not control the camera
-	// directly like this. 
-	void 	updateRotationFromMouse();
-	void 	updatePositionFromKeyBoard();
-	
+
 	
 	
 	Matrix4 BuildViewMatrix();

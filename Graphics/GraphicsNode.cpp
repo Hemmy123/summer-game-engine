@@ -14,9 +14,6 @@
 #include "PerlinNoise.hpp"
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
-
-	//initPerspective();
-
 	createDemoScene();
 	
 }
@@ -61,8 +58,8 @@ void GraphicsNode::createDemoScene(){
 
 	
 	// ----- Create Meshes -----
-	int rawWidth = 100;
-	int rawHeight = 100;
+	int rawWidth = 257;
+	int rawHeight = 257;
 	float heightMap_x = 1;
 	float heightMap_z = 1;
 	float heightMap_y = 20;
