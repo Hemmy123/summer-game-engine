@@ -43,11 +43,11 @@ void GraphicsNode::createDemoScene(){
 
 	
 	// ----- Create Shaders -----
-	string vertexPath 	= SHADERVERTDIR"basicVert.glsl";
-	string fragPath 	= SHADERFRAGDIR"texturedFrag.glsl";
+	string vertexPath 	= SHADERVERTDIR"Basic_Vert.glsl";
+	string fragPath 	= SHADERFRAGDIR"Textured_Frag.glsl";
 	
-	string lightingVert = SHADERVERTDIR"lightingVertex.glsl";
-	string lightingFrag = SHADERFRAGDIR"lightingFragment.glsl";
+	string lightingVert = SHADERVERTDIR"Lighting_Vert.glsl";
+	string lightingFrag = SHADERFRAGDIR"Lighting_Frag.glsl";
 	
 	//Shader* shader 		= new Shader(vertexPath,fragPath);
 	Shader* shader 		= new Shader(lightingVert,lightingFrag);

@@ -21,6 +21,18 @@
 		300D1FFA20C4973F00CF5155 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300D1FED20C4961300CF5155 /* IOKit.framework */; };
 		300DF97120D93D420018BBA5 /* MouseInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300DF96F20D93D420018BBA5 /* MouseInterface.cpp */; };
 		300DF97220D93D420018BBA5 /* MouseInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 300DF97020D93D420018BBA5 /* MouseInterface.hpp */; };
+		3024C86C210DCDE000E40D49 /* PostProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3024C86A210DCDE000E40D49 /* PostProcessor.cpp */; };
+		3024C86D210DCDE000E40D49 /* PostProcessor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3024C86B210DCDE000E40D49 /* PostProcessor.hpp */; };
+		3024C870210DCE7900E40D49 /* SceneLights.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3024C86E210DCE7900E40D49 /* SceneLights.cpp */; };
+		3024C871210DCE7900E40D49 /* SceneLights.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3024C86F210DCE7900E40D49 /* SceneLights.hpp */; };
+		3024C874210DCE8400E40D49 /* SceneShadows.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3024C872210DCE8400E40D49 /* SceneShadows.cpp */; };
+		3024C875210DCE8400E40D49 /* SceneShadows.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3024C873210DCE8400E40D49 /* SceneShadows.hpp */; };
+		3024C878210DCE8D00E40D49 /* SceneRenderObjects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3024C876210DCE8D00E40D49 /* SceneRenderObjects.cpp */; };
+		3024C879210DCE8D00E40D49 /* SceneRenderObjects.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3024C877210DCE8D00E40D49 /* SceneRenderObjects.hpp */; };
+		3024C87C210DCEA000E40D49 /* Skybox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3024C87A210DCEA000E40D49 /* Skybox.cpp */; };
+		3024C87D210DCEA000E40D49 /* Skybox.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3024C87B210DCEA000E40D49 /* Skybox.hpp */; };
+		3024C880210DCEA600E40D49 /* Refections.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3024C87E210DCEA600E40D49 /* Refections.cpp */; };
+		3024C881210DCEA600E40D49 /* Refections.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3024C87F210DCEA600E40D49 /* Refections.hpp */; };
 		3028A8BD210C94A700C9CF8D /* HeightMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3028A8BB210C94A700C9CF8D /* HeightMap.cpp */; };
 		3028A8BE210C94A700C9CF8D /* HeightMap.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3028A8BC210C94A700C9CF8D /* HeightMap.hpp */; };
 		3028A8C1210C9DDB00C9CF8D /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3028A8BF210C9DDB00C9CF8D /* PerlinNoise.cpp */; };
@@ -319,6 +331,19 @@
 		300D1FF820C4973800CF5155 /* libswiftIOKit.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libswiftIOKit.tbd; path = System/Library/PrivateFrameworks/Swift/libswiftIOKit.tbd; sourceTree = SDKROOT; };
 		300DF96F20D93D420018BBA5 /* MouseInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MouseInterface.cpp; sourceTree = "<group>"; };
 		300DF97020D93D420018BBA5 /* MouseInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MouseInterface.hpp; sourceTree = "<group>"; };
+		3024C86A210DCDE000E40D49 /* PostProcessor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PostProcessor.cpp; sourceTree = "<group>"; };
+		3024C86B210DCDE000E40D49 /* PostProcessor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PostProcessor.hpp; sourceTree = "<group>"; };
+		3024C86E210DCE7900E40D49 /* SceneLights.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneLights.cpp; sourceTree = "<group>"; };
+		3024C86F210DCE7900E40D49 /* SceneLights.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneLights.hpp; sourceTree = "<group>"; };
+		3024C872210DCE8400E40D49 /* SceneShadows.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneShadows.cpp; sourceTree = "<group>"; };
+		3024C873210DCE8400E40D49 /* SceneShadows.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneShadows.hpp; sourceTree = "<group>"; };
+		3024C876210DCE8D00E40D49 /* SceneRenderObjects.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SceneRenderObjects.cpp; sourceTree = "<group>"; };
+		3024C877210DCE8D00E40D49 /* SceneRenderObjects.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SceneRenderObjects.hpp; sourceTree = "<group>"; };
+		3024C87A210DCEA000E40D49 /* Skybox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Skybox.cpp; sourceTree = "<group>"; };
+		3024C87B210DCEA000E40D49 /* Skybox.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Skybox.hpp; sourceTree = "<group>"; };
+		3024C87E210DCEA600E40D49 /* Refections.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Refections.cpp; sourceTree = "<group>"; };
+		3024C87F210DCEA600E40D49 /* Refections.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Refections.hpp; sourceTree = "<group>"; };
+		3024C883210DCED300E40D49 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3028A8BB210C94A700C9CF8D /* HeightMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = HeightMap.cpp; sourceTree = "<group>"; };
 		3028A8BC210C94A700C9CF8D /* HeightMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HeightMap.hpp; sourceTree = "<group>"; };
 		3028A8BF210C9DDB00C9CF8D /* PerlinNoise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise.cpp; sourceTree = "<group>"; };
@@ -535,6 +560,26 @@
 			path = EventSystem;
 			sourceTree = "<group>";
 		};
+		3024C882210DCEB100E40D49 /* Renderer Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				3024C86A210DCDE000E40D49 /* PostProcessor.cpp */,
+				3024C86B210DCDE000E40D49 /* PostProcessor.hpp */,
+				3024C86E210DCE7900E40D49 /* SceneLights.cpp */,
+				3024C86F210DCE7900E40D49 /* SceneLights.hpp */,
+				3024C872210DCE8400E40D49 /* SceneShadows.cpp */,
+				3024C873210DCE8400E40D49 /* SceneShadows.hpp */,
+				3024C876210DCE8D00E40D49 /* SceneRenderObjects.cpp */,
+				3024C877210DCE8D00E40D49 /* SceneRenderObjects.hpp */,
+				3024C87A210DCEA000E40D49 /* Skybox.cpp */,
+				3024C87B210DCEA000E40D49 /* Skybox.hpp */,
+				3024C87E210DCEA600E40D49 /* Refections.cpp */,
+				3024C87F210DCEA600E40D49 /* Refections.hpp */,
+				3024C883210DCED300E40D49 /* README.md */,
+			);
+			name = "Renderer Nodes";
+			sourceTree = "<group>";
+		};
 		304F93DC20C445290017F7E3 /* Headers */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,6 +747,7 @@
 		3089E76B20BF2A8A00C46E54 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
+				3024C882210DCEB100E40D49 /* Renderer Nodes */,
 				305190A020C43810001167E8 /* Source */,
 				3051909B20C435A4001167E8 /* Headers */,
 			);
@@ -820,10 +866,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				30EB224F20BF60CA002D1B3E /* GraphicsNode.hpp in Headers */,
+				3024C875210DCE8400E40D49 /* SceneShadows.hpp in Headers */,
+				3024C86D210DCDE000E40D49 /* PostProcessor.hpp in Headers */,
+				3024C87D210DCEA000E40D49 /* Skybox.hpp in Headers */,
+				3024C871210DCE7900E40D49 /* SceneLights.hpp in Headers */,
 				30FF488E20EE6F4E00BE3EEA /* MasterRenderer.hpp in Headers */,
+				3024C881210DCEA600E40D49 /* Refections.hpp in Headers */,
 				304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */,
 				306CD6A020D5A19900394FCF /* HeightMap.hpp in Headers */,
 				3028A8BE210C94A700C9CF8D /* HeightMap.hpp in Headers */,
+				3024C879210DCE8D00E40D49 /* SceneRenderObjects.hpp in Headers */,
 				30E7640D20CC437000934522 /* Camera.hpp in Headers */,
 				3051905620C2FC4D001167E8 /* Mesh.hpp in Headers */,
 				30EB225320BF6AC3002D1B3E /* Shader.hpp in Headers */,
@@ -1205,17 +1257,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3024C874210DCE8400E40D49 /* SceneShadows.cpp in Sources */,
+				3024C86C210DCDE000E40D49 /* PostProcessor.cpp in Sources */,
+				3024C880210DCEA600E40D49 /* Refections.cpp in Sources */,
 				30D5102120F6A29B0053BD71 /* GraphicsUtils.cpp in Sources */,
 				30D10CB620F26F63001218AF /* Light.cpp in Sources */,
 				3089E77720BF2B2400C46E54 /* Renderer.cpp in Sources */,
 				306CD69F20D5A19900394FCF /* HeightMap.cpp in Sources */,
 				304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */,
+				3024C878210DCE8D00E40D49 /* SceneRenderObjects.cpp in Sources */,
 				30EB224E20BF60CA002D1B3E /* GraphicsNode.cpp in Sources */,
 				30EB225220BF6AC3002D1B3E /* Shader.cpp in Sources */,
 				30E7640C20CC437000934522 /* Camera.cpp in Sources */,
+				3024C87C210DCEA000E40D49 /* Skybox.cpp in Sources */,
 				30FF488D20EE6F4E00BE3EEA /* MasterRenderer.cpp in Sources */,
 				3028A8BD210C94A700C9CF8D /* HeightMap.cpp in Sources */,
 				3051905520C2FC4D001167E8 /* Mesh.cpp in Sources */,
+				3024C870210DCE7900E40D49 /* SceneLights.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

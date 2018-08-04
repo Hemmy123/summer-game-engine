@@ -95,12 +95,16 @@ public:
 	
 	void setCurrentShader(Shader* s) {m_currentShader = s;}
 	
-	
 	// ---------- Misc ---------- //
 	bool checkWindow() {return glfwWindowShouldClose(m_window);}
 
 	void setShaderLight(Shader* shader, Light &light);
 
+	void drawSkybox();
+	void drawWater();
+	
+	
+	
 	
 protected:
 	
@@ -112,11 +116,6 @@ protected:
 	/// extras are finished.
 	void presentScene();
 
-	
-
-	
-	
-	
 	// ---------- Fields ---------- //
 	float m_dt;
 	
@@ -155,7 +154,7 @@ protected:
 	
 	
 	// -- Misc
-
+	Mesh*	m_waterQuad;	
 	GLuint 	m_cubeMap;
 	float 	m_waterRotate;
 	

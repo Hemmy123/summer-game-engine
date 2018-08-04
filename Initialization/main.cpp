@@ -37,12 +37,10 @@ int main(){
 	
     while(!game->getEndGame()){
 		float frameTime = timer->getDelta();
-		std::cout <<"Outside "<< std::endl;
 
 		while (frameTime > 0){
 			float dt = MathUtils::min(frameTime, MAXDT);
 
-			std::cout <<"Inside "<< std::endl;
 			inputHandler->update();
 			graphics->update(dt);
 			game->update(dt);

@@ -23,15 +23,27 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 		m_clearColour.z, 
 		m_clearColour.w);
 
-	m_sceneShader  = new Shader("Assets/Shaders/Vertex/passThroughVertex.glsl","Assets/Shaders/Fragment/sceneFrag.glsl");
-	m_processShader = new Shader("Assets/Shaders/Vertex/passThroughVertex.glsl","Assets/Shaders/Fragment/processFrag.glsl");
+	m_sceneShader  	= new Shader(SHADERVERTDIR"PassThrough_Vert.glsl", SHADERFRAGDIR"Scene_Frag.glsl");
+	m_processShader = new Shader(SHADERVERTDIR"PassThrough_Vert.glsl", SHADERFRAGDIR"Process_Frag.glsl");
 	
+	m_reflectShader = new Shader(SHADERVERTDIR"PassThrough_Vert.glsl", SHADERFRAGDIR"Reflect_Frag.glsl");
+	m_skyboxShader 	= new Shader(SHADERVERTDIR"Skybox_Vert.glsl", SHADERFRAGDIR"Skybox_Frag.glsl");
 	
-	if(!m_sceneShader->linkProgram() || !m_processShader->linkProgram()){
-		std::cout<<"something went wrong!" << std::endl;
-	}
 	
 	m_quad = Mesh::generateQuad();
+	
+	// ----- Cubemap Stuff ------ //
+	m_waterQuad = Mesh::generateQuad();
+	m_waterQuad->setTexture(SOIL_load_OGL_texture("filepath", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+	
+	m_cubeMap =  SOIL_load_OGL_cubemap("west", "east", "up", "down", "south", "north", SOIL_LOAD_RGB, SOIL_CREATE_NEW_ID, 0);
+	// Set texture repreating?
+	
+	m_waterRotate = 0.0f;
+	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
+	// --------------------
+	
+	
 	m_quad->bufferData();
 	
 	generateFBOTexture();
@@ -52,6 +64,11 @@ Renderer::~Renderer(){
 	delete m_sceneShader;
 	delete m_processShader;
 	delete m_quad;
+	
+	delete m_waterQuad;
+	//delete m_reflectShader;
+	//delete m_skyboxShader;
+	m_currentShader = 0;
 	
 	glDeleteTextures(1, &m_buffColourAttachment);
 	glDeleteTextures(1, &m_buffDepthAttachment);
@@ -252,18 +269,13 @@ void Renderer::generateFBOTexture(){
 
 	glGenTextures(1, &m_buffColourAttachment);
 	glBindTexture(GL_TEXTURE_2D, m_buffColourAttachment);
-
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); 	// clamping to make sure no sampling happens that
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);	// might distort the edges. (Try turning htis off?)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_actualWidth, m_actualHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
-
 	checkErrors();
 
-	
-	
 	// Generate FBOs
 	glGenFramebuffers(1, &m_sceneFBO);
 	glGenFramebuffers(1, &m_processFBO);
@@ -333,6 +345,31 @@ void Renderer::setShaderLight(Shader* shader, Light &light){
 	glUniform1f(radLoc,		rad);
 	checkErrors();
 
+	
+	
+}
+
+
+void Renderer::drawSkybox(){
+	glDepthMask(GL_FALSE);
+	setCurrentShader(m_skyboxShader);
+	updateShaderMatrices(m_currentShader);
+	
+	m_quad->draw(); // is this right?
+	
+	glUseProgram(0);
+	glDepthMask(GL_TRUE);
+	
+}
+
+void Renderer::drawWater(){
+	setCurrentShader(m_reflectShader);
+	// set shader light?
+	
+	GLuint location =glGetUniformLocation(m_currentShader->getProgram(),"cameraPos");
+	Vector3 pos = m_camera->GetPosition();
+	
+	glUniform3fv(location, 1, (float*)&pos);
 	
 	
 }

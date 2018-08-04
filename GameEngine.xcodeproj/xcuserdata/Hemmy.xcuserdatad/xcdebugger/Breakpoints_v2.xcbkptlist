@@ -216,7 +216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.552893"
+            timestampString = "555063289.2168421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "43"
@@ -248,7 +248,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.553707"
+            timestampString = "555063289.216958"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "148"
@@ -264,11 +264,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.554428"
+            timestampString = "555063213.450099"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "307"
-            endingLineNumber = "307"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "Renderer::presentScene()"
             landmarkType = "7">
          </BreakpointContent>
@@ -312,13 +312,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.554544"
+            timestampString = "555063213.450202"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
-            landmarkName = "Renderer::drawSceneToFBO()"
-            landmarkType = "7">
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -328,11 +328,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.554603"
+            timestampString = "555063213.450262"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
             landmarkName = "Renderer::~Renderer()"
             landmarkType = "7">
          </BreakpointContent>
@@ -360,13 +360,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.554682"
+            timestampString = "555063213.450339"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "Renderer::~Renderer()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -376,13 +376,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.554739"
+            timestampString = "555063213.450407"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "Renderer::update(float msec)"
-            landmarkType = "7">
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -424,12 +424,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.554834"
+            timestampString = "555063213.4505121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
-            landmarkName = "Renderer::update(float msec)"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "Renderer::~Renderer()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -440,7 +440,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.554891"
+            timestampString = "555063289.217154"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "153"
@@ -488,7 +488,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.555476"
+            timestampString = "555063289.217203"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "152"
@@ -504,12 +504,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.5560631"
+            timestampString = "555063213.450712"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
-            landmarkName = "Renderer::drawRenderObject(const RenderObject &amp;o)"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "Renderer::addRenderObject(RenderObject *renderObject)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -520,7 +520,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.556126"
+            timestampString = "555063289.217271"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
@@ -536,7 +536,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.55686"
+            timestampString = "555063289.21733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -568,7 +568,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.557314"
+            timestampString = "555063289.217384"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "89"
@@ -600,7 +600,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/GraphicsNode.cpp"
-            timestampString = "554545635.557737"
+            timestampString = "555063289.217436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -616,11 +616,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Graphics/Renderer.cpp"
-            timestampString = "554545635.5581419"
+            timestampString = "555063213.451113"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "326"
-            endingLineNumber = "326"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
             landmarkName = "Renderer::setShaderLight(Shader* shader, Light &amp;light)"
             landmarkType = "7">
          </BreakpointContent>
@@ -632,11 +632,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Initialization/main.cpp"
-            timestampString = "554545635.558192"
+            timestampString = "555063585.337706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "main()"
             landmarkType = "9">
          </BreakpointContent>
