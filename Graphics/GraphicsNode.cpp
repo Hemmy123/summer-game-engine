@@ -62,27 +62,37 @@ void GraphicsNode::createDemoScene(){
 	int rawHeight = 257;
 	float heightMap_x = 1;
 	float heightMap_z = 1;
-	float heightMap_y = 15;
+	float heightMap_y = 10;
 	float heightMap_tex_x = 1/heightMap_x;
 	float heightMap_tex_z = 1/heightMap_z;
 	
-	PerlinNoise* perlin = new PerlinNoise(rawWidth,10);
+	PerlinNoise* perlin = new PerlinNoise(rawWidth,5);
 
 	m_heightMap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z,perlin);
 	
+	HeightMap* terrain = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, 50,heightMap_tex_x, heightMap_tex_z,perlin);
+	
 	m_heightMap->generateRandomTerrain(Vector3(0,0,0), 3, 5, 0.5);
+	terrain->generateRandomTerrain(Vector3(0,0,0), 8, 2, 0.5);
+
 	Mesh* mesh1 = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
 	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
-//	m_heightMap->loadTexture(TEXTUREDIR"Grass.jpg");
+	
+	terrain->loadTexture(TEXTUREDIR"Grass.jpg");
 	m_heightMap->loadTexture(TEXTUREDIR"water.jpeg");
 
 	m_heightMap->generateNormals();
+	terrain->generateNormals();
+
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
 	m_heightMap->bufferData();
+	terrain->bufferData();
+
+	
 	mesh1->bufferData();
 	mesh2->bufferData();
 
@@ -92,8 +102,11 @@ void GraphicsNode::createDemoScene(){
 	// ----- Render Objects -----
 	
 	
-	RenderObject* terrain = new RenderObject(m_heightMap, shader);
+	RenderObject* heightMap = new RenderObject(m_heightMap, shader);
+	RenderObject* terrainRO = new RenderObject(terrain, shader);
 
+	
+	
 	RenderObject* ground = new RenderObject(mesh2, shader);
 
 	RenderObject* ro1 = new RenderObject(mesh1, shader);
@@ -111,9 +124,14 @@ void GraphicsNode::createDemoScene(){
 	Matrix4 const cubeScale = Matrix4::Scale(Vector3(10,10,10));
 	Matrix4 const cubeTrans = Matrix4::Translation(Vector3(1,-4,-5));
 	
-	Matrix4 const terrainpos = Matrix4::Translation(Vector3(-20,-5,-15));
+	Matrix4 const heightmapPos = Matrix4::Translation(Vector3(-20,-8,-15));
 	
-	terrain->setModelMatrix(terrainpos);
+	Matrix4 const terrainPos = Matrix4::Translation(Vector3(-20,-5,-15));
+
+	heightMap->setModelMatrix(heightmapPos);
+	terrainRO->setModelMatrix(terrainPos);
+
+	
 	ground->setModelMatrix(cubeScale * cubeTrans);
 	ro1->setModelMatrix(trans1 * cubeScale);
 	ro2->setModelMatrix(trans2 * cubeScale);
@@ -121,7 +139,10 @@ void GraphicsNode::createDemoScene(){
 	ro4->setModelMatrix(trans4 * cubeScale);
 
 	
-	m_renderObjects.push_back(terrain);
+	m_renderObjects.push_back(heightMap);
+	m_renderObjects.push_back(terrainRO);
+
+	
 	m_renderObjects.push_back(ground);
 	m_renderObjects.push_back(ro1);
 	m_renderObjects.push_back(ro2);
@@ -139,9 +160,9 @@ void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
 		m_renderer->update(msec);
-		counter+=(msec/10);
+		counter+=(msec/30);
 		
-		m_heightMap->updateTerrain(Vector3(counter ,0,0), 1, 5, 0.5);
+		m_heightMap->updateTerrain(Vector3(counter ,0,0), 2, 5, 0.5);
 		m_heightMap->generateNormals();
 		
 		
