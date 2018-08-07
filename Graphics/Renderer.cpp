@@ -26,25 +26,37 @@ m_clearColour(Vector4(0.3,0.5,0.4,1)){
 	m_sceneShader  	= new Shader(SHADERVERTDIR"PassThrough_Vert.glsl", SHADERFRAGDIR"Scene_Frag.glsl");
 	m_processShader = new Shader(SHADERVERTDIR"PassThrough_Vert.glsl", SHADERFRAGDIR"Process_Frag.glsl");
 	
-	m_reflectShader = new Shader(SHADERVERTDIR"PassThrough_Vert.glsl", SHADERFRAGDIR"Reflect_Frag.glsl");
-	m_skyboxShader 	= new Shader(SHADERVERTDIR"Skybox_Vert.glsl", SHADERFRAGDIR"Skybox_Frag.glsl");
-	
-	
+	//m_skyboxShader 	= new Shader(SHADERVERTDIR"Skybox_Vert.glsl", SHADERFRAGDIR"Skybox_Frag.glsl");
+
 	m_quad = Mesh::generateQuad();
-	
+//	m_skyboxQuad = Mesh::generateQuad();
 	// ----- Cubemap Stuff ------ //
-	m_waterQuad = Mesh::generateQuad();
-	m_waterQuad->setTexture(SOIL_load_OGL_texture("filepath", SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_MIPMAPS));
+
+	// Doesn't work?
+//	m_cubeMap =  SOIL_load_OGL_cubemap(
+//									   TEXTUREDIR"Skybox/posx.jpg",
+//									   TEXTUREDIR"Skybox/negx.jpg",
+//									   TEXTUREDIR"Skybox/posy.jpg",
+//									   TEXTUREDIR"Skybox/negy.jpg",
+//									   TEXTUREDIR"Skybox/posz.jpg",
+//									   TEXTUREDIR"Skybox/negz.jpg",
+//									   SOIL_LOAD_RGB, SOIL_CREATE_NEW_ID, 0);
+//
+//	if(m_cubeMap == 0){
+//		printf( "SOIL loading error: '%s'\n", SOIL_last_result() );
+//
+//	}
 	
-	m_cubeMap =  SOIL_load_OGL_cubemap("west", "east", "up", "down", "south", "north", SOIL_LOAD_RGB, SOIL_CREATE_NEW_ID, 0);
 	// Set texture repreating?
 	
-	m_waterRotate = 0.0f;
 	glEnable(GL_TEXTURE_CUBE_MAP_SEAMLESS);
 	// --------------------
 	
 	
 	m_quad->bufferData();
+//	m_skyboxQuad->bufferData();
+	
+//	m_skyboxQuad->setTexture(m_cubeMap);
 	
 	generateFBOTexture();
 	setCurrentShader(m_sceneShader);
@@ -65,7 +77,7 @@ Renderer::~Renderer(){
 	delete m_processShader;
 	delete m_quad;
 	
-	delete m_waterQuad;
+//	delete m_waterQuad;
 	//delete m_reflectShader;
 	//delete m_skyboxShader;
 	m_currentShader = 0;
@@ -101,10 +113,10 @@ void Renderer::createCamera(InterfaceHandler *ih){
 
 
 void Renderer::renderScene(){
+//	drawSkybox();
 	drawSceneToFBO();
 	if(renderPostEffect){
 		drawPostProcess();
-
 	}
 	presentScene();
 }
@@ -123,10 +135,10 @@ void Renderer::drawSceneToFBO(){
 	updateShaderMatrices(m_currentShader);
 	checkErrors();
 	
-
 	for(auto iter: m_opaqueObjects){ 		drawRenderObject(*iter); }
 	for(auto iter: m_transparentObjects){ 	drawRenderObject(*iter); }
 	
+
 	glUseProgram(0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -349,30 +361,52 @@ void Renderer::setShaderLight(Shader* shader, Light &light){
 	
 }
 
+//void Renderer::drawSkybox(){
+//	glDepthMask(GL_FALSE);
+//
+//	setCurrentShader(m_skyboxShader);
+//	checkErrors();
+//	updateShaderMatrices(m_currentShader);
+//	checkErrors();
+//	m_skyboxQuad->draw();
+//	checkErrors();
+//	glUseProgram(0);
+//	glDepthMask(GL_TRUE);
+//
+//}
 
-void Renderer::drawSkybox(){
-	glDepthMask(GL_FALSE);
-	setCurrentShader(m_skyboxShader);
-	updateShaderMatrices(m_currentShader);
+
+void Renderer::generateCubeMapTextures(){
 	
-	m_quad->draw(); // is this right?
+	string names [6] = {
+		"west.tga" , "east.TGA" , "up.TGA" , "down.TGA" , "south.TGA" , "north.TGA"
+	};
 	
-	glUseProgram(0);
-	glDepthMask(GL_TRUE);
+
+	
+	
+	GLuint skyBoxCubeMap;
+	glGenTextures(1, &skyBoxCubeMap);
+	glBindTexture(GL_TEXTURE_CUBE_MAP ,skyBoxCubeMap);
+	
+	for(int i = 0; i < 6; i++){
+		
+	}
+	
 	
 }
 
-void Renderer::drawWater(){
-	setCurrentShader(m_reflectShader);
-	// set shader light?
-	
-	GLuint location =glGetUniformLocation(m_currentShader->getProgram(),"cameraPos");
-	Vector3 pos = m_camera->GetPosition();
-	
-	glUniform3fv(location, 1, (float*)&pos);
-	
-	
-}
+
+
+
+
+
+
+
+
+
+
+
 
 
 

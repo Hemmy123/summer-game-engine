@@ -139,5 +139,67 @@ void HeightMap::generateRandomTerrain(Vector3 position,int octaves, float freque
 }
 
 
+void HeightMap::updateTerrain(Vector3 position,int octaves, float frequency, float persistance){
+	if(!m_vertices){
+		std::cout << "There is no terrain to update!" <<std::endl;
+		return;
+	}
+	
+	
+	float scaledX = position.x / m_xMultiplier;
+	float scaledZ = position.z / m_zMultiplier;
+	
+	
+	for (int x = 0; x < m_rawWidth; ++x) {
+		for (int z = 0; z < m_rawHeight; ++z) {
+			int offset = (x* m_rawWidth) + z;
+			
+			float tempX = scaledX + x;
+			float tempZ = scaledZ + z;
+			
+			Vector2 point(tempX,tempZ);
+			
+			
+			float noise = m_noiseGenerator->noiseAt(point, octaves, frequency, persistance);
+
+			m_vertices[offset]		= Vector3(x * m_xMultiplier, noise * m_yMultiplier, z * m_zMultiplier);
+			m_textureCoords[offset]	= Vector2(x * m_xTexCoord, z * m_zTexCoord);
+			
+		}
+	}
+	
+	m_numIndices = 0;
+	for (int x = 0; x < m_rawWidth - 1; ++x) {
+		for (int z = 0; z < m_rawHeight - 1; ++z) {
+			
+			
+			int a = (x		* (m_rawWidth)) + z;
+			int b = ((x + 1)* (m_rawWidth)) + z;
+			int c = ((x + 1)* (m_rawWidth)) + (z + 1);
+			int d = (x		* (m_rawWidth)) + (z + 1);
+			
+			
+			m_indices[m_numIndices++] = c;
+			m_indices[m_numIndices++] = b;
+			m_indices[m_numIndices++] = a;
+			
+			m_indices[m_numIndices++] = a;
+			m_indices[m_numIndices++] = d;
+			m_indices[m_numIndices++] = c;
+			
+		}
+		
+	}
+	
+	bufferData();
+}
+
+
+
+
+
+
+
+
 
 

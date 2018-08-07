@@ -9,9 +9,9 @@
 #include "GraphicsNode.hpp"
 
 #include "SOIL2.h"
-#include "HeightMap.hpp"
 #include "Common.hpp"
 #include "PerlinNoise.hpp"
+
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
 	createDemoScene();
@@ -53,7 +53,7 @@ void GraphicsNode::createDemoScene(){
 	Shader* shader 		= new Shader(lightingVert,lightingFrag);
 	m_shaders.push_back(shader);
 
-	m_light = new Light(Vector3(60,50,25) , Vector4(1,1,1,1), 100);
+	m_light = new Light(Vector3(60,50,25) , Vector4(1,1,1,1), 500);
 
 
 	
@@ -62,29 +62,27 @@ void GraphicsNode::createDemoScene(){
 	int rawHeight = 257;
 	float heightMap_x = 1;
 	float heightMap_z = 1;
-	float heightMap_y = 20;
+	float heightMap_y = 15;
 	float heightMap_tex_x = 1/heightMap_x;
 	float heightMap_tex_z = 1/heightMap_z;
 	
 	PerlinNoise* perlin = new PerlinNoise(rawWidth,10);
 
-	HeightMap* heightmap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z,perlin);
+	m_heightMap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z,perlin);
 	
-	heightmap->generateRandomTerrain(Vector3(0,0,0), 8, 2, 0.5);
+	m_heightMap->generateRandomTerrain(Vector3(0,0,0), 3, 5, 0.5);
 	Mesh* mesh1 = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
 	Mesh* mesh2 = Mesh::readObjFile(MODELSDIR"cageCube.obj");
 	mesh1->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
-	heightmap->loadTexture(TEXTUREDIR"Grass.jpg");
+//	m_heightMap->loadTexture(TEXTUREDIR"Grass.jpg");
+	m_heightMap->loadTexture(TEXTUREDIR"water.jpeg");
 
-	//mesh2->generateNormals();
-	//mesh1->generateNormals();
-	
-	heightmap->generateNormals();
+	m_heightMap->generateNormals();
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	
-	heightmap->bufferData();
+	m_heightMap->bufferData();
 	mesh1->bufferData();
 	mesh2->bufferData();
 
@@ -94,7 +92,7 @@ void GraphicsNode::createDemoScene(){
 	// ----- Render Objects -----
 	
 	
-	RenderObject* terrain = new RenderObject(heightmap, shader);
+	RenderObject* terrain = new RenderObject(m_heightMap, shader);
 
 	RenderObject* ground = new RenderObject(mesh2, shader);
 
@@ -137,13 +135,17 @@ void GraphicsNode::createDemoScene(){
 
 
 void GraphicsNode::update(float msec){
+	
     if (!m_renderer->checkWindow()){
 		
 		m_renderer->update(msec);
+		counter+=(msec/10);
+		
+		m_heightMap->updateTerrain(Vector3(counter ,0,0), 1, 5, 0.5);
+		m_heightMap->generateNormals();
+		
 		
 		/* --- Temp lighting test --- */
-		
-		
 		for(auto ro: m_renderer->getOpaqueObjects()){
 			Shader* shader = ro->getShader();
 			

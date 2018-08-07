@@ -22,9 +22,6 @@ public:
 	Light(Vector3 position, Vector4 colour, float radius):m_position(position), m_colour(colour), m_radius(radius){}
 	~Light() {};
 	
-	
-	
-	
 	// ---------- Getters / Setters ---------- //
 	Vector3 getPosition() 	const { return m_position;}
 	Vector4 getColour() 	const { return m_colour;}

@@ -100,12 +100,7 @@ public:
 
 	void setShaderLight(Shader* shader, Light &light);
 
-	void drawSkybox();
-	void drawWater();
-	
-	
-	
-	
+//	void drawSkybox();
 protected:
 	
 	
@@ -115,6 +110,8 @@ protected:
 	/// Presents the scene to the screen (after all post processing and
 	/// extras are finished.
 	void presentScene();
+	
+	void generateCubeMapTextures();
 
 	// ---------- Fields ---------- //
 	float m_dt;
@@ -122,12 +119,14 @@ protected:
 	bool renderPostEffect;
 	
 	Mesh*	m_quad;				// Quad for rendering FBO to screen
+	Mesh* 	m_skyboxQuad;		// 
+	
 	Shader* m_sceneShader;		// For drawing the scene onto the quad
 	Shader* m_processShader;	// For any post processing effects
 	Shader* m_currentShader;	// The current shader in use
 	
-	Shader* m_reflectShader;	// For the water refections
-	Shader* m_skyboxShader;		// For drawing the skybox.
+	
+	//Shader* m_skyboxShader;		// For drawing the skybox.
 	
 	
 	// -- Frame Buffer Objects
@@ -154,7 +153,7 @@ protected:
 	
 	
 	// -- Misc
-	Mesh*	m_waterQuad;	
+	//Mesh*	m_waterQuad;
 	GLuint 	m_cubeMap;
 	float 	m_waterRotate;
 	

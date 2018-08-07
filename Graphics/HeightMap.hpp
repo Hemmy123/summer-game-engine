@@ -30,7 +30,7 @@ public:
 	
 	void generateFlatTerrain();
 	void generateRandomTerrain(Vector3 position,int octaves, float frequency, float persistance );
-
+	void updateTerrain(Vector3 position,int octaves, float frequency, float persistance);
 	
 private:
 	int m_rawWidth;

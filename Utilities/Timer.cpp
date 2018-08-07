@@ -11,7 +11,7 @@
 
 
 Timer::Timer(){
-	m_lastRecorded 	= clock();
+	m_lastRecorded 	= glfwGetTime();
 	m_deltaTime 	= 0;
 	
 }
@@ -21,11 +21,12 @@ Timer::~Timer(){
 }
 
 float Timer::getDelta(){
-	clock_t now = clock();
-	double duration = ( now - m_lastRecorded ) / (double) CLOCKS_PER_SEC; // dt in seconds
-	m_lastRecorded = clock();
 	
-	return duration * 1000; // dt in milliseconds
+	double now = glfwGetTime();
+	double duration = now - m_lastRecorded ; // dt in seconds
+	m_lastRecorded = glfwGetTime();
+	
+	return (duration * 1000); // dt in milliseconds
 	
 }
 

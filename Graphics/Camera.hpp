@@ -53,7 +53,7 @@ private:
 	float m_yaw;			// Y (Left right)
 	float m_pitch;			// X (Up Down)
 	Vector3 m_position;
-	float m_movementSpeed = 1;
+	float m_movementSpeed = 0.5;
 };
 
 #endif /* Camera_hpp */

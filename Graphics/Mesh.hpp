@@ -41,6 +41,7 @@ public:
     
 	static Mesh* generateTriangle();
 	static Mesh* generateQuad();
+	static Mesh* generateWaterQuad();
 	
 	
 	static Mesh* readObjFile(std::string path);

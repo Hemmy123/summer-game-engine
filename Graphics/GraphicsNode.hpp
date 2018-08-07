@@ -17,6 +17,7 @@
 #include "GameObject.hpp"
 
 #include "EventNode.hpp"
+#include "HeightMap.hpp"
 
 using std::vector;
 
@@ -37,6 +38,13 @@ public:
 private:
 	
     Renderer *m_renderer;
+	
+	/*----- Testing ------------*/
+	
+	HeightMap* m_heightMap;
+	float counter = 0;
+	/*--------------------------*/
+
 	
 	
 	vector<Shader*> 		m_shaders;

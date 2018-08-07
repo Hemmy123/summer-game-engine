@@ -1,4 +1,4 @@
-////========================================
+// ========================================
 // Class: Timer
 // Author: Hemmy
 // Date: 15/06/2018
@@ -9,21 +9,26 @@
 #ifndef Timer_hpp
 #define Timer_hpp
 
-#include <stdio.h>
-#include <ctime>
+#define GLEW_STATIC
+#include <GL/glew.h>
 
-using std::clock;
+#include <GLFW/glfw3.h>
+
+#include <stdio.h>
+
+
 
 class Timer{
 public:
 	Timer();
 	~Timer();
 	
+	/// returns delta time in MILLISECONDS
 	float getDelta();
 	
 private:
-	clock_t m_lastRecorded;
-	clock_t m_deltaTime;
+	double m_lastRecorded;
+	double m_deltaTime;
 
 };
 

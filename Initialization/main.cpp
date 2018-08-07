@@ -23,41 +23,39 @@ int main(){
 	graphics->createCamera(inputHandler);
 	GameNode* 			game 			= new GameNode(bus,Sys_Game,inputHandler);
 	Timer* 				timer 			= new Timer();
-	//printGLFWVersion();
+	printGLFWVersion();
 	
 	inputHandler->update();
 	
-	
-	//float dt = timer->getDelta();
-	
-	// TODO: Fix the timestep issue!
+	// 16ms
 	const float MAXDT = (1.0f/60.0f) * 1000;
-	float currentTime = timer->getDelta();
-	
 	
     while(!game->getEndGame()){
+		
 		float frameTime = timer->getDelta();
+		//std::cout << "frameTime: " << frameTime <<std::endl;
 
 		while (frameTime > 0){
 			float dt = MathUtils::min(frameTime, MAXDT);
-
+//			std::cout << "Inside " << std::endl;
+			//std::cout << "frameTime: " << frameTime << " DT: " << dt << std::endl;
+			
 			inputHandler->update();
-			graphics->update(dt);
 			game->update(dt);
 			bus->update();
-			frameTime -= dt;
+			graphics->update(dt);
 
+			frameTime -= dt;
+			
 		}
+
 	}
-	
-    
 
 	delete bus;
 	delete game;
 	delete graphics;
 	delete inputHandler;
 	delete timer;
-
     return 0;
 }
 
