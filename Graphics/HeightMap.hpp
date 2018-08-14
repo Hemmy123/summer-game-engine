@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "Mesh.hpp"
 #include "PerlinNoise.hpp"
-
+#include "PerlinNoise3D.hpp"
 class HeightMap:public Mesh{
 public:
 	
@@ -30,7 +30,7 @@ public:
 	
 	void generateFlatTerrain();
 	void generateRandomTerrain(Vector3 position,int octaves, float frequency, float persistance );
-	void updateTerrain(Vector3 position,int octaves, float frequency, float persistance);
+	void updateTerrain(PerlinNoise3D* perlin3D, Vector3 position,int octaves, float frequency, float persistance);
 	
 private:
 	int m_rawWidth;

@@ -19,6 +19,7 @@
 #include "EventNode.hpp"
 #include "HeightMap.hpp"
 
+
 using std::vector;
 
 class GraphicsNode:public EventNode {
@@ -43,6 +44,7 @@ private:
 	
 	HeightMap* m_heightMap;
 	float counter = 0;
+	PerlinNoise3D* m_perlin3D;
 	/*--------------------------*/
 
 	

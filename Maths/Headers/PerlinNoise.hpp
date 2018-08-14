@@ -30,7 +30,7 @@ public:
 	float noiseAt(Vector2 point);
 	float noiseAt(Vector2 point, int octaves, float frequency, float persistence);
 	
-	
+
 	
 	float	fadeFunction(float t);
 	void	generatePermArray(int seed, int destScale);

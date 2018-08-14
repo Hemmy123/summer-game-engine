@@ -30,6 +30,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "HeightMap::updateTerrain(PerlinNoise3D*, Vector3, int, float, float):HeightMap.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "m_rawWidth">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Renderer::updateShaderMatrices(Shader*):Renderer.cpp">
          <PersistentStrings>
             <PersistentString

@@ -51,6 +51,8 @@
 		3051908320C30186001167E8 /* Matrix4.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051908120C30186001167E8 /* Matrix4.cpp */; };
 		3051908420C30186001167E8 /* Matrix4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051908220C30186001167E8 /* Matrix4.hpp */; };
 		3051908B20C3026B001167E8 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
+		3051908C211C2383002A9EB2 /* PerlinNoise3D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051908A211C2383002A9EB2 /* PerlinNoise3D.cpp */; };
+		3051908D211C2383002A9EB2 /* PerlinNoise3D.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051908B211C2383002A9EB2 /* PerlinNoise3D.hpp */; };
 		3051908F20C3032C001167E8 /* Vector4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051908D20C3032C001167E8 /* Vector4.hpp */; };
 		3051909220C3038F001167E8 /* MathUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3051909020C3038F001167E8 /* MathUtils.cpp */; };
 		3051909320C3038F001167E8 /* MathUtils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3051909120C3038F001167E8 /* MathUtils.hpp */; };
@@ -363,6 +365,8 @@
 		3051907E20C30173001167E8 /* Matrix3.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix3.hpp; sourceTree = "<group>"; };
 		3051908120C30186001167E8 /* Matrix4.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Matrix4.cpp; sourceTree = "<group>"; };
 		3051908220C30186001167E8 /* Matrix4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Matrix4.hpp; sourceTree = "<group>"; };
+		3051908A211C2383002A9EB2 /* PerlinNoise3D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise3D.cpp; sourceTree = "<group>"; };
+		3051908B211C2383002A9EB2 /* PerlinNoise3D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PerlinNoise3D.hpp; sourceTree = "<group>"; };
 		3051908D20C3032C001167E8 /* Vector4.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector4.hpp; sourceTree = "<group>"; };
 		3051909020C3038F001167E8 /* MathUtils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = MathUtils.cpp; sourceTree = "<group>"; };
 		3051909120C3038F001167E8 /* MathUtils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = MathUtils.hpp; sourceTree = "<group>"; };
@@ -590,6 +594,7 @@
 				3051907E20C30173001167E8 /* Matrix3.hpp */,
 				3051908220C30186001167E8 /* Matrix4.hpp */,
 				3028A8C0210C9DDB00C9CF8D /* PerlinNoise.hpp */,
+				3051908B211C2383002A9EB2 /* PerlinNoise3D.hpp */,
 			);
 			path = Headers;
 			sourceTree = "<group>";
@@ -597,6 +602,7 @@
 		304F93DD20C445350017F7E3 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				3051908A211C2383002A9EB2 /* PerlinNoise3D.cpp */,
 				3028A8BF210C9DDB00C9CF8D /* PerlinNoise.cpp */,
 				3051907D20C30173001167E8 /* Matrix3.cpp */,
 				3051908120C30186001167E8 /* Matrix4.cpp */,
@@ -847,6 +853,7 @@
 				3051907820C2FE18001167E8 /* Vector2.hpp in Headers */,
 				3051908420C30186001167E8 /* Matrix4.hpp in Headers */,
 				3051909320C3038F001167E8 /* MathUtils.hpp in Headers */,
+				3051908D211C2383002A9EB2 /* PerlinNoise3D.hpp in Headers */,
 				3051907C20C3009D001167E8 /* Vector3.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1228,6 +1235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3051908C211C2383002A9EB2 /* PerlinNoise3D.cpp in Sources */,
 				3028A8C1210C9DDB00C9CF8D /* PerlinNoise.cpp in Sources */,
 				3051909220C3038F001167E8 /* MathUtils.cpp in Sources */,
 				3051907F20C30173001167E8 /* Matrix3.cpp in Sources */,

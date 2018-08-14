@@ -14,6 +14,7 @@
 
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
+	m_perlin3D = new PerlinNoise3D(257,5);
 	createDemoScene();
 	
 }
@@ -160,9 +161,9 @@ void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
 		m_renderer->update(msec);
-		counter+=(msec/30);
+		counter+=(msec/10);
 		
-		m_heightMap->updateTerrain(Vector3(counter ,0,0), 2, 5, 0.5);
+		m_heightMap->updateTerrain(m_perlin3D,Vector3(0 ,0,counter), 7, 5, 0.5);
 		m_heightMap->generateNormals();
 		
 		
