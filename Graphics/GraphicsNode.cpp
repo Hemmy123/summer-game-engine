@@ -10,7 +10,7 @@
 
 #include "SOIL2.h"
 #include "Common.hpp"
-#include "PerlinNoise.hpp"
+#include "PerlinNoise2D.hpp"
 
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
@@ -67,9 +67,9 @@ void GraphicsNode::createDemoScene(){
 	float heightMap_tex_x = 1/heightMap_x;
 	float heightMap_tex_z = 1/heightMap_z;
 	
-	PerlinNoise* perlin = new PerlinNoise(rawWidth,5);
+	PerlinNoise2D* perlin = new PerlinNoise2D(rawWidth,5);
 
-	m_heightMap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, heightMap_y,heightMap_tex_x, heightMap_tex_z,perlin);
+	m_heightMap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, 3,heightMap_tex_x, heightMap_tex_z,perlin);
 	
 	HeightMap* terrain = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, 50,heightMap_tex_x, heightMap_tex_z,perlin);
 	
@@ -161,9 +161,9 @@ void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
 		m_renderer->update(msec);
-		counter+=(msec/10);
+		counter+=(msec/15);
 		
-		m_heightMap->updateTerrain(m_perlin3D,Vector3(0 ,0,counter), 7, 5, 0.5);
+		m_heightMap->updateTerrain(m_perlin3D,Vector3(0 ,0,counter), 4, 10, 0.5);
 		m_heightMap->generateNormals();
 		
 		

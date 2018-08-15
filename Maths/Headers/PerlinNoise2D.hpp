@@ -20,18 +20,17 @@
 
 using std::vector;
 
-class PerlinNoise
+class PerlinNoise2D
 {
 public:
 	
-	PerlinNoise(int destScale, int seed);
-	~PerlinNoise();
+	PerlinNoise2D(int destScale, int seed);
+	~PerlinNoise2D();
 	
 	float noiseAt(Vector2 point);
 	float noiseAt(Vector2 point, int octaves, float frequency, float persistence);
 	
 
-	
 	float	fadeFunction(float t);
 	void	generatePermArray(int seed, int destScale);
 	float*	surroundingWeights(Vector2 point);

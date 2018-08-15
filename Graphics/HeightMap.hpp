@@ -11,7 +11,7 @@
 
 #include <stdio.h>
 #include "Mesh.hpp"
-#include "PerlinNoise.hpp"
+#include "PerlinNoise2D.hpp"
 #include "PerlinNoise3D.hpp"
 class HeightMap:public Mesh{
 public:
@@ -24,7 +24,7 @@ public:
 	float heightMap_y,
 	float heightMap_tex_x,
 	float heightMap_tex_z,
-	PerlinNoise* perlinNoise);
+	PerlinNoise2D* perlinNoise);
 	
 	~HeightMap();
 	
@@ -42,7 +42,7 @@ private:
 	
 	float m_xTexCoord;
 	float m_zTexCoord;
-	PerlinNoise* m_noiseGenerator;
+	PerlinNoise2D* m_noiseGenerator;
 	
 };
 

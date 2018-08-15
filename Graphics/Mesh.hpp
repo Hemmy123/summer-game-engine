@@ -47,6 +47,8 @@ public:
 	static Mesh* readObjFile(std::string path);
 	
     void bufferData();
+	void updateData();
+	
     void draw();
 	void generateNormals();
 	

@@ -294,6 +294,49 @@ Mesh* Mesh::readObjFile(std::string path){
 	return m;
 }
 
+void Mesh::updateData(){
+	glBindVertexArray(m_VAO);
+	
+	//Buffer vertex data
+	glBindBuffer(GL_ARRAY_BUFFER, m_VBO[VERTEX_BUFFER]);
+	glBufferData(GL_ARRAY_BUFFER, m_numVertices * sizeof(Vector3), m_vertices, GL_STATIC_DRAW);
+	glVertexAttribPointer(VERTEX_BUFFER, 3, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(VERTEX_BUFFER);
+	
+	//Buffer texture data
+	if (m_textureCoords) {
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO[TEXTURE_BUFFER]);
+		glBufferData(GL_ARRAY_BUFFER, m_numVertices * sizeof(Vector2), m_textureCoords, GL_STATIC_DRAW);
+		glVertexAttribPointer(TEXTURE_BUFFER, 2, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(TEXTURE_BUFFER);
+	}
+	
+	//buffer colour data
+	if (m_colours) {
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO[COLOUR_BUFFER]);
+		glBufferData(GL_ARRAY_BUFFER, m_numVertices * sizeof(Vector4), m_colours, GL_STATIC_DRAW);
+		glVertexAttribPointer(COLOUR_BUFFER, 4, GL_FLOAT, GL_FALSE, 0, 0);
+		glEnableVertexAttribArray(COLOUR_BUFFER);
+	}
+	
+	//buffer index data
+	if (m_indices) {
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_VBO[INDEX_BUFFER]);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_numIndices * sizeof(GLuint), m_indices, GL_STATIC_DRAW);
+	}
+	
+	if(m_normals){
+		glBindBuffer(GL_ARRAY_BUFFER, m_VBO[NORMAL_BUFFER]);
+		glBufferData(GL_ARRAY_BUFFER, m_numVertices * sizeof(Vector3), m_normals, GL_STATIC_DRAW);
+		glVertexAttribPointer(NORMAL_BUFFER, 3, GL_FLOAT, GL_FALSE, 0,0);
+		glEnableVertexAttribArray(NORMAL_BUFFER);
+	}
+	
+	//Once we're done with the vertex buffer binding, we can unbind the VAO,
+	//ready to reapply later, such as in the Draw function above!
+	glBindVertexArray(0);
+	
+}
 
 void Mesh::bufferData(){
     glGenVertexArrays(1, &m_VAO);

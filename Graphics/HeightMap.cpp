@@ -15,7 +15,7 @@ HeightMap::HeightMap(
 					 float heightMap_y,
 					 float heightMap_tex_x,
 					 float  heightMap_tex_z,
-					 PerlinNoise* perlinNoise):
+					 PerlinNoise2D* perlinNoise):
 m_rawWidth(rawWidth),
 m_rawHeight(rawHeight),
 m_xMultiplier(heightMap_x),
@@ -162,6 +162,8 @@ void HeightMap::updateTerrain(PerlinNoise3D* perlin3D,Vector3 position,int octav
 			
 			float noise = perlin3D->noiseAt(tempPoint, octaves, frequency, persistance);
 
+//			float noise = 1;
+			
 			m_vertices[offset]		= Vector3(x * m_xMultiplier, noise * m_yMultiplier, z * m_zMultiplier);
 			m_textureCoords[offset]	= Vector2(x * m_xTexCoord, z * m_zTexCoord);
 			
@@ -191,7 +193,7 @@ void HeightMap::updateTerrain(PerlinNoise3D* perlin3D,Vector3 position,int octav
 		
 	}
 	
-	bufferData();
+	updateData();
 }
 
 
