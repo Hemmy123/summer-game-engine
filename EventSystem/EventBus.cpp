@@ -34,6 +34,9 @@ void EventBus::dispatchEvents(){
 		if( mapIter == m_subsystems.end() ){
 			// TODO: Log error using logger!
 			std::cout<<"That subsystem does not exist!" <<std::endl;
+			
+			std::cout<<"nope!" <<std::endl;
+
 		} else{
 			mapIter->second->handleEvent(event);
 		}

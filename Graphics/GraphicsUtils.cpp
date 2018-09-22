@@ -42,24 +42,6 @@ void GraphicsUtils::gameObjToRenderObj(const GameObject &gameObj){
 	
 	ro->setTransparent(false);
 	
-	
-	/*
-	 
-	 const char* m_ID;
-	 
-	 bool 	m_transparent;
-	 Shader* m_shader;
-	 Mesh*   m_mesh;
-	 
-	 
-	 GLuint  m_texture;
-	 
-	 Matrix4 m_modelMatrix;
-	 Matrix4 m_worldTransform;
-	 
-	 */
-	
-	
 	delete ro;
 	
 }

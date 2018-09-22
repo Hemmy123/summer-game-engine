@@ -3,7 +3,9 @@
 // Author: Hemmy
 // Date: 11/07/2018
 // Description:
-//
+// A class that holds a bunch of gameobjects
+// that are to be loaded in my the graphics
+// and physics subsystems
 // ========================================
 
 #ifndef Level_hpp
@@ -19,6 +21,7 @@ public:
 	Level();
 	~Level();
 	
+	std::vector<GameObject*> getGameObjects() { return m_gameObjects;}
 	
 	void createDemoLevel();
 	

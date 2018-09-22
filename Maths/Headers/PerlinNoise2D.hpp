@@ -39,6 +39,9 @@ public:
 	void setDestScale(int s) { destScale = s; }
 	
 protected:
+	
+
+	
 	int permutationSize;
 	
 	vector<int> perm; // Permuation Array

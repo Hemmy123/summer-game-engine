@@ -8,6 +8,7 @@
 #include "GameNode.hpp"
 #include "EventBus.hpp"
 #include "Timer.hpp"
+#include "PhysicsNode.hpp"
 
 void printGLFWVersion(){
 	const char *version =  glfwGetVersionString();
@@ -22,6 +23,7 @@ int main(){
 	InterfaceHandler* 	inputHandler 	= new InterfaceHandler(graphics->getWindow());
 	graphics->createCamera(inputHandler);
 	GameNode* 			game 			= new GameNode(bus,Sys_Game,inputHandler);
+	PhysicsNode*		physics 		= new PhysicsNode(bus, Sys_Physics);
 	Timer* 				timer 			= new Timer();
 	printGLFWVersion();
 	
@@ -56,6 +58,7 @@ int main(){
 	delete graphics;
 	delete inputHandler;
 	delete timer;
+	delete physics;
     return 0;
 }
 

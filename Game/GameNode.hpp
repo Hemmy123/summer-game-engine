@@ -12,7 +12,7 @@
 #include <stdio.h>
 #include "EventBus.hpp"
 #include "InterfaceHandler.hpp"
-
+#include "Level.hpp"
 
 class GameNode:public EventNode {
 public:
@@ -24,10 +24,16 @@ public:
 	
 	bool getEndGame(){return m_endGame;}
 	
+	
+	/* Test Methods */
+	void loadTestLevel();
+	
 private:
 	bool m_endGame;
 	float m_dt;
 	
+
+	Level* m_currentLevel;
 	InterfaceHandler* m_interfaceHandler;
 	
 };

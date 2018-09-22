@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3001FFDC2148368500CD9571 /* PhysicsNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3001FFDA2148368500CD9571 /* PhysicsNode.cpp */; };
+		3001FFDD2148368500CD9571 /* PhysicsNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3001FFDB2148368500CD9571 /* PhysicsNode.hpp */; };
+		3001FFE0214836E000CD9571 /* libPhysics.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3001FFCD2148364B00CD9571 /* libPhysics.a */; };
+		3001FFE1214836EB00CD9571 /* libMaths.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3051906A20C2FE0B001167E8 /* libMaths.a */; };
+		3001FFE2214836EF00CD9571 /* libEventSystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */; };
 		300727A020CFE3C700A33AD7 /* EventBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3007279E20CFE3C700A33AD7 /* EventBus.cpp */; };
 		300727A120CFE3C700A33AD7 /* EventBus.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3007279F20CFE3C700A33AD7 /* EventBus.hpp */; };
 		300727A420CFE3EF00A33AD7 /* Event.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 300727A220CFE3EF00A33AD7 /* Event.cpp */; };
@@ -37,6 +42,9 @@
 		3028A8BE210C94A700C9CF8D /* HeightMap.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3028A8BC210C94A700C9CF8D /* HeightMap.hpp */; };
 		3028A8C1210C9DDB00C9CF8D /* PerlinNoise2D.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3028A8BF210C9DDB00C9CF8D /* PerlinNoise2D.cpp */; };
 		3028A8C2210C9DDB00C9CF8D /* PerlinNoise2D.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3028A8C0210C9DDB00C9CF8D /* PerlinNoise2D.hpp */; };
+		3048AEDC213818A5002AD2F4 /* Component.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3048AEDA213818A5002AD2F4 /* Component.cpp */; };
+		3048AEDD213818A5002AD2F4 /* Component.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3048AEDB213818A5002AD2F4 /* Component.hpp */; };
+		3048AEE0213818F9002AD2F4 /* libECS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3048AECF21381883002AD2F4 /* libECS.a */; };
 		304F93E620C458880017F7E3 /* RenderObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93E420C458880017F7E3 /* RenderObject.cpp */; };
 		304F93E720C458880017F7E3 /* RenderObject.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 304F93E520C458880017F7E3 /* RenderObject.hpp */; };
 		304F93F920C4936F0017F7E3 /* IDGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 304F93F720C4936F0017F7E3 /* IDGenerator.cpp */; };
@@ -79,8 +87,6 @@
 		30ABF54A20E7B2CE0073747A /* TinyObjConverter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */; };
 		30AD405B20E42380007E291A /* tiny_obj_loader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30AD405920E42380007E291A /* tiny_obj_loader.cpp */; };
 		30AD405C20E42380007E291A /* tiny_obj_loader.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30AD405A20E42380007E291A /* tiny_obj_loader.hpp */; };
-		30BF6B972122CE200066552B /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30BF6B952122CE200066552B /* PerlinNoise.cpp */; };
-		30BF6B982122CE200066552B /* PerlinNoise.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30BF6B962122CE200066552B /* PerlinNoise.hpp */; };
 		30BF6B9C2122DC500066552B /* Vector.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30BF6B9A2122DC500066552B /* Vector.hpp */; };
 		30D10CB620F26F63001218AF /* Light.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 30D10CB420F26F63001218AF /* Light.cpp */; };
 		30D10CB720F26F63001218AF /* Light.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 30D10CB520F26F63001218AF /* Light.hpp */; };
@@ -148,6 +154,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3001FFD82148365700CD9571 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3051906920C2FE0B001167E8;
+			remoteInfo = Maths;
+		};
+		3001FFDE214836DB00CD9571 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3001FFCC2148364B00CD9571;
+			remoteInfo = Physics;
+		};
+		3001FFE3214836F200CD9571 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3007279220CFE3AA00A33AD7;
+			remoteInfo = EventSystem;
+		};
 		300727A620CFE45F00A33AD7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
@@ -161,6 +188,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 304F93EB20C493500017F7E3;
 			remoteInfo = Utilities;
+		};
+		3048AEDE213818F0002AD2F4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3089E70020BF043D00C46E54 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3048AECE21381883002AD2F4;
+			remoteInfo = ECS;
 		};
 		304F93FB20C493AF0017F7E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -324,6 +358,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3001FFCD2148364B00CD9571 /* libPhysics.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPhysics.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3001FFDA2148368500CD9571 /* PhysicsNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PhysicsNode.cpp; sourceTree = "<group>"; };
+		3001FFDB2148368500CD9571 /* PhysicsNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PhysicsNode.hpp; sourceTree = "<group>"; };
 		3007279320CFE3AA00A33AD7 /* libEventSystem.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libEventSystem.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		3007279E20CFE3C700A33AD7 /* EventBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EventBus.cpp; sourceTree = "<group>"; };
 		3007279F20CFE3C700A33AD7 /* EventBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EventBus.hpp; sourceTree = "<group>"; };
@@ -353,6 +390,11 @@
 		3028A8BC210C94A700C9CF8D /* HeightMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = HeightMap.hpp; sourceTree = "<group>"; };
 		3028A8BF210C9DDB00C9CF8D /* PerlinNoise2D.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise2D.cpp; sourceTree = "<group>"; };
 		3028A8C0210C9DDB00C9CF8D /* PerlinNoise2D.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PerlinNoise2D.hpp; sourceTree = "<group>"; };
+		3032D8AA21566A5B00387F15 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3048AECF21381883002AD2F4 /* libECS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libECS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		3048AEDA213818A5002AD2F4 /* Component.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Component.cpp; sourceTree = "<group>"; };
+		3048AEDB213818A5002AD2F4 /* Component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Component.hpp; sourceTree = "<group>"; };
+		3048AEE221381AA3002AD2F4 /* CompBasePhysics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CompBasePhysics.hpp; sourceTree = "<group>"; };
 		304F93E420C458880017F7E3 /* RenderObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RenderObject.cpp; sourceTree = "<group>"; usesTabs = 1; };
 		304F93E520C458880017F7E3 /* RenderObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RenderObject.hpp; sourceTree = "<group>"; };
 		304F93EC20C493500017F7E3 /* libUtilities.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libUtilities.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -393,8 +435,6 @@
 		30ABF54820E7B2CE0073747A /* TinyObjConverter.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TinyObjConverter.hpp; sourceTree = "<group>"; };
 		30AD405920E42380007E291A /* tiny_obj_loader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = tiny_obj_loader.cpp; sourceTree = "<group>"; };
 		30AD405A20E42380007E291A /* tiny_obj_loader.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = tiny_obj_loader.hpp; sourceTree = "<group>"; };
-		30BF6B952122CE200066552B /* PerlinNoise.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise.cpp; sourceTree = "<group>"; };
-		30BF6B962122CE200066552B /* PerlinNoise.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PerlinNoise.hpp; sourceTree = "<group>"; };
 		30BF6B9A2122DC500066552B /* Vector.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vector.hpp; sourceTree = "<group>"; };
 		30D10CB420F26F63001218AF /* Light.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Light.cpp; sourceTree = "<group>"; };
 		30D10CB520F26F63001218AF /* Light.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Light.hpp; sourceTree = "<group>"; };
@@ -448,7 +488,23 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3001FFCA2148364B00CD9571 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3001FFE2214836EF00CD9571 /* libEventSystem.a in Frameworks */,
+				3001FFE1214836EB00CD9571 /* libMaths.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3007279020CFE3AA00A33AD7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3048AECC21381883002AD2F4 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -495,6 +551,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3001FFE0214836E000CD9571 /* libPhysics.a in Frameworks */,
+				3048AEE0213818F9002AD2F4 /* libECS.a in Frameworks */,
 				30E514DE20DEFBCB004C2314 /* libEventSystem.a in Frameworks */,
 				30E514DF20DEFBCB004C2314 /* libFileIO.a in Frameworks */,
 				30E514E020DEFBCB004C2314 /* libMaths.a in Frameworks */,
@@ -557,6 +615,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3001FFCE2148364B00CD9571 /* Physics */ = {
+			isa = PBXGroup;
+			children = (
+				3001FFDA2148368500CD9571 /* PhysicsNode.cpp */,
+				3001FFDB2148368500CD9571 /* PhysicsNode.hpp */,
+			);
+			path = Physics;
+			sourceTree = "<group>";
+		};
 		3007279420CFE3AA00A33AD7 /* EventSystem */ = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +655,16 @@
 				3024C883210DCED300E40D49 /* README.md */,
 			);
 			name = "Renderer Nodes";
+			sourceTree = "<group>";
+		};
+		3048AED021381883002AD2F4 /* ECS */ = {
+			isa = PBXGroup;
+			children = (
+				3048AEE221381AA3002AD2F4 /* CompBasePhysics.hpp */,
+				3048AEDA213818A5002AD2F4 /* Component.cpp */,
+				3048AEDB213818A5002AD2F4 /* Component.hpp */,
+			);
+			path = ECS;
 			sourceTree = "<group>";
 		};
 		304F93DC20C445290017F7E3 /* Headers */ = {
@@ -647,8 +724,6 @@
 			children = (
 				304F93DD20C445350017F7E3 /* Source */,
 				304F93DC20C445290017F7E3 /* Headers */,
-				30BF6B952122CE200066552B /* PerlinNoise.cpp */,
-				30BF6B962122CE200066552B /* PerlinNoise.hpp */,
 			);
 			path = Maths;
 			sourceTree = "<group>";
@@ -705,6 +780,7 @@
 		3089E6FF20BF043D00C46E54 = {
 			isa = PBXGroup;
 			children = (
+				3032D8AA21566A5B00387F15 /* README.md */,
 				3051909A20C42EBA001167E8 /* Assets */,
 				3089E70A20BF043D00C46E54 /* Initialization */,
 				3089E76B20BF2A8A00C46E54 /* Graphics */,
@@ -716,6 +792,8 @@
 				30E514C820DEFB5F004C2314 /* FileIO */,
 				30FEBD1620E00082008F3879 /* SOIL2 */,
 				30D5100220F69A6F0053BD71 /* Scene */,
+				3048AED021381883002AD2F4 /* ECS */,
+				3001FFCE2148364B00CD9571 /* Physics */,
 				3089E70920BF043D00C46E54 /* Products */,
 				3089E71220BF047800C46E54 /* Frameworks */,
 			);
@@ -734,6 +812,8 @@
 				30E514C720DEFB5F004C2314 /* libFileIO.a */,
 				30FEBD1520E00082008F3879 /* libSOIL2.a */,
 				30D5100120F69A6F0053BD71 /* libScene.a */,
+				3048AECF21381883002AD2F4 /* libECS.a */,
+				3001FFCD2148364B00CD9571 /* libPhysics.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -823,6 +903,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		3001FFCB2148364B00CD9571 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3001FFDD2148368500CD9571 /* PhysicsNode.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3007279120CFE3AA00A33AD7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -830,6 +918,14 @@
 				300727A120CFE3C700A33AD7 /* EventBus.hpp in Headers */,
 				300727AB20CFE80900A33AD7 /* EventNode.hpp in Headers */,
 				300727A520CFE3EF00A33AD7 /* Event.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3048AECD21381883002AD2F4 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3048AEDD213818A5002AD2F4 /* Component.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,7 +954,6 @@
 			files = (
 				3051908F20C3032C001167E8 /* Vector4.hpp in Headers */,
 				3028A8C2210C9DDB00C9CF8D /* PerlinNoise2D.hpp in Headers */,
-				30BF6B982122CE200066552B /* PerlinNoise.hpp in Headers */,
 				3051908020C30173001167E8 /* Matrix3.hpp in Headers */,
 				3051907820C2FE18001167E8 /* Vector2.hpp in Headers */,
 				3051908420C30186001167E8 /* Matrix4.hpp in Headers */,
@@ -948,6 +1043,25 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		3001FFCC2148364B00CD9571 /* Physics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3001FFD72148364B00CD9571 /* Build configuration list for PBXNativeTarget "Physics" */;
+			buildPhases = (
+				3001FFC92148364B00CD9571 /* Sources */,
+				3001FFCA2148364B00CD9571 /* Frameworks */,
+				3001FFCB2148364B00CD9571 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3001FFE4214836F200CD9571 /* PBXTargetDependency */,
+				3001FFD92148365700CD9571 /* PBXTargetDependency */,
+			);
+			name = Physics;
+			productName = Physics;
+			productReference = 3001FFCD2148364B00CD9571 /* libPhysics.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		3007279220CFE3AA00A33AD7 /* EventSystem */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3007279D20CFE3AA00A33AD7 /* Build configuration list for PBXNativeTarget "EventSystem" */;
@@ -963,6 +1077,23 @@
 			name = EventSystem;
 			productName = EventSystem;
 			productReference = 3007279320CFE3AA00A33AD7 /* libEventSystem.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		3048AECE21381883002AD2F4 /* ECS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3048AED921381883002AD2F4 /* Build configuration list for PBXNativeTarget "ECS" */;
+			buildPhases = (
+				3048AECB21381883002AD2F4 /* Sources */,
+				3048AECC21381883002AD2F4 /* Frameworks */,
+				3048AECD21381883002AD2F4 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ECS;
+			productName = ECS;
+			productReference = 3048AECF21381883002AD2F4 /* libECS.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		304F93EB20C493500017F7E3 /* Utilities */ = {
@@ -1048,6 +1179,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				3001FFDF214836DB00CD9571 /* PBXTargetDependency */,
+				3048AEDF213818F0002AD2F4 /* PBXTargetDependency */,
 				30E514DD20DEFBC3004C2314 /* PBXTargetDependency */,
 				306CD69620D5759200394FCF /* PBXTargetDependency */,
 				306CD69820D5759200394FCF /* PBXTargetDependency */,
@@ -1153,8 +1286,14 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = Hemmy;
 				TargetAttributes = {
+					3001FFCC2148364B00CD9571 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 					3007279220CFE3AA00A33AD7 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					3048AECE21381883002AD2F4 = {
+						CreatedOnToolsVersion = 9.4.1;
 					};
 					304F93EB20C493500017F7E3 = {
 						CreatedOnToolsVersion = 9.4;
@@ -1208,11 +1347,21 @@
 				30E514C620DEFB5F004C2314 /* FileIO */,
 				30FEBD1420E00082008F3879 /* SOIL2 */,
 				30D5100020F69A6F0053BD71 /* Scene */,
+				3048AECE21381883002AD2F4 /* ECS */,
+				3001FFCC2148364B00CD9571 /* Physics */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3001FFC92148364B00CD9571 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3001FFDC2148368500CD9571 /* PhysicsNode.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3007278F20CFE3AA00A33AD7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1220,6 +1369,14 @@
 				300727A420CFE3EF00A33AD7 /* Event.cpp in Sources */,
 				300727AA20CFE80900A33AD7 /* EventNode.cpp in Sources */,
 				300727A020CFE3C700A33AD7 /* EventBus.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3048AECB21381883002AD2F4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3048AEDC213818A5002AD2F4 /* Component.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1248,7 +1405,6 @@
 			files = (
 				3051908C211C2383002A9EB2 /* PerlinNoise3D.cpp in Sources */,
 				3028A8C1210C9DDB00C9CF8D /* PerlinNoise2D.cpp in Sources */,
-				30BF6B972122CE200066552B /* PerlinNoise.cpp in Sources */,
 				3051909220C3038F001167E8 /* MathUtils.cpp in Sources */,
 				3051907F20C30173001167E8 /* Matrix3.cpp in Sources */,
 				3051908320C30186001167E8 /* Matrix4.cpp in Sources */,
@@ -1329,6 +1485,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3001FFD92148365700CD9571 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3051906920C2FE0B001167E8 /* Maths */;
+			targetProxy = 3001FFD82148365700CD9571 /* PBXContainerItemProxy */;
+		};
+		3001FFDF214836DB00CD9571 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3001FFCC2148364B00CD9571 /* Physics */;
+			targetProxy = 3001FFDE214836DB00CD9571 /* PBXContainerItemProxy */;
+		};
+		3001FFE4214836F200CD9571 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3007279220CFE3AA00A33AD7 /* EventSystem */;
+			targetProxy = 3001FFE3214836F200CD9571 /* PBXContainerItemProxy */;
+		};
 		300727A720CFE45F00A33AD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3007279220CFE3AA00A33AD7 /* EventSystem */;
@@ -1338,6 +1509,11 @@
 			isa = PBXTargetDependency;
 			target = 304F93EB20C493500017F7E3 /* Utilities */;
 			targetProxy = 300D1FF420C496DB00CF5155 /* PBXContainerItemProxy */;
+		};
+		3048AEDF213818F0002AD2F4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3048AECE21381883002AD2F4 /* ECS */;
+			targetProxy = 3048AEDE213818F0002AD2F4 /* PBXContainerItemProxy */;
 		};
 		304F93FC20C493AF0017F7E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1447,6 +1623,32 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		3001FFD52148364B00CD9571 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3001FFD62148364B00CD9571 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		3007279B20CFE3AA00A33AD7 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1461,6 +1663,32 @@
 			name = Debug;
 		};
 		3007279C20CFE3AA00A33AD7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		3048AED721381883002AD2F4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KSG6NDV7ZG;
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3048AED821381883002AD2F4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
@@ -1872,11 +2100,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3001FFD72148364B00CD9571 /* Build configuration list for PBXNativeTarget "Physics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3001FFD52148364B00CD9571 /* Debug */,
+				3001FFD62148364B00CD9571 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3007279D20CFE3AA00A33AD7 /* Build configuration list for PBXNativeTarget "EventSystem" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3007279B20CFE3AA00A33AD7 /* Debug */,
 				3007279C20CFE3AA00A33AD7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3048AED921381883002AD2F4 /* Build configuration list for PBXNativeTarget "ECS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3048AED721381883002AD2F4 /* Debug */,
+				3048AED821381883002AD2F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

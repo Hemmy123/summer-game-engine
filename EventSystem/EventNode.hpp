@@ -17,9 +17,7 @@ class EventBus;
 class EventNode {
 public:
 	EventNode(EventBus* eventBus,SubSystem system);
-	
-	//void sendEvent(Event event) { m_eventBus->addEvent(event);}
-	
+		
 	virtual void handleEvent(Event event) = 0;
 	
 protected:

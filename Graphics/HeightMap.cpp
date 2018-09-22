@@ -102,10 +102,13 @@ void HeightMap::generateRandomTerrain(Vector3 position,int octaves, float freque
 			
 			
 			float noise = m_noiseGenerator->noiseAt(point, octaves, frequency, persistance);
-//			if (noise < 0.1) {
-//				noise = 0.1;
-//			}
-//			
+			
+			float ground = -0.3;
+			
+			if (noise < ground) {
+				noise = ground;
+			}
+		
 			m_vertices[offset]		= Vector3(x * m_xMultiplier, noise * m_yMultiplier, z * m_zMultiplier);
 			m_textureCoords[offset]	= Vector2(x * m_xTexCoord, z * m_zTexCoord);
 			
@@ -148,8 +151,6 @@ void HeightMap::updateTerrain(PerlinNoise3D* perlin3D,Vector3 position,int octav
 	float scaledX = position.x / m_xMultiplier;
 	float scaledZ = position.z / m_zMultiplier;
 	
-	
-	
 	for (int x = 0; x < m_rawWidth; ++x) {
 		for (int z = 0; z < m_rawHeight; ++z) {
 			int offset = (x* m_rawWidth) + z;
@@ -159,11 +160,9 @@ void HeightMap::updateTerrain(PerlinNoise3D* perlin3D,Vector3 position,int octav
 			
 			Vector3 tempPoint(tempX,tempZ,position.z);
 
-			
 			float noise = perlin3D->noiseAt(tempPoint, octaves, frequency, persistance);
 
-//			float noise = 1;
-			
+
 			m_vertices[offset]		= Vector3(x * m_xMultiplier, noise * m_yMultiplier, z * m_zMultiplier);
 			m_textureCoords[offset]	= Vector2(x * m_xTexCoord, z * m_zTexCoord);
 			
@@ -188,11 +187,8 @@ void HeightMap::updateTerrain(PerlinNoise3D* perlin3D,Vector3 position,int octav
 			m_indices[m_numIndices++] = a;
 			m_indices[m_numIndices++] = d;
 			m_indices[m_numIndices++] = c;
-			
 		}
-		
 	}
-	
 	updateData();
 }
 

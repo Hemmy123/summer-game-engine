@@ -16,7 +16,15 @@
 
 PerlinNoise3D::PerlinNoise3D(int destScale, int seed) :permutationSize(destScale), destScale(destScale)
 {
+	m_surroundingPoints = new Vector3[8];
+	m_weights = new float[8];
 	generatePermArray(seed,destScale);
+}
+
+PerlinNoise3D::~PerlinNoise3D(){
+	
+	delete[] m_weights;
+	delete[] m_surroundingPoints;
 }
 
 
@@ -48,7 +56,6 @@ float PerlinNoise3D::fadeFunction(float t)
 
 Vector3* PerlinNoise3D::surroundingPointsOf(Vector3 point){
 	
-	Vector3* surroundingPoints = new Vector3[8];
 	
 	Vector3 p0 = Vector3(floor(point.x), floor(point.y), floor(point.z));
 	Vector3 p1 = p0 + Vector3(1,0,0);
@@ -59,17 +66,17 @@ Vector3* PerlinNoise3D::surroundingPointsOf(Vector3 point){
 	Vector3 p6 = p0 + Vector3(0,1,1);
 	Vector3 p7 = p0 + Vector3(1,1,1);
 
-	surroundingPoints[0] = p0;
-	surroundingPoints[1] = p1;
-	surroundingPoints[2] = p2;
-	surroundingPoints[3] = p3;
-	surroundingPoints[4] = p4;
-	surroundingPoints[5] = p5;
-	surroundingPoints[6] = p6;
-	surroundingPoints[7] = p7;
+	m_surroundingPoints[0] = p0;
+	m_surroundingPoints[1] = p1;
+	m_surroundingPoints[2] = p2;
+	m_surroundingPoints[3] = p3;
+	m_surroundingPoints[4] = p4;
+	m_surroundingPoints[5] = p5;
+	m_surroundingPoints[6] = p6;
+	m_surroundingPoints[7] = p7;
 
 	
-	return surroundingPoints;
+	return m_surroundingPoints;
 	
 }
 
@@ -77,13 +84,12 @@ Vector3* PerlinNoise3D::surroundingPointsOf(Vector3 point){
 
 float* PerlinNoise3D::surroundingWeights(Vector3 point){
 	
-	Vector3* surroundingPoints = surroundingPointsOf(point);
-	float* weights = new float[8];
+	Vector3* m_surroundingPoints = surroundingPointsOf(point);
 	
 	for (unsigned i = 0; i < 8; ++i) {
-		int x = (surroundingPoints[i].x);
-		int y = (surroundingPoints[i].y);
-		int z = (surroundingPoints[i].z);
+		int x = (m_surroundingPoints[i].x);
+		int y = (m_surroundingPoints[i].y);
+		int z = (m_surroundingPoints[i].z);
 		
 		int px = abs(x %permutationSize);
 		int py = abs(y %permutationSize);
@@ -98,15 +104,14 @@ float* PerlinNoise3D::surroundingWeights(Vector3 point){
 		
 		
 		Vector3 gradientVector = randomVectors[gradIndex];
-		Vector3 cornerToPoint = surroundingPoints[i] - point ;
+		Vector3 cornerToPoint = m_surroundingPoints[i] - point ;
 		
 		float dotProduct = Vector3::Dot(cornerToPoint,gradientVector);
-		weights[i] = dotProduct;
+		m_weights[i] = dotProduct;
 	}
 	
 	
-	delete[] surroundingPoints;
-	return weights;
+	return m_weights;
 }
 
 
@@ -169,17 +174,16 @@ float PerlinNoise3D::noiseAt(Vector3 point){
 	 
 	*/
 	
-	float bot1 = MathUtils::lerp(weights[0], weights[1], fadeX);
-	float bot2 = MathUtils::lerp(weights[4], weights[5], fadeX);
+	float bot1 = MathUtils::lerp(m_weights[0], m_weights[1], fadeX);
+	float bot2 = MathUtils::lerp(m_weights[4], m_weights[5], fadeX);
 	float bot = MathUtils::lerp(bot1, bot2, fadeZ);
 
-	float top1 = MathUtils::lerp(weights[2], weights[3], fadeX);
-	float top2 = MathUtils::lerp(weights[6], weights[7], fadeX);
+	float top1 = MathUtils::lerp(m_weights[2], m_weights[3], fadeX);
+	float top2 = MathUtils::lerp(m_weights[6], m_weights[7], fadeX);
 	float top = MathUtils::lerp(top1, top2, fadeZ);
 	
 	float finalLerp = MathUtils::lerp(bot,top,fadeY);
 
-	delete[] weights;
 	
 //	std::cout << "noise: " << finalLerp << std::endl;
 //	std::cout << "point: " << point << std::endl;

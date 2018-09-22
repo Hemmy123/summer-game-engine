@@ -19,7 +19,7 @@
 // NOTE: Subsystems are linked to the bus, not the other way around
 // like the in old system! (So subsystems do not contain a reference
 // the main event bus. The main event bus however contains a reference
-// to all of the other sub systems.
+// to all of the other sub systems).
 class EventNode;
 
 class EventBus{

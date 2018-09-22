@@ -18,6 +18,7 @@
 
 #include "EventNode.hpp"
 #include "HeightMap.hpp"
+#include "Level.hpp"
 
 
 using std::vector;
@@ -35,6 +36,8 @@ public:
 	
 	GLFWwindow* getWindow() const {return m_renderer->getWindow();}
 	
+	
+	void loadLevel(Level* level);
 	
 private:
 	
@@ -54,6 +57,7 @@ private:
 	vector<RenderObject*> 	m_renderObjects;
 	vector<Light*>			m_lights;
 	
+	Level*		m_currentLevel;
 	Light* 		m_light;
 
     

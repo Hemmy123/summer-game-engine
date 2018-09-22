@@ -6,8 +6,8 @@
 //
 // Very very basic keyboard input handling.
 // Can only handle on button at a time :(,
-// but its enough to move a camera and test
-// fancy graphics stuff! :D
+// but its enough to move a camera and get
+// testing going
 //
 // ========================================
 

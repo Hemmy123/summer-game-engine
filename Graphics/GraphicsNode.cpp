@@ -14,7 +14,7 @@
 
 GraphicsNode::GraphicsNode(EventBus* bus, SubSystem subSystem):EventNode(bus,subSystem){
     m_renderer = new Renderer(800, 1024);
-	m_perlin3D = new PerlinNoise3D(257,5);
+	m_perlin3D = new PerlinNoise3D(257,6);
 	createDemoScene();
 	
 }
@@ -36,28 +36,28 @@ GraphicsNode::~GraphicsNode(){
 	
 	delete m_renderer;
 
-	
-	
 }
 
 void GraphicsNode::createDemoScene(){
 
 	
 	// ----- Create Shaders -----
-	string vertexPath 	= SHADERVERTDIR"Basic_Vert.glsl";
-	string fragPath 	= SHADERFRAGDIR"Textured_Frag.glsl";
+	string vertexPath 		= SHADERVERTDIR"Basic_Vert.glsl";
+	string fragPath 		= SHADERFRAGDIR"Textured_Frag.glsl";
+	string transFragPath 	= SHADERFRAGDIR"Trans_Frag.glsl";
 	
 	string lightingVert = SHADERVERTDIR"Lighting_Vert.glsl";
 	string lightingFrag = SHADERFRAGDIR"Lighting_Frag.glsl";
 	
 	//Shader* shader 		= new Shader(vertexPath,fragPath);
-	Shader* shader 		= new Shader(lightingVert,lightingFrag);
-	m_shaders.push_back(shader);
+	Shader* shader 			= new Shader(lightingVert,lightingFrag);
+	Shader* transShader 	= new Shader(lightingVert,transFragPath);
 
+	m_shaders.push_back(shader);
+	m_shaders.push_back(transShader);
+	
 	m_light = new Light(Vector3(60,50,25) , Vector4(1,1,1,1), 500);
 
-
-	
 	// ----- Create Meshes -----
 	int rawWidth = 257;
 	int rawHeight = 257;
@@ -67,11 +67,10 @@ void GraphicsNode::createDemoScene(){
 	float heightMap_tex_x = 1/heightMap_x;
 	float heightMap_tex_z = 1/heightMap_z;
 	
-	PerlinNoise2D* perlin = new PerlinNoise2D(rawWidth,5);
+	PerlinNoise2D* perlin = new PerlinNoise2D(rawWidth,6);
 
-	m_heightMap = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, 3,heightMap_tex_x, heightMap_tex_z,perlin);
-	
-	HeightMap* terrain = new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, 50,heightMap_tex_x, heightMap_tex_z,perlin);
+	m_heightMap 		= new HeightMap(rawWidth,rawHeight,heightMap_x*2,heightMap_z*2, 3,heightMap_tex_x, heightMap_tex_z,perlin);
+	HeightMap* terrain 	= new HeightMap(rawWidth,rawHeight,heightMap_x,heightMap_z, 50,heightMap_tex_x, heightMap_tex_z,perlin);
 	
 	m_heightMap->generateRandomTerrain(Vector3(0,0,0), 3, 5, 0.5);
 	terrain->generateRandomTerrain(Vector3(0,0,0), 8, 2, 0.5);
@@ -82,6 +81,10 @@ void GraphicsNode::createDemoScene(){
 	mesh2->loadTexture(TEXTUREDIR"nyan.jpg");
 	
 	terrain->loadTexture(TEXTUREDIR"Grass.jpg");
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	
+	
 	m_heightMap->loadTexture(TEXTUREDIR"water.jpeg");
 
 	m_heightMap->generateNormals();
@@ -103,11 +106,10 @@ void GraphicsNode::createDemoScene(){
 	// ----- Render Objects -----
 	
 	
-	RenderObject* heightMap = new RenderObject(m_heightMap, shader);
+	RenderObject* heightMap = new RenderObject(m_heightMap, transShader);
+	//heightMap->setTransparent(true);
 	RenderObject* terrainRO = new RenderObject(terrain, shader);
 
-	
-	
 	RenderObject* ground = new RenderObject(mesh2, shader);
 
 	RenderObject* ro1 = new RenderObject(mesh1, shader);
@@ -132,16 +134,14 @@ void GraphicsNode::createDemoScene(){
 	heightMap->setModelMatrix(heightmapPos);
 	terrainRO->setModelMatrix(terrainPos);
 
-	
 	ground->setModelMatrix(cubeScale * cubeTrans);
 	ro1->setModelMatrix(trans1 * cubeScale);
 	ro2->setModelMatrix(trans2 * cubeScale);
 	ro3->setModelMatrix(trans3 * cubeScale);
 	ro4->setModelMatrix(trans4 * cubeScale);
 
-	
-	m_renderObjects.push_back(heightMap);
 	m_renderObjects.push_back(terrainRO);
+	m_renderObjects.push_back(heightMap);
 
 	
 	m_renderObjects.push_back(ground);
@@ -161,11 +161,10 @@ void GraphicsNode::update(float msec){
     if (!m_renderer->checkWindow()){
 		
 		m_renderer->update(msec);
-		counter+=(msec/15);
+		counter+=(msec/40);
 		
-		m_heightMap->updateTerrain(m_perlin3D,Vector3(0 ,0,counter), 4, 10, 0.5);
+		m_heightMap->updateTerrain(m_perlin3D,Vector3(0 ,0,counter), 1, 10, 0.5);
 		m_heightMap->generateNormals();
-		
 		
 		/* --- Temp lighting test --- */
 		for(auto ro: m_renderer->getOpaqueObjects()){
@@ -190,10 +189,72 @@ void GraphicsNode::handleEvent(Event event){
 	SubSystem receiver = event.getReceiver();
 	std::string type = event.getType();
 	
-	if(sender ==  Sys_Game && receiver == Sys_Graphics && type == "Test Message!"){
-		std::cout<< "Message receieved!"<< std::endl;
+	if(sender ==  Sys_Game && receiver == Sys_Graphics && type == "Load_Level"){
+		m_currentLevel = static_cast<Level*>(event.getData());
+		loadLevel(m_currentLevel);
 		
 	}
+	
+}
+
+void GraphicsNode::loadLevel(Level* level){
+	
+	std::vector<GameObject*> gameObjects = level->getGameObjects();
+	
+	string vertexPath 		= SHADERVERTDIR"Basic_Vert.glsl";
+	string fragPath 		= SHADERFRAGDIR"Textured_Frag.glsl";
+	string transFragPath 	= SHADERFRAGDIR"Trans_Frag.glsl";
+	
+	string lightingVert = SHADERVERTDIR"Lighting_Vert.glsl";
+	string lightingFrag = SHADERFRAGDIR"Lighting_Frag.glsl";
+	
+	//Shader* shader 		= new Shader(vertexPath,fragPath);
+	Shader* shader 			= new Shader(lightingVert,lightingFrag);
+	Shader* transShader 	= new Shader(lightingVert,transFragPath);
+	
+	m_shaders.push_back(shader);
+	m_shaders.push_back(transShader);
+	
+	for(auto obj: gameObjects){
+		
+		ObjectTag tag =obj->getTag();
+		
+		switch(tag){
+			case T_Rabbit:{
+				Mesh* rabbitMesh = Mesh::readObjFile(MODELSDIR"Rabbit.obj");
+				rabbitMesh->loadTexture(TEXTUREDIR"Rabbit/Rabbit_D.tga");
+				rabbitMesh->bufferData();
+				m_meshes.push_back(rabbitMesh);
+				RenderObject* ro1 = new RenderObject(rabbitMesh, shader);
+				
+				Matrix4 const pos =  Matrix4::Translation(Vector3(obj->getPosition()));
+				// do scale and rotation here
+				ro1->setModelMatrix(pos);
+				m_renderObjects.push_back(ro1);
+				m_renderer->setRenderObjects(m_renderObjects);
+
+				break;
+			}
+				
+			case T_Cube:{
+				std::cout<< "Cube!" << std::endl;
+				break;
+			}
+			case T_Player:{
+				
+			}
+			case T_Wall:{
+				
+			}
+			case T_Water:{
+				
+			}
+				
+		}
+		
+	
+	}
+	
 	
 }
 

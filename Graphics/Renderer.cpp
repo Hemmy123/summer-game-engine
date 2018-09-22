@@ -77,7 +77,7 @@ Renderer::~Renderer(){
 	delete m_processShader;
 	delete m_quad;
 	
-//	delete m_waterQuad;
+	//delete m_waterQuad;
 	//delete m_reflectShader;
 	//delete m_skyboxShader;
 	m_currentShader = 0;

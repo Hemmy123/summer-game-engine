@@ -17,20 +17,28 @@
 // Quick and easy tag which defines
 // what a gameobject this. This will be
 // turned into a proper data driven method
-// later as this card coded tag method
+// later as this hard coded tag method
 // is rather messy
 enum ObjectTag{
 	T_Player,
 	T_Wall,
-	T_Playform,
+	T_Platform,
 	T_Trigger,
+	
+	
+	// Test Tags
+	
+	T_Rabbit,
+	T_Terrain,
+	T_Water,
+	T_Cube
 	
 };
 
 
 // The base data required for a game object.
 // This can be used by other subsystems like
-// graphics, physics and audio for postioning
+// graphics, physics and audio for positioning
 // data
 struct {
 	char* m_UID;
@@ -58,6 +66,7 @@ public:
 	inline Vector3 getScale() 		const { return m_scale;}
 	inline ObjectTag getTag()		const { return m_tag;}
 
+	inline void setTag(ObjectTag t)		{ m_tag = t;}
 	inline void setPosition(Vector3 p) 	{ m_position = p;};
 	inline void setRotation(Vector3 r) 	{ m_rotation = r;};
 	inline void setScale(Vector3 s) 	{ m_scale = s;};

@@ -34,18 +34,13 @@ public:
 	void setDestScale(int s) { destScale = s; }
 	
 protected:
+	Vector3* m_surroundingPoints;
+	float* m_weights;
+	
 	int permutationSize;
 	
 	vector<int> m_perm; // Permuation Array
-	
-//	vector<Vector2> randomVectors = {
-//		Vector2(1,1),	Vector2(-1,1),
-//		Vector2(1,-1),	Vector2(-1,-1),
-//		Vector2(0,1),	Vector2(1,0),
-//		Vector2(1,-1),	Vector2(-1,0)
-//	};
-//
-	
+
 	vector<Vector3> randomVectors = {
 		Vector3(1,1,0),	Vector3(-1,1,0),	Vector3(1,-1,0),	Vector3(-1,-1,0),
 		Vector3(1,0,1),	Vector3(-1,0,1), 	Vector3(1,0,-1),	Vector3(-1,0,-1),
