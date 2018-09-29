@@ -1,4 +1,4 @@
-#  Summer Game Engine
+# Summer Game Engine
 This repo is what I managed to accomplish in the free time I had during summer. **Many** parts of engine are unfinished. 
 
 This was mainly a learning experience and not an actual attempt to create a polished game engine. Because of this, parts of the engine are hard coded in and are definitely not best practice! For example, the scene that is loaded in is hard coded in the Graphics Node. 
@@ -28,7 +28,8 @@ The following are notes about each subsystem and any incomplete code that I woul
 
 ## Initialisation
 Where the main method is and handles initialisation and shutdown of the program
-##Graphics
+
+## Graphics
 At the start of a level, a level is loaded by a class in the Game subsystem and the picked up my other subsystems such as Graphics and Physics. The graphics subsystem takes the Level and turns it into graphics objects (or RenderObjects). This is what's used to render the object onto the screen. 
 
 ### RendererNodes

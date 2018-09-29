@@ -1,10 +1,12 @@
+
+////========================================
+// Class: Utils.hpp
+// Author: Hemmy
+// Date: 02/06/2018.
+// Description:
+// Some basic math functions, adapted from NCLGL
 //
-//  Utils.hpp
-//  Maths
-//
-//  Created by Hemmy on 02/06/2018.
-//  Copyright © 2018 Hemmy. All rights reserved.
-//
+// ========================================
 
 #ifndef Utils_hpp
 #define Utils_hpp
